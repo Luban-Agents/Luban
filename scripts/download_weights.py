@@ -10,7 +10,7 @@
 示例(本项目常用的三类资产):
 
 下载完成后,把目录的绝对路径写进对应的环境变量
-(如 OMNIROBOAGENT_MODEL_PATH),或写入 agent 配置的 init_args。
+(如 LUBAN_MODEL_PATH),或写入 agent 配置的 init_args。
 """
 
 from __future__ import annotations

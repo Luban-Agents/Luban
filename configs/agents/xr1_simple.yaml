@@ -1,11 +1,11 @@
 agent:
-  class_path: omniroboagent.agent_core.DefaultAgent
+  class_path: luban.agent_core.DefaultAgent
 planner:
-  class_path: omniroboagent.agent_core.TaskSkillPlanner
+  class_path: luban.agent_core.TaskSkillPlanner
 verifier:
-  class_path: omniroboagent.agent_core.EnvironmentVerifier
+  class_path: luban.agent_core.EnvironmentVerifier
 memory:
-  class_path: omniroboagent.agent_core.InMemoryMemory
+  class_path: luban.agent_core.InMemoryMemory
 skill_backend:
   name: xr1_remote
   init_args:

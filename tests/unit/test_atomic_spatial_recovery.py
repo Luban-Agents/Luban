@@ -6,7 +6,7 @@ from copy import deepcopy
 import numpy as np
 import pytest
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     ATOMIC_SKILL_CONTRACT_SCHEMA_VERSION,
     ROBOCASA365_OFFICIAL_ATOMIC_TASK_NAMES,
     AtomicRecoveryEffectTracker,
@@ -15,15 +15,15 @@ from omniroboagent.agent_core import (
     SpatialSceneMemory,
     TaskDecomposer,
 )
-from omniroboagent.environments.benchmarks.robocasa import RoboCasaEnvironment
-from omniroboagent.exceptions import ProtocolSchemaError
-from omniroboagent.perception import (
+from luban.environments.benchmarks.robocasa import RoboCasaEnvironment
+from luban.exceptions import ProtocolSchemaError
+from luban.perception import (
     VisualPerceptionServer,
     compile_concept_queries,
     extract_molmo2_multi_image_points,
     validate_perception_response,
 )
-from omniroboagent.pipelines import AtomicSpatialSkillExecutionPipeline
+from luban.pipelines import AtomicSpatialSkillExecutionPipeline
 
 CAMERA = "video.robot0_agentview_left"
 

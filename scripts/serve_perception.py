@@ -16,7 +16,7 @@ writes each mask as a PNG and puts its ``file://`` reference into the entity.
 Without that flag the analyzer behaves exactly as before (``mask_ref`` stays
 ``None``), which keeps the already-running service path unchanged.
 
-Environment overrides: ``OMNIROBOAGENT_SRC`` points at the checkout's ``src``.
+Environment overrides: ``LUBAN_SRC`` points at the checkout's ``src``.
 """
 
 from __future__ import annotations
@@ -152,7 +152,7 @@ def build_analyzer(processor: Any, mask_out_dir: str | None = None) -> Any:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="SAM3 perception server for OmniRoboAgent"
+        description="SAM3 perception server for Luban"
     )
     parser.add_argument(
         "--checkpoint",
@@ -170,12 +170,12 @@ def main() -> int:
     parser.add_argument("--mask-out-dir", default=None)
     args = parser.parse_args()
 
-    sys.path.insert(0, os.environ.get("OMNIROBOAGENT_SRC", DEFAULT_SRC))
+    sys.path.insert(0, os.environ.get("LUBAN_SRC", DEFAULT_SRC))
 
     from sam3 import build_sam3_image_model
     from sam3.model.sam3_image_processor import Sam3Processor
 
-    from omniroboagent.perception.server import VisualPerceptionServer
+    from luban.perception.server import VisualPerceptionServer
 
     model = build_sam3_image_model(
         bpe_path=args.bpe_path,

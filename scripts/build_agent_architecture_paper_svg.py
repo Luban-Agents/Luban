@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""生成论文风格（CVPR / CoRL / ICRA figure 语言）的 OmniRoboAgent 架构图。
+"""生成论文风格（CVPR / CoRL / ICRA figure 语言）的 Luban 架构图。
 
 与工程版的区别：
   * 标签极简（名词短语 + 箭头标签），不写解释性句子
@@ -7,11 +7,11 @@
   * 在线执行（左）与离线自演化（右）分离，主数据流单向、回路明确
   * 模块术语保留英文（投稿通用），图注正文另行提供
 
-事实来源：self-evolution-machine 上 OmniRoboAgent-SelfEvolution-AtomicSkills-v20260910
+事实来源：self-evolution-machine 上 Luban-SelfEvolution-AtomicSkills-v20260910
 （impl_docs/architecture/overview.md、docs/agent_core/*.md、src/**、configs/agents/*.yaml）
 
 运行：python3 scripts/build_agent_architecture_paper_svg.py
-输出：outputs/omniroboagent_architecture_figure_20260912.svg / .png
+输出：outputs/luban_architecture_figure_20260912.svg / .png
 """
 
 from __future__ import annotations
@@ -20,8 +20,8 @@ import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(ROOT, "outputs")
-SVG_PATH = os.path.join(OUT_DIR, "omniroboagent_architecture_figure_20260912.svg")
-PNG_PATH = os.path.join(OUT_DIR, "omniroboagent_architecture_figure_20260912.png")
+SVG_PATH = os.path.join(OUT_DIR, "luban_architecture_figure_20260912.svg")
+PNG_PATH = os.path.join(OUT_DIR, "luban_architecture_figure_20260912.png")
 
 W, H = 1600, 744
 FONT = "Helvetica Neue, Helvetica, Arial, sans-serif"

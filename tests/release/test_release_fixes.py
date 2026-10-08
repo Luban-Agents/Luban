@@ -11,14 +11,14 @@ from types import ModuleType
 import pytest
 from test_release_boundaries import Env, agent
 
-from omniroboagent import cli
-from omniroboagent.config import instantiate
-from omniroboagent.dashboard import store
-from omniroboagent.exceptions import ConfigError
-from omniroboagent.observability import LocalEpisodeRecorder
-from omniroboagent.pipelines import DirectPipeline
-from omniroboagent.runtimes import SyncRuntime
-from omniroboagent.serialization import redact_secrets
+from luban import cli
+from luban.config import instantiate
+from luban.dashboard import store
+from luban.exceptions import ConfigError
+from luban.observability import LocalEpisodeRecorder
+from luban.pipelines import DirectPipeline
+from luban.runtimes import SyncRuntime
+from luban.serialization import redact_secrets
 
 
 def test_session_collision_is_exclusive(tmp_path):
@@ -167,14 +167,14 @@ def test_cli_normal_task_failure_is_not_infrastructure_failure(monkeypatch):
             "exceptions": 0,
         },
     )
-    monkeypatch.setattr(sys, "argv", ["omniroboagent", "run", "--config", "unused"])
+    monkeypatch.setattr(sys, "argv", ["luban", "run", "--config", "unused"])
     cli.main()
 
 
 def test_cli_real_process_failure_exit_and_redaction(tmp_path):
     module = tmp_path / "local_failure.py"
     module.write_text(
-        "from omniroboagent.examples.offline import CounterEnvironment\n"
+        "from luban.examples.offline import CounterEnvironment\n"
         "class Broken(CounterEnvironment):\n"
         "    def execute(self, action, execute_steps=None):\n"
         "        raise RuntimeError('api_key=SYNTHETIC_CLI_SECRET')\n"
@@ -183,14 +183,12 @@ def test_cli_real_process_failure_exit_and_redaction(tmp_path):
     agent_config.write_text(
         json.dumps(
             {
-                "agent": {"class_path": "omniroboagent.agent_core.DefaultAgent"},
-                "planner": {"class_path": "omniroboagent.agent_core.TaskSkillPlanner"},
-                "verifier": {
-                    "class_path": "omniroboagent.agent_core.EnvironmentVerifier"
-                },
-                "memory": {"class_path": "omniroboagent.agent_core.InMemoryMemory"},
+                "agent": {"class_path": "luban.agent_core.DefaultAgent"},
+                "planner": {"class_path": "luban.agent_core.TaskSkillPlanner"},
+                "verifier": {"class_path": "luban.agent_core.EnvironmentVerifier"},
+                "memory": {"class_path": "luban.agent_core.InMemoryMemory"},
                 "skill_backend": {
-                    "class_path": "omniroboagent.backends.skills.LanguageSkillBackend"
+                    "class_path": "luban.backends.skills.LanguageSkillBackend"
                 },
             }
         )
@@ -200,9 +198,9 @@ def test_cli_real_process_failure_exit_and_redaction(tmp_path):
         json.dumps(
             {
                 "agent_config": str(agent_config),
-                "pipeline": {"class_path": "omniroboagent.pipelines.DirectPipeline"},
+                "pipeline": {"class_path": "luban.pipelines.DirectPipeline"},
                 "runtime": {
-                    "class_path": "omniroboagent.runtimes.SyncRuntime",
+                    "class_path": "luban.runtimes.SyncRuntime",
                     "init_args": {"output_dir": str(tmp_path / "runs")},
                 },
                 "environment": {"class_path": "local_failure.Broken"},
@@ -211,7 +209,7 @@ def test_cli_real_process_failure_exit_and_redaction(tmp_path):
         )
     )
     result = subprocess.run(
-        [sys.executable, "-m", "omniroboagent.cli", "run", "--config", str(config)],
+        [sys.executable, "-m", "luban.cli", "run", "--config", str(config)],
         cwd=tmp_path,
         env={**os.environ, "PYTHONPATH": str(tmp_path)},
         capture_output=True,
@@ -228,7 +226,7 @@ def test_installed_offline_example(tmp_path):
         [
             sys.executable,
             "-m",
-            "omniroboagent.examples.offline",
+            "luban.examples.offline",
             "--output-dir",
             str(tmp_path / "outputs"),
         ],
@@ -252,7 +250,7 @@ def test_installed_offline_example(tmp_path):
 )
 def test_cli_batch_infrastructure_errors_are_nonzero(monkeypatch, result):
     monkeypatch.setattr(cli, "run_config", lambda _: result)
-    monkeypatch.setattr(sys, "argv", ["omniroboagent", "run", "--config", "unused"])
+    monkeypatch.setattr(sys, "argv", ["luban", "run", "--config", "unused"])
     with pytest.raises(SystemExit) as error:
         cli.main()
     assert error.value.code == 1
@@ -282,7 +280,7 @@ def test_perception_cli_requires_user_model_path_before_loading(script, variable
 def test_xr1_portable_config_still_checks_model_identity(monkeypatch):
     import importlib.util
 
-    from omniroboagent.config import build_agent, load_yaml
+    from luban.config import build_agent, load_yaml
 
     path = Path.cwd() / "tests/smoke/test_xr1_self_evolution_smoke.py"
     spec = importlib.util.spec_from_file_location("xr1_release_fixture", path)

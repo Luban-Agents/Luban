@@ -13,18 +13,18 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+from luban.backends.atomic_skills.guards import AtomicSemanticGuard
+from luban.backends.atomic_skills.state_estimate_backend import (
+    EstimateObjectStateVerifier,
+    Molmo2StateEstimateBackend,
+    Molmo2StateEstimateEnvironment,
+)
 from omni_atomic_skills import SkillRegistry
 from omni_atomic_skills.runtime import (
     ExecutionContext,
     RuntimeExecutionError,
     SkillRuntime,
     VerificationVerdict,
-)
-from omniroboagent.backends.atomic_skills.guards import AtomicSemanticGuard
-from omniroboagent.backends.atomic_skills.state_estimate_backend import (
-    EstimateObjectStateVerifier,
-    Molmo2StateEstimateBackend,
-    Molmo2StateEstimateEnvironment,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[2]

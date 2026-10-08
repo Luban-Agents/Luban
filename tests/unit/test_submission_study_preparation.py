@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-from omniroboagent.agent_core.experience_capsules import ExperienceCapsule
+from luban.agent_core.experience_capsules import ExperienceCapsule
 
 
 def test_preparation_keeps_frozen_inputs_and_equal_budgets(tmp_path: Path) -> None:

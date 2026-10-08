@@ -3,9 +3,9 @@ from typing import Any
 import numpy as np
 import pytest
 
-from omniroboagent.agent_core import SelfEvolvingAgent
-from omniroboagent.backends.skills.xiaomi_remote import XiaomiRemotePolicyBackend
-from omniroboagent.config import build_agent, load_yaml
+from luban.agent_core import SelfEvolvingAgent
+from luban.backends.skills.xiaomi_remote import XiaomiRemotePolicyBackend
+from luban.config import build_agent, load_yaml
 
 
 class FakeXr1PolicyClient:

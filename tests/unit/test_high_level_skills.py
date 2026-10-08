@@ -5,7 +5,7 @@ from typing import Any
 import pytest
 from PIL import Image
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     BaseAgent,
     DefaultAgent,
     ExperienceCapsuleStore,
@@ -16,15 +16,15 @@ from omniroboagent.agent_core import (
     SkillManager,
     SubtaskSkillPlanner,
 )
-from omniroboagent.agent_core.high_skills.episode import collect_reflection_images
-from omniroboagent.agent_core.verifiers.base import Verifier
-from omniroboagent.backends.llm.base import LLMBackend
-from omniroboagent.backends.skills import LanguageSkillBackend
-from omniroboagent.config import build_agent
-from omniroboagent.environments.base import Environment
-from omniroboagent.exceptions import ConfigError, PlannerOutputError
-from omniroboagent.pipelines.base import Pipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.agent_core.high_skills.episode import collect_reflection_images
+from luban.agent_core.verifiers.base import Verifier
+from luban.backends.llm.base import LLMBackend
+from luban.backends.skills import LanguageSkillBackend
+from luban.config import build_agent
+from luban.environments.base import Environment
+from luban.exceptions import ConfigError, PlannerOutputError
+from luban.pipelines.base import Pipeline
+from luban.runtimes import SyncRuntime
 
 
 class SequencedBackend(LLMBackend):
@@ -131,9 +131,7 @@ def test_skill_manager_does_not_overwrite_on_failed_atomic_update(
     def fail_replace(source: Path, target: Path) -> None:
         raise OSError("replace failed")
 
-    monkeypatch.setattr(
-        "omniroboagent.agent_core.high_skills.manager.os.replace", fail_replace
-    )
+    monkeypatch.setattr("luban.agent_core.high_skills.manager.os.replace", fail_replace)
 
     with pytest.raises(OSError, match="replace failed"):
         manager.update_skill("stable_skill", instructions="# Replacement")
@@ -657,22 +655,20 @@ def _agent_config(tmp_path: Path) -> dict[str, Any]:
         "init_args": {"responses": []},
     }
     return {
-        "agent": {"class_path": "omniroboagent.agent_core.DefaultAgent"},
+        "agent": {"class_path": "luban.agent_core.DefaultAgent"},
         "planner": {
-            "class_path": "omniroboagent.agent_core.LanguageSkillPlanner",
+            "class_path": "luban.agent_core.LanguageSkillPlanner",
             "init_args": {"backend": backend_spec},
         },
-        "verifier": {"class_path": "omniroboagent.agent_core.EnvironmentVerifier"},
-        "memory": {"class_path": "omniroboagent.agent_core.InMemoryMemory"},
-        "skill_backend": {
-            "class_path": "omniroboagent.backends.skills.LanguageSkillBackend"
-        },
+        "verifier": {"class_path": "luban.agent_core.EnvironmentVerifier"},
+        "memory": {"class_path": "luban.agent_core.InMemoryMemory"},
+        "skill_backend": {"class_path": "luban.backends.skills.LanguageSkillBackend"},
         "skill_manager": {
-            "class_path": "omniroboagent.agent_core.high_skills.SkillManager",
+            "class_path": "luban.agent_core.high_skills.SkillManager",
             "init_args": {"root": str(tmp_path / "skills")},
         },
         "high_skill_reasoner": {
-            "class_path": "omniroboagent.agent_core.high_skills.HighSkillReasoner",
+            "class_path": "luban.agent_core.high_skills.HighSkillReasoner",
             "init_args": {"backend": backend_spec},
         },
     }

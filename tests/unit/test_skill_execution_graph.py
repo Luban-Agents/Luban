@@ -5,15 +5,15 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     BaseAgent,
     InMemoryMemory,
     SubtaskSkillPlanner,
     SubtaskVerifier,
 )
-from omniroboagent.environments import Environment
-from omniroboagent.exceptions import PlannerOutputError
-from omniroboagent.pipelines import SkillExecutionPipeline
+from luban.environments import Environment
+from luban.exceptions import PlannerOutputError
+from luban.pipelines import SkillExecutionPipeline
 
 
 class ScriptedAgent(BaseAgent):
@@ -2709,7 +2709,7 @@ def test_planner_compaction_keeps_progress_assessment() -> None:
     旧实现只保留后者，导致 Planner 在 prompt 里永远看不到进度评估。
     """
 
-    from omniroboagent.agent_core import LanguageSkillPlanner
+    from luban.agent_core import LanguageSkillPlanner
 
     compacted = LanguageSkillPlanner._compact_verification(
         {

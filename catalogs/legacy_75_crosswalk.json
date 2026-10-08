@@ -79,7 +79,7 @@
     {"legacy_id":"F02","legacy_name":"plan_action_sequence","coverage":"component_boundary","targets":["component:Planner","component:TaskGraphCompiler"],"note":"原子节点和组合DAG的生成器。"},
     {"legacy_id":"F03","legacy_name":"allocate_resources","coverage":"partial","targets":["capability:resources","guard:PreflightGuard","missing:ResourceAllocator"],"note":"当前只检查资源与capability，不负责多任务分配。"},
     {"legacy_id":"F04","legacy_name":"optimize_timing","coverage":"not_implemented","targets":["missing:TemporalScheduler"],"note":"当前CompositeExecutor为保守串行DAG执行器。"},
-    {"legacy_id":"F05","legacy_name":"plan_failure_recovery","coverage":"component_boundary","targets":["component:RecoveryPlanner","component:BoundedRecoveryRouter"],"note":"恢复规划保留在现有OmniRoboAgent链路，不由CompositeExecutor隐式执行。"},
+    {"legacy_id":"F05","legacy_name":"plan_failure_recovery","coverage":"component_boundary","targets":["component:RecoveryPlanner","component:BoundedRecoveryRouter"],"note":"恢复规划保留在现有Luban链路，不由CompositeExecutor隐式执行。"},
     {"legacy_id":"F06","legacy_name":"plan_with_constraints","coverage":"component_boundary","targets":["component:ConstraintPlanner","guard:PreflightGuard"],"note":"guard只负责拒绝不安全调用，不搜索可行规划。"},
     {"legacy_id":"F07","legacy_name":"optimize_multi_objective","coverage":"not_implemented","targets":["missing:MultiObjectiveOptimizer"],"note":"尚无帕累托优化组件。"},
 

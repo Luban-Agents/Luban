@@ -1,3 +1,5 @@
+[English](results.md) · [简体中文](results.zh-CN.md)
+
 # Logs and results
 
 Every Runtime run creates a fresh session under its configured output directory.
@@ -47,7 +49,7 @@ For optional read-only browsing:
 
 ```bash
 uv sync --frozen --extra dashboard
-.venv/bin/omniroboagent dashboard --runs-dir runs --host 127.0.0.1 --port 7860
+.venv/bin/luban dashboard --runs-dir runs --host 127.0.0.1 --port 7860
 ```
 
 The dashboard itself was not live-tested in this preparation. It does not run an

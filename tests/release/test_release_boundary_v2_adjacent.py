@@ -15,13 +15,13 @@ from test_release_boundary_v2 import (
     write_latent_checkpoint,
 )
 
-from omniroboagent.agent_core.module_evolution import ModuleEvolutionManager
-from omniroboagent.backends.world_models.latent import LightweightLatentDynamics
-from omniroboagent.exceptions import BackendError
-from omniroboagent.pipelines import DirectPipeline, Pipeline
-from omniroboagent.pipelines.policy_only import PolicyOnlyPipeline
-from omniroboagent.runtimes import SyncRuntime
-from omniroboagent.serialization import redact_secrets, to_jsonable
+from luban.agent_core.module_evolution import ModuleEvolutionManager
+from luban.backends.world_models.latent import LightweightLatentDynamics
+from luban.exceptions import BackendError
+from luban.pipelines import DirectPipeline, Pipeline
+from luban.pipelines.policy_only import PolicyOnlyPipeline
+from luban.runtimes import SyncRuntime
+from luban.serialization import redact_secrets, to_jsonable
 
 
 @pytest.mark.parametrize("steps", [0, np.int32(1), np.int64(2)])

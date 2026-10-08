@@ -1,8 +1,10 @@
+[English](development.md) · [简体中文](development.zh-CN.md)
+
 # Development and tests
 
 Read `AGENTS.md`, `rules/README.md` and
 `impl_docs/architecture/overview.md` before changing contracts. Keep core independent
-of simulator/robot SDKs. Existing `src/omniroboagent` and `src/omni_atomic_skills`
+of simulator/robot SDKs. Existing `src/luban` and `src/omni_atomic_skills`
 are retained; no new plugin manager or registry hierarchy was added.
 
 ```bash
@@ -58,16 +60,16 @@ weights, data and third-party restrictions before any push.
 
 
 Legacy developer probes under `scripts/study/` require their own SDKs and are
-not part of the quickstart. G0 drivers use `OMNIROBOAGENT_SIM_PYTHON` (default:
+not part of the quickstart. G0 drivers use `LUBAN_SIM_PYTHON` (default:
 the calling interpreter), the bundled sibling probe script and
-`OMNIROBOAGENT_PROBE_OUTPUT` (default: `runs/g0`). RoboCasa roots use the adapter's
-existing `OMNIROBOAGENT_ROBOCASA_ROOT`. They can launch multiple GPU processes;
+`LUBAN_PROBE_OUTPUT` (default: `runs/g0`). RoboCasa roots use the adapter's
+existing `LUBAN_ROBOCASA_ROOT`. They can launch multiple GPU processes;
 none were executed during this preparation. XR-1 worker startup requires
 `XR1_PYTHON` and `XR1_MODEL_PATH`; SAM3 startup requires `SAM3_PYTHON` and
-`SAM3_CHECKPOINT`, with optional `OMNI_PYTHON` and `SAM3_INPUT_IMAGE` overrides.
+`SAM3_CHECKPOINT`, with optional `LUBAN_PYTHON` and `SAM3_INPUT_IMAGE` overrides.
 Historical JSON output path prefixes were replaced with `<HISTORICAL_PROJECT_ROOT>`;
 these are diagnostic references, not variables consumed by configuration loading.
 The catalog's evidence index identifies bundled fixtures. No numeric result changed.
-The optional key-file launcher reads `OMNIROBOAGENT_API_KEY_FILE`, defaulting to
-the calling user's `.config/omniroboagent/api_key`; the normal CLI reads environment
+The optional key-file launcher reads `LUBAN_API_KEY_FILE`, defaulting to
+the calling user's `.config/luban/api_key`; the normal CLI reads environment
 credentials directly and does not require that helper.

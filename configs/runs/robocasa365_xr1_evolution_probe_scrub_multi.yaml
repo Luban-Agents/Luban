@@ -1,10 +1,10 @@
 agent_config: ../agents/self_evolving_xr1_atomic_v22.yaml
 
 pipeline:
-  class_path: omniroboagent.pipelines.AtomicSpatialSkillExecutionPipeline
+  class_path: luban.pipelines.AtomicSpatialSkillExecutionPipeline
   init_args:
     perception_clients:
-      - class_path: omniroboagent.perception.client.VisualPerceptionClient
+      - class_path: luban.perception.client.VisualPerceptionClient
         init_args:
           provider: sam3
           host: 127.0.0.1
@@ -45,7 +45,7 @@ pipeline:
 # 两处 horizon 必须同时改（已知坑第 6 条）：
 #   环境 horizon = ceil(1200 × 2.5) = 3000 = 下面的 max_environment_steps。
 runtime:
-  class_path: omniroboagent.runtimes.SyncRuntime
+  class_path: luban.runtimes.SyncRuntime
   init_args:
     config:
       max_environment_steps: 3000
@@ -57,7 +57,7 @@ runtime:
       trace_compression: none
       output_dir: runs/evolution_probe_scrub_multi/traces
       observability:
-        class_path: omniroboagent.observability.LocalEpisodeRecorder
+        class_path: luban.observability.LocalEpisodeRecorder
         init_args:
           record_agent_trace: true
           record_video: false
@@ -68,7 +68,7 @@ runtime:
           video_fps: 4
 
 environment:
-  class_path: omniroboagent.environments.benchmarks.robocasa.RoboCasaEnvironment
+  class_path: luban.environments.benchmarks.robocasa.RoboCasaEnvironment
   init_args:
     robocasa_root: benchmarks/RoboCasa  # Or your compatible RoboCasa installation.
     enable_render: true
@@ -89,7 +89,7 @@ environment:
       - Twist_Knob
 
 benchmark:
-  class_path: omniroboagent.evals.benchmarks.robocasa.RoboCasa365Evaluator
+  class_path: luban.evals.benchmarks.robocasa.RoboCasa365Evaluator
   init_args:
     task_set: target50
     split: target

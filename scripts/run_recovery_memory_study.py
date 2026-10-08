@@ -29,16 +29,16 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "src"))
 
-from omniroboagent.agent_core.memories.recovery import (  # noqa: E402
+from luban.agent_core.memories.recovery import (  # noqa: E402
     DEFAULT_ALLOWED_STATES,
     RecoveryMemoryBank,
 )
-from omniroboagent.agent_core.memory_advisor import (  # noqa: E402
+from luban.agent_core.memory_advisor import (  # noqa: E402
     DEFAULT_CAMERA_KEYS,
     MemoryAdvisorSubAgent,
 )
-from omniroboagent.config import instantiate, load_yaml  # noqa: E402
-from omniroboagent.evals.recovery_memory_study import (  # noqa: E402
+from luban.config import instantiate, load_yaml  # noqa: E402
+from luban.evals.recovery_memory_study import (  # noqa: E402
     ARMS,
     STUDY_TASKS,
     StudyState,
@@ -46,7 +46,7 @@ from omniroboagent.evals.recovery_memory_study import (  # noqa: E402
     build_study_runner,
     validate_task_names,
 )
-from omniroboagent.evals.study_evidence import (  # noqa: E402
+from luban.evals.study_evidence import (  # noqa: E402
     reconstruct_attempt,
     verify_evidence_bundle,
 )
@@ -106,7 +106,7 @@ def _registry_available() -> tuple[list[str], str | None]:
 def _xr1_health(port: int) -> dict[str, Any]:
     import zmq
 
-    from omniroboagent.backends.skills.rldx import _RLDXMsgSerializer
+    from luban.backends.skills.rldx import _RLDXMsgSerializer
 
     context = zmq.Context()
     socket = context.socket(zmq.REQ)

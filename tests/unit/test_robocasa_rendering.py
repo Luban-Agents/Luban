@@ -5,8 +5,8 @@ from types import ModuleType, SimpleNamespace
 
 import pytest
 
-from omniroboagent.environments.benchmarks.robocasa import RoboCasaEnvironment
-from omniroboagent.environments.benchmarks.robocasa._rendering import (
+from luban.environments.benchmarks.robocasa import RoboCasaEnvironment
+from luban.environments.benchmarks.robocasa._rendering import (
     RENDER_GUARD_VERSION,
     install_render_guard,
 )
@@ -344,9 +344,9 @@ def test_stock_cli_installs_guard_without_launcher_hook(monkeypatch, tmp_path):
     import numpy as np
     import yaml
 
-    from omniroboagent.backends.skills import SkillBackend
-    from omniroboagent.cli import run_config
-    from omniroboagent.environments.benchmarks.robocasa.environment import _ACTION_DIMS
+    from luban.backends.skills import SkillBackend
+    from luban.cli import run_config
+    from luban.environments.benchmarks.robocasa.environment import _ACTION_DIMS
 
     Context, thread, damaged, native_calls, module = fake_bindings(monkeypatch)
     for name in ("robocasa", "robosuite"):
@@ -357,7 +357,7 @@ def test_stock_cli_installs_guard_without_launcher_hook(monkeypatch, tmp_path):
 
     class FakeEnvironment:
         def reset(self, seed):
-            assert "_omniroboagent_render_guard" in Context.__dict__
+            assert "_luban_render_guard" in Context.__dict__
             return {}, {}
 
         def step(self, action):
@@ -383,12 +383,10 @@ def test_stock_cli_installs_guard_without_launcher_hook(monkeypatch, tmp_path):
     agent_path.write_text(
         yaml.safe_dump(
             {
-                "agent": {"class_path": "omniroboagent.agent_core.DefaultAgent"},
-                "planner": {"class_path": "omniroboagent.agent_core.TaskSkillPlanner"},
-                "verifier": {
-                    "class_path": "omniroboagent.agent_core.EnvironmentVerifier"
-                },
-                "memory": {"class_path": "omniroboagent.agent_core.InMemoryMemory"},
+                "agent": {"class_path": "luban.agent_core.DefaultAgent"},
+                "planner": {"class_path": "luban.agent_core.TaskSkillPlanner"},
+                "verifier": {"class_path": "luban.agent_core.EnvironmentVerifier"},
+                "memory": {"class_path": "luban.agent_core.InMemoryMemory"},
                 "skill_backend": {"class_path": "rendering_cli_test_policy.Policy"},
             }
         )
@@ -398,15 +396,14 @@ def test_stock_cli_installs_guard_without_launcher_hook(monkeypatch, tmp_path):
         yaml.safe_dump(
             {
                 "agent_config": str(agent_path),
-                "pipeline": {"class_path": "omniroboagent.pipelines.DirectPipeline"},
+                "pipeline": {"class_path": "luban.pipelines.DirectPipeline"},
                 "runtime": {
-                    "class_path": "omniroboagent.runtimes.SyncRuntime",
+                    "class_path": "luban.runtimes.SyncRuntime",
                     "init_args": {"max_steps": 1, "output_dir": str(tmp_path / "runs")},
                 },
                 "environment": {
                     "class_path": (
-                        "omniroboagent.environments.benchmarks.robocasa."
-                        "RoboCasaEnvironment"
+                        "luban.environments.benchmarks.robocasa.RoboCasaEnvironment"
                     ),
                     "init_args": {"robocasa_root": str(tmp_path)},
                 },
@@ -421,5 +418,5 @@ def test_stock_cli_installs_guard_without_launcher_hook(monkeypatch, tmp_path):
     )
     result = run_config(run_path)
     assert result["success"] is True
-    assert "_omniroboagent_render_guard" in Context.__dict__
+    assert "_luban_render_guard" in Context.__dict__
     assert closed == [True]

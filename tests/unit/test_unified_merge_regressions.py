@@ -4,8 +4,8 @@ from types import ModuleType
 
 import pytest
 
-from omniroboagent import cli
-from omniroboagent.config import load_yaml
+from luban import cli
+from luban.config import load_yaml
 
 
 def test_yaml_expands_nested_environment_values(
@@ -28,17 +28,17 @@ def test_dashboard_cli_dispatches_without_loading_models(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     calls: list[tuple[Path, str, int]] = []
-    app = ModuleType("omniroboagent.dashboard.app")
+    app = ModuleType("luban.dashboard.app")
 
     def launch(runs_dir: Path, *, host: str, port: int) -> None:
         calls.append((runs_dir, host, port))
 
     monkeypatch.setattr(app, "launch", launch, raising=False)
-    monkeypatch.setitem(sys.modules, "omniroboagent.dashboard.app", app)
+    monkeypatch.setitem(sys.modules, "luban.dashboard.app", app)
     monkeypatch.setattr(
         sys,
         "argv",
-        ["omniroboagent", "dashboard", "--runs-dir", str(tmp_path), "--port", "7861"],
+        ["luban", "dashboard", "--runs-dir", str(tmp_path), "--port", "7861"],
     )
     with pytest.raises(SystemExit) as error:
         cli.main()

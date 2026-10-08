@@ -1,7 +1,7 @@
 from typing import Any
 
-from omniroboagent.agent_core.agents.self_evolving import SelfEvolvingAgent
-from omniroboagent.agent_core.delegation import (
+from luban.agent_core.agents.self_evolving import SelfEvolvingAgent
+from luban.agent_core.delegation import (
     DelegationResult,
     SubAgent,
     SubAgentScheduler,

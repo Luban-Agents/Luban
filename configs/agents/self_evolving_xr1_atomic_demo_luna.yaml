@@ -2,12 +2,12 @@
 # 即首次请求失败后再重试 2 次，连续失败 3 次才停止。
 # 正式研究若要沿用，需在协议/批准文件里声明这处差异。
 agent:
-  class_path: omniroboagent.agent_core.SelfEvolvingAgent
+  class_path: luban.agent_core.SelfEvolvingAgent
   init_args:
     high_skill_write_mode: propose
     max_validated_experiences: 4
     knowledge_base:
-      class_path: omniroboagent.agent_core.JsonlKnowledgeBase
+      class_path: luban.agent_core.JsonlKnowledgeBase
       init_args:
         path: configs/knowledge/xr1_robot_memory_knowledge.jsonl
     robot_profile: xr1_mobile_manipulator
@@ -17,7 +17,7 @@ agent:
       - task_graph_execution
     knowledge_limit: 6
     streaming_memory_sidecar:
-      class_path: omniroboagent.agent_core.StreamingMemorySidecar
+      class_path: luban.agent_core.StreamingMemorySidecar
       init_args:
         enabled: true
         mode: evidence_prefetch
@@ -33,7 +33,7 @@ agent:
         invalidate_on_scope_change: true
         require_evidence_refs: true
     atomic_skill_system:
-      class_path: omniroboagent.agent_core.AtomicSkillSystem
+      class_path: luban.agent_core.AtomicSkillSystem
       init_args:
         catalog_paths:
           - catalogs/atomic_skills.json
@@ -45,7 +45,7 @@ agent:
         capabilities: []
         skill_bindings: {}
     module_evolution_manager:
-      class_path: omniroboagent.agent_core.ModuleEvolutionManager
+      class_path: luban.agent_core.ModuleEvolutionManager
       init_args:
         path: runs/self_evolving_xr1_atomic/module_evolution.jsonl
         base_policy: *base_policy_id
@@ -53,10 +53,10 @@ agent:
         min_paired_samples: 20
         max_regressions: 0
     module_evolution_reasoner:
-      class_path: omniroboagent.agent_core.ModuleEvolutionReasoner
+      class_path: luban.agent_core.ModuleEvolutionReasoner
       init_args:
         backend: &api_backend
-          class_path: omniroboagent.backends.llm.OpenAICompatibleLLMBackend
+          class_path: luban.backends.llm.OpenAICompatibleLLMBackend
           init_args:
             base_url: "${LLM_BASE_URL:-http://127.0.0.1:8000/v1}"
             model: "${LLM_MODEL:-replace-with-your-model-id}"
@@ -71,7 +71,7 @@ agent:
       graph: task-graph-xr1-v1
       atomic_skill: atomic-catalog-1.0.0
     experience_capsule_store:
-      class_path: omniroboagent.agent_core.ExperienceCapsuleStore
+      class_path: luban.agent_core.ExperienceCapsuleStore
       init_args:
         path: runs/self_evolving_xr1_atomic/experience_capsules.jsonl
         min_positive_validations: 2
@@ -91,7 +91,7 @@ agent:
         on the target robot before execution.
 
 task_decomposer:
-  class_path: omniroboagent.agent_core.TaskDecomposer
+  class_path: luban.agent_core.TaskDecomposer
   init_args:
     backend: *api_backend
     camera_keys: &camera_keys
@@ -104,10 +104,10 @@ task_decomposer:
     temperature: 0
     response_format_mode: json_object
     task_atomic_skill_catalog:
-      class_path: omniroboagent.agent_core.RoboCasaAtomicSkillCatalog
+      class_path: luban.agent_core.RoboCasaAtomicSkillCatalog
 
 planner:
-  class_path: omniroboagent.agent_core.SubtaskSkillPlanner
+  class_path: luban.agent_core.SubtaskSkillPlanner
   init_args:
     backend: *api_backend
     skill_ids:
@@ -144,7 +144,7 @@ planner:
     response_format_mode: json_object
 
 verifier:
-  class_path: omniroboagent.agent_core.ActionSummarySubtaskVerifier
+  class_path: luban.agent_core.ActionSummarySubtaskVerifier
   init_args:
     backend: *api_backend
     camera_keys: *camera_keys
@@ -156,7 +156,7 @@ verifier:
     response_format_mode: json_object
 
 memory:
-  class_path: omniroboagent.agent_core.LongMemory
+  class_path: luban.agent_core.LongMemory
   init_args:
     recent_event_limit: 16
     failed_event_limit: 6
@@ -177,12 +177,12 @@ skill_backend:
     expected_policy_seed_mode: episode_step
 
 skill_manager:
-  class_path: omniroboagent.agent_core.SkillManager
+  class_path: luban.agent_core.SkillManager
   init_args:
     root: runs/self_evolving_xr1_atomic/high_skills
 
 high_skill_reasoner:
-  class_path: omniroboagent.agent_core.HighSkillReasoner
+  class_path: luban.agent_core.HighSkillReasoner
   init_args:
     backend: *api_backend
     max_selected_skills: 3

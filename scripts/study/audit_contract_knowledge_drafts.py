@@ -33,7 +33,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "src"))
 
-from omniroboagent.agent_core.knowledge import (  # noqa: E402
+from luban.agent_core.knowledge import (  # noqa: E402
     KNOWLEDGE_KINDS,
     KnowledgeEntry,
 )

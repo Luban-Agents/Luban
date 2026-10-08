@@ -5,7 +5,7 @@ from typing import Any
 import pytest
 from PIL import Image
 
-from omniroboagent.agent_core import InMemoryMemory, TieredMemory
+from luban.agent_core import InMemoryMemory, TieredMemory
 
 
 def event(

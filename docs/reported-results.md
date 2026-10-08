@@ -1,6 +1,8 @@
+[English](reported-results.md) · [简体中文](reported-results.zh-CN.md)
+
 # Reported results / 汇报结果
 
-These figures reproduce the existing OmniRoboAgent-Page presentation and its
+These figures reproduce the existing project presentation and its
 user-supplied report records. They describe the broader research project rather
 than a newly run evaluation of the independent Luban package. The README's
 Leaderboard is a report table, not an independently maintained benchmark ranking.
@@ -60,16 +62,6 @@ Source: the presentation's `results.html` and its 2026-10-04 report record,
 `assets/evidence/libero-oft-replay-20261004.json`. The report values and their
 underlying counts are retained; no new experiment is inferred.
 
-## 中文口径
 
-README 汇报表沿用现有前端的项目结果。LIBERO 的对比名称统一为
-**Without Agent** 与 **Agent**，按原始 2,000 个回合 ID 统计：每个 ID 至少有一条
-成功执行记录则计为 1，否则计为 0，同一 ID 在分子中最多计一次。
-
-Without Agent 为 1,934 / 2,000 = 96.7%，对应 2,000 次执行；
-Agent 为 1,978 / 2,000 = 98.9%，对应报告中的 2,066 次执行。
-两列执行预算不同，不能据此声称等预算下的单次执行成功率对比。
-RoboCasa 的两列保持其任务成功率定义，缺失的实验信息不自行补造。
-
-Project source: [OmniRoboAgent-Page](https://github.com/yuliu-ai/OmniRoboAgent-Page).
-This package's runnable GPU entry is the [episode guide](episodes.md).
+Project source: [Project presentation](https://github.com/yuliu-ai/OmniRoboAgent-Page).
+This package’s runnable GPU entry is the [episode guide](episodes.md).

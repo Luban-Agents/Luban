@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-key_file="${OMNIROBOAGENT_API_KEY_FILE:-${HOME}/.config/omniroboagent/api_key}"
+key_file="${LUBAN_API_KEY_FILE:-${HOME}/.config/luban/api_key}"
 
 if [[ ! -f "$key_file" || -L "$key_file" ]]; then
   echo "API key file must be a regular non-symlink file: $key_file" >&2

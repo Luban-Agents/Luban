@@ -1,8 +1,8 @@
-"""Dependency-free adapters for OmniRoboAgent's dictionary component APIs.
+"""Dependency-free adapters for Luban's dictionary component APIs.
 
 The adapter mirrors the current ``Planner.plan``, ``SkillBackend.predict``,
 ``Verifier.verify`` and ``Memory`` method shapes without importing
-``omniroboagent``.  This lets the framework be developed and tested while the
+``luban``.  This lets the framework be developed and tested while the
 experiment host is offline.
 
 Prediction and verification intentionally remain separate: ``predict`` only
@@ -113,7 +113,7 @@ def _derive_outcome(verification: Mapping[str, Any]) -> ExecutionOutcome:
     """Interpret verifier output conservatively.
 
     ``last_action_success=True`` is not enough to declare task or skill success;
-    current OmniRoboAgent pipelines may continue after that signal.
+    current Luban pipelines may continue after that signal.
     """
 
     if bool(verification.get("api_deferred")):
@@ -334,7 +334,7 @@ class OmniVerifierAdapter:
 
 
 class OmniSkillBackendAdapter:
-    """Wrap OmniRoboAgent components while preserving its two-stage semantics."""
+    """Wrap Luban components while preserving its two-stage semantics."""
 
     def __init__(
         self,
@@ -622,7 +622,7 @@ class OmniSkillBackendAdapter:
         pipeline_output: Mapping[str, Any],
         metrics: Mapping[str, float] | None = None,
     ) -> ExecutionEvent:
-        """Map a current OmniRoboAgent pipeline output into an execution event."""
+        """Map a current Luban pipeline output into an execution event."""
 
         output = _as_dict(pipeline_output, "pipeline_output")
         verification = output.get("verification")
@@ -759,7 +759,7 @@ class OmniSkillBackendAdapter:
             )
 
 
-OmniRoboAgentAdapter = OmniSkillBackendAdapter
+LubanAdapter = OmniSkillBackendAdapter
 
 
 def evolution_event_from_runtime_result(
@@ -814,7 +814,7 @@ def evolution_event_from_runtime_result(
 __all__ = [
     "MemoryLike",
     "OmniPredictBackendAdapter",
-    "OmniRoboAgentAdapter",
+    "LubanAdapter",
     "OmniSkillBackendAdapter",
     "OmniVerifierAdapter",
     "PendingPrediction",

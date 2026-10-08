@@ -3,7 +3,7 @@
 agent_config: ../agents/robotwin_omni.yaml
 
 pipeline:
-  class_path: omniroboagent.pipelines.SkillExecutionPipeline
+  class_path: luban.pipelines.SkillExecutionPipeline
   init_args:
     reobserve_on_uncertain: true
     max_chunks_per_skill: 50
@@ -12,14 +12,14 @@ pipeline:
     max_replans: 2
 
 runtime:
-  class_path: omniroboagent.runtimes.SyncRuntime
+  class_path: luban.runtimes.SyncRuntime
   init_args:
     max_steps: 300
     timeout_seconds: 1800
     output_dir: runs/robotwin_omni/traces
 
 environment:
-  class_path: omniroboagent.environments.benchmarks.robotwin.RoboTwinEnvironment
+  class_path: luban.environments.benchmarks.robotwin.RoboTwinEnvironment
   init_args:
     config_path: "${ROBOTWIN_CONFIG}"
     artifact_dir: runs/robotwin_omni/observations

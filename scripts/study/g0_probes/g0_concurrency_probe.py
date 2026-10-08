@@ -17,9 +17,9 @@ import time
 from pathlib import Path
 
 PROBE = str(Path(__file__).with_name("g0_robocasa_probe.py").resolve())
-PYTHON = os.environ.get("OMNIROBOAGENT_SIM_PYTHON", sys.executable)
+PYTHON = os.environ.get("LUBAN_SIM_PYTHON", sys.executable)
 PROJECT = str(Path(__file__).resolve().parents[3])
-OUT = Path(os.environ.get("OMNIROBOAGENT_PROBE_OUTPUT", "runs/g0"))
+OUT = Path(os.environ.get("LUBAN_PROBE_OUTPUT", "runs/g0"))
 
 
 def gpu_memory():

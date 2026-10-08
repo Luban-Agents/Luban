@@ -6,7 +6,7 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core.delegation import (
+from luban.agent_core.delegation import (
     DelegationRequest,
     DelegationResult,
     NodeObservationSubAgent,
@@ -14,9 +14,9 @@ from omniroboagent.agent_core.delegation import (
     SubAgent,
     SubAgentScheduler,
 )
-from omniroboagent.agent_core.planners.base import Planner
-from omniroboagent.backends.llm.base import LLMBackend
-from omniroboagent.exceptions import PlannerOutputError
+from luban.agent_core.planners.base import Planner
+from luban.backends.llm.base import LLMBackend
+from luban.exceptions import PlannerOutputError
 
 
 class Child(SubAgent):

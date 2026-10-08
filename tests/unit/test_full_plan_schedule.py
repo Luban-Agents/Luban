@@ -7,8 +7,8 @@ from typing import Any
 import pytest
 from PIL import Image
 
-from omniroboagent.agent_core import SubtaskPlanPlanner, SubtaskVerifier
-from omniroboagent.backends.llm.base import LLMBackend
+from luban.agent_core import SubtaskPlanPlanner, SubtaskVerifier
+from luban.backends.llm.base import LLMBackend
 
 
 class FullPlanScheduleBackend(LLMBackend):

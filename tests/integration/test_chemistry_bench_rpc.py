@@ -7,10 +7,10 @@ from io import BytesIO
 import pytest
 from PIL import Image
 
-from omniroboagent.environments.benchmarks.chemistry_bench import (
+from luban.environments.benchmarks.chemistry_bench import (
     ChemistryBenchEnvironment,
 )
-from omniroboagent.environments.benchmarks.chemistry_bench.environment import TASK_ID
+from luban.environments.benchmarks.chemistry_bench.environment import TASK_ID
 
 
 def test_real_grpc_serialization_and_reset():

@@ -2,8 +2,8 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core import BaseAgent, Memory, Planner, Verifier
-from omniroboagent.backends.skills import SkillBackend
+from luban.agent_core import BaseAgent, Memory, Planner, Verifier
+from luban.backends.skills import SkillBackend
 
 
 class TrackingPlanner(Planner):

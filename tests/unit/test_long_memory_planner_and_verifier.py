@@ -2,15 +2,15 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     ActionSummarySubtaskVerifier,
     LongMemorySubtaskPlanner,
     SubtaskSkillPlanner,
 )
-from omniroboagent.backends.llm import LLMBackend
-from omniroboagent.config import instantiate, load_yaml
-from omniroboagent.exceptions import ConfigError, PlannerOutputError
-from omniroboagent.pipelines import SkillExecutionWithMemPipeline
+from luban.backends.llm import LLMBackend
+from luban.config import instantiate, load_yaml
+from luban.exceptions import ConfigError, PlannerOutputError
+from luban.pipelines import SkillExecutionWithMemPipeline
 
 
 class FakeLLMBackend(LLMBackend):

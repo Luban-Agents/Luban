@@ -1,3 +1,5 @@
+[English](CITATION.md) · [简体中文](CITATION.zh-CN.md)
+
 # Citation and attribution
 
 No dedicated Luban paper, DOI or verified new author list is supplied.

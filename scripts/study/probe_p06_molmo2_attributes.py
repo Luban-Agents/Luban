@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Probe P06 against the Molmo2 perception service in VQA mode.
 
-Run in the OmniRoboAgent environment while ``scripts/serve_perception_molmo2.py``
+Run in the Luban environment while ``scripts/serve_perception_molmo2.py``
 runs with the ``task.mode == "vqa"`` branch:
 
     PYTHONPATH=src python3 scripts/study/probe_p06_molmo2_attributes.py \
@@ -36,22 +36,22 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "src"))
 
+from luban.backends.atomic_skills import AtomicSemanticGuard  # noqa: E402
+from luban.backends.atomic_skills.attribute_backend import (  # noqa: E402
+    CROP_CAMERA_ID,
+    Molmo2AttributeBackend,
+    Molmo2AttributeEnvironment,
+)
+from luban.backends.atomic_skills.verifiers import (  # noqa: E402
+    ClassifyObjectAttributesVerifier,
+)
+from luban.perception.client import VisualPerceptionClient  # noqa: E402
 from omni_atomic_skills import SkillRegistry  # noqa: E402
 from omni_atomic_skills.runtime import (  # noqa: E402
     ExecutionContext,
     JsonlEventSink,
     SkillRuntime,
 )
-from omniroboagent.backends.atomic_skills import AtomicSemanticGuard  # noqa: E402
-from omniroboagent.backends.atomic_skills.attribute_backend import (  # noqa: E402
-    CROP_CAMERA_ID,
-    Molmo2AttributeBackend,
-    Molmo2AttributeEnvironment,
-)
-from omniroboagent.backends.atomic_skills.verifiers import (  # noqa: E402
-    ClassifyObjectAttributesVerifier,
-)
-from omniroboagent.perception.client import VisualPerceptionClient  # noqa: E402
 
 DEFAULT_CATALOG = REPO_ROOT / "catalogs" / "v2.2" / "atomic_skills.json"
 P06_CAPABILITIES = frozenset({"rgb_camera", "attribute_classifier"})

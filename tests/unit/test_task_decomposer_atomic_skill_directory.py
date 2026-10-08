@@ -9,9 +9,9 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core import TaskDecomposer
-from omniroboagent.backends.llm.base import LLMBackend
-from omniroboagent.exceptions import PlannerOutputError, ProtocolSchemaError
+from luban.agent_core import TaskDecomposer
+from luban.backends.llm.base import LLMBackend
+from luban.exceptions import PlannerOutputError, ProtocolSchemaError
 
 
 class DirectoryBackend(LLMBackend):

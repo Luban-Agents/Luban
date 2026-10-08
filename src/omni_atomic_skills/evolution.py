@@ -44,7 +44,7 @@ def _freeze(value: Any) -> Any:
 
     Unknown runtime objects are represented by ``repr`` rather than retained
     by reference.  This keeps evidence records immutable and JSON-serializable
-    without importing simulator, array, or OmniRoboAgent dependencies.
+    without importing simulator, array, or Luban dependencies.
     """
 
     if value is None or isinstance(value, (str, int, bool)):

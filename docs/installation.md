@@ -1,3 +1,5 @@
+[English](installation.md) · [简体中文](installation.zh-CN.md)
+
 # Installation and resources
 
 ## Core environment
@@ -9,7 +11,7 @@ their tested versions; it is not an export of a server's global environment.
 
 ```bash
 uv sync --frozen --no-dev --python 3.11
-uv run --frozen --no-dev python -m omniroboagent.examples.offline
+uv run --frozen --no-dev python -m luban.examples.offline
 ```
 
 For development use `uv sync --frozen --group dev`. Run these inside the checkout;
@@ -19,8 +21,8 @@ Conda can provide the Python interpreter as described in the root README.
 For distribution installation, in a separate Python 3.11 venv:
 
 ```bash
-python -m pip install /path/to/omniroboagent-0.1.0-py3-none-any.whl
-python -m omniroboagent.examples.offline --output-dir ./wheel-demo
+python -m pip install /path/to/luban-0.1.0-py3-none-any.whl
+python -m luban.examples.offline --output-dir ./wheel-demo
 ```
 
 The module example and chemistry YAML/protobuf resources are packaged. Source
@@ -44,7 +46,7 @@ uv sync --frozen --extra dashboard
 XR-1/RLDX add msgpack and pyzmq. OpenPI uses the exact upstream archive recorded
 in `pyproject.toml`; GitHub connectivity is required. Chemistry adds grpcio and
 protobuf; Isaac Sim is a separate installation under NVIDIA's terms. Dashboard
-adds Gradio and can browse local results with `omniroboagent dashboard` (localhost
+adds Gradio and can browse local results with `luban dashboard` (localhost
 by default). These extras do not install simulators, policy servers or weights.
 
 ## RoboCasa simulator
@@ -61,7 +63,7 @@ uv pip install --python "$SIM_PYTHON" -e '.[xr1-client]' -r requirements/robocas
 mkdir -p third_party/checkouts
 git clone https://github.com/robocasa/robocasa.git third_party/checkouts/robocasa
 git -C third_party/checkouts/robocasa checkout 456174f62b89b8fca99eaaf33949c29fec9cfc2a
-export OMNIROBOAGENT_ROBOCASA_ROOT="$PWD/third_party/checkouts/robocasa"
+export LUBAN_ROBOCASA_ROOT="$PWD/third_party/checkouts/robocasa"
 ```
 
 The adapter imports the fixed RoboCasa source from that environment variable;
@@ -77,7 +79,7 @@ tree, link it into your owned SDK checkout:
 
 ```bash
 bash scripts/link_robocasa_assets.sh /path/to/existing/assets \
-  "$OMNIROBOAGENT_ROBOCASA_ROOT/robocasa/models/assets"
+  "$LUBAN_ROBOCASA_ROOT/robocasa/models/assets"
 ```
 
 Do not use another user's checkout as the target. RoboCasa assets retain their

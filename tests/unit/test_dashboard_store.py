@@ -6,8 +6,8 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.dashboard import store
-from omniroboagent.exceptions import ConfigError
+from luban.dashboard import store
+from luban.exceptions import ConfigError
 
 
 def _write_jsonl(path: Path, records: list[dict[str, Any]]) -> None:

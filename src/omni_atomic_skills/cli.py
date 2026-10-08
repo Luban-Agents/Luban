@@ -15,7 +15,7 @@ from .registry import CatalogValidationError, SkillRegistry
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="omni-atomic-skills",
-        description="Validate and inspect an OmniRoboAgent atomic-skill catalog.",
+        description="Validate and inspect an Luban atomic-skill catalog.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 

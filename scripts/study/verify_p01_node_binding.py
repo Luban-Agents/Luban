@@ -26,28 +26,28 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "src"))
 
+from luban.agent_core import AtomicSkillSystem  # noqa: E402
+from luban.backends.atomic_skills import AtomicSemanticGuard  # noqa: E402
+from luban.backends.atomic_skills.perception_backend import (  # noqa: E402
+    DEFAULT_CAMERA_ID,
+    Sam3DetectBackend,
+    Sam3PerceptionEnvironment,
+    load_image_hwc,
+)
+from luban.backends.atomic_skills.recheck import (  # noqa: E402
+    CrossProviderRecheck,
+    CrossScaleRecheck,
+)
+from luban.backends.atomic_skills.verifiers import (  # noqa: E402
+    DetectObjectsVerifier,
+)
+from luban.perception.client import VisualPerceptionClient  # noqa: E402
 from omni_atomic_skills import SkillRegistry  # noqa: E402
 from omni_atomic_skills.runtime import (  # noqa: E402
     ExecutionContext,
     JsonlEventSink,
     SkillRuntime,
 )
-from omniroboagent.agent_core import AtomicSkillSystem  # noqa: E402
-from omniroboagent.backends.atomic_skills import AtomicSemanticGuard  # noqa: E402
-from omniroboagent.backends.atomic_skills.perception_backend import (  # noqa: E402
-    DEFAULT_CAMERA_ID,
-    Sam3DetectBackend,
-    Sam3PerceptionEnvironment,
-    load_image_hwc,
-)
-from omniroboagent.backends.atomic_skills.recheck import (  # noqa: E402
-    CrossProviderRecheck,
-    CrossScaleRecheck,
-)
-from omniroboagent.backends.atomic_skills.verifiers import (  # noqa: E402
-    DetectObjectsVerifier,
-)
-from omniroboagent.perception.client import VisualPerceptionClient  # noqa: E402
 
 DEFAULT_CATALOG = REPO_ROOT / "catalogs" / "v2.2" / "atomic_skills.json"
 DEFAULT_ROUTES = REPO_ROOT / "configs" / "routes" / "xr1_atomic_routes_v22.json"

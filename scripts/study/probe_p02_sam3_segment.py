@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Probe P02 against the SAM3 perception service with real mask output.
 
-Run in the OmniRoboAgent environment while ``scripts/serve_perception.py``
+Run in the Luban environment while ``scripts/serve_perception.py``
 runs with ``--mask-out-dir``:
 
     PYTHONPATH=src python3 scripts/study/probe_p02_sam3_segment.py \
@@ -33,24 +33,24 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "src"))
 
+from luban.backends.atomic_skills import AtomicSemanticGuard  # noqa: E402
+from luban.backends.atomic_skills.perception_backend import (  # noqa: E402
+    DEFAULT_CAMERA_ID,
+)
+from luban.backends.atomic_skills.segment_backend import (  # noqa: E402
+    Sam3SegmentBackend,
+    Sam3SegmentEnvironment,
+)
+from luban.backends.atomic_skills.verifiers import (  # noqa: E402
+    SegmentInstancesVerifier,
+)
+from luban.perception.client import VisualPerceptionClient  # noqa: E402
 from omni_atomic_skills import SkillRegistry  # noqa: E402
 from omni_atomic_skills.runtime import (  # noqa: E402
     ExecutionContext,
     JsonlEventSink,
     SkillRuntime,
 )
-from omniroboagent.backends.atomic_skills import AtomicSemanticGuard  # noqa: E402
-from omniroboagent.backends.atomic_skills.perception_backend import (  # noqa: E402
-    DEFAULT_CAMERA_ID,
-)
-from omniroboagent.backends.atomic_skills.segment_backend import (  # noqa: E402
-    Sam3SegmentBackend,
-    Sam3SegmentEnvironment,
-)
-from omniroboagent.backends.atomic_skills.verifiers import (  # noqa: E402
-    SegmentInstancesVerifier,
-)
-from omniroboagent.perception.client import VisualPerceptionClient  # noqa: E402
 
 DEFAULT_CATALOG = REPO_ROOT / "catalogs" / "v2.2" / "atomic_skills.json"
 P02_CAPABILITIES = frozenset({"rgb_camera", "instance_segmenter"})

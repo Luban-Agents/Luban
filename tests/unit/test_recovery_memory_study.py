@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from omniroboagent.evals.recovery_memory_study import (
+from luban.evals.recovery_memory_study import (
     ARM_SPECS,
     ARMS,
     HORIZON_MULTIPLIER,
@@ -20,7 +20,7 @@ from omniroboagent.evals.recovery_memory_study import (
     safety_violations,
     validate_task_names,
 )
-from omniroboagent.exceptions import ConfigError
+from luban.exceptions import ConfigError
 
 
 def test_study_covers_eight_composite_seen_tasks():

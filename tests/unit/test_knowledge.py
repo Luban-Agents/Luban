@@ -2,8 +2,8 @@ from pathlib import Path
 
 import pytest
 
-from omniroboagent.agent_core import JsonlKnowledgeBase, KnowledgeEntry
-from omniroboagent.config import instantiate, load_yaml
+from luban.agent_core import JsonlKnowledgeBase, KnowledgeEntry
+from luban.config import instantiate, load_yaml
 
 
 def test_jsonl_knowledge_base_retrieves_validated_context(tmp_path: Path) -> None:

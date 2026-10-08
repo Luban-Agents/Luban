@@ -18,32 +18,32 @@ import httpx
 import numpy as np
 import pytest
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     DefaultAgent,
     EnvironmentVerifier,
     InMemoryMemory,
     TaskSkillPlanner,
 )
-from omniroboagent.agent_core.module_evolution import (
+from luban.agent_core.module_evolution import (
     ModuleEvolutionManager,
     PairedModuleEvaluation,
 )
-from omniroboagent.backends.llm import OpenAICompatibleLLMBackend
-from omniroboagent.backends.skills import LanguageSkillBackend
-from omniroboagent.backends.skills.openpi import OpenPIWebSocketPolicyBackend
-from omniroboagent.backends.world_models.latent import (
+from luban.backends.llm import OpenAICompatibleLLMBackend
+from luban.backends.skills import LanguageSkillBackend
+from luban.backends.skills.openpi import OpenPIWebSocketPolicyBackend
+from luban.backends.world_models.latent import (
     FirstCausalFailureDetector,
     LightweightLatentDynamics,
 )
-from omniroboagent.backends.world_models.persistence import PersistenceWorldModelBackend
-from omniroboagent.config import load_yaml, resolve_config_path
-from omniroboagent.examples.offline import CounterEnvironment
-from omniroboagent.exceptions import BackendError, ConfigError
-from omniroboagent.perception.client import VisualPerceptionClient
-from omniroboagent.pipelines import DirectPipeline
-from omniroboagent.pipelines.policy_only import PolicyOnlyPipeline
-from omniroboagent.runtimes import SyncRuntime
-from omniroboagent.serialization import redact_secrets
+from luban.backends.world_models.persistence import PersistenceWorldModelBackend
+from luban.config import load_yaml, resolve_config_path
+from luban.examples.offline import CounterEnvironment
+from luban.exceptions import BackendError, ConfigError
+from luban.perception.client import VisualPerceptionClient
+from luban.pipelines import DirectPipeline
+from luban.pipelines.policy_only import PolicyOnlyPipeline
+from luban.runtimes import SyncRuntime
+from luban.serialization import redact_secrets
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -237,7 +237,7 @@ def test_cli_real_sigint_writes_interrupted_record_and_cleans(tmp_path):
     (tmp_path / "audit_slow.py").write_text("""
 from pathlib import Path
 import time
-from omniroboagent.examples.offline import CounterEnvironment
+from luban.examples.offline import CounterEnvironment
 class SlowEnv(CounterEnvironment):
     def __init__(self, ready, closed):
         self.ready, self.closed = Path(ready), Path(closed)
@@ -251,20 +251,18 @@ class SlowEnv(CounterEnvironment):
     import yaml
 
     agent_config = {
-        "agent": {"class_path": "omniroboagent.agent_core.DefaultAgent"},
-        "planner": {"class_path": "omniroboagent.agent_core.TaskSkillPlanner"},
-        "verifier": {"class_path": "omniroboagent.agent_core.EnvironmentVerifier"},
-        "memory": {"class_path": "omniroboagent.agent_core.InMemoryMemory"},
-        "skill_backend": {
-            "class_path": "omniroboagent.backends.skills.LanguageSkillBackend"
-        },
+        "agent": {"class_path": "luban.agent_core.DefaultAgent"},
+        "planner": {"class_path": "luban.agent_core.TaskSkillPlanner"},
+        "verifier": {"class_path": "luban.agent_core.EnvironmentVerifier"},
+        "memory": {"class_path": "luban.agent_core.InMemoryMemory"},
+        "skill_backend": {"class_path": "luban.backends.skills.LanguageSkillBackend"},
     }
     (tmp_path / "agent.yaml").write_text(yaml.safe_dump(agent_config))
     run_config = {
         "agent_config": str(tmp_path / "agent.yaml"),
-        "pipeline": {"class_path": "omniroboagent.pipelines.DirectPipeline"},
+        "pipeline": {"class_path": "luban.pipelines.DirectPipeline"},
         "runtime": {
-            "class_path": "omniroboagent.runtimes.SyncRuntime",
+            "class_path": "luban.runtimes.SyncRuntime",
             "init_args": {"output_dir": str(tmp_path / "runs")},
         },
         "environment": {
@@ -281,7 +279,7 @@ class SlowEnv(CounterEnvironment):
         [
             sys.executable,
             "-m",
-            "omniroboagent",
+            "luban",
             "run",
             "--config",
             str(tmp_path / "run.yaml"),
@@ -596,7 +594,7 @@ def perception_server():
     port = reserved.getsockname()[1]
     reserved.close()
     code = (
-        "from omniroboagent.perception.server import VisualPerceptionServer; "
+        "from luban.perception.server import VisualPerceptionServer; "
         'VisualPerceptionServer(provider="sam3",analyzer=lambda payload: {})'
         '.serve_forever(bind_host="127.0.0.1",port=' + str(port) + ")"
     )

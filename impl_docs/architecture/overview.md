@@ -60,7 +60,7 @@ stable backend names are a small registry, with no discovery/plugin hierarchy.
 Owner-relative agent config paths take precedence; other component paths keep
 constructor/CWD semantics. YAML supports environment variables and explicit defaults.
 
-Installed packages are `omniroboagent`, `omni_atomic_skills` and the Chemistry
+Installed packages are `luban`, `omni_atomic_skills` and the Chemistry
 protobuf client. The wheel includes typed markers, Chemistry YAML and the CPU module
 example; source archive includes the repository's small configs/catalogs/tests/scripts.
 External SDKs, model weights, assets, copied SpatialLM and standalone robot workspaces
@@ -78,3 +78,16 @@ graph/evolution modules have source/contracts and varying optional test coverage
 no new complete live matrix is claimed. ROS2 has injected transport contracts,
 not a verified physical robot installation. General async runtime and physical
 robot validation remain unimplemented/unverified scope, respectively.
+
+
+## Package identity and bilingual guides
+
+The distribution, import namespace and CLI are `luban`; implementation lives under
+`src/luban`. Config class paths and owned environment-variable prefixes follow
+that identity, including `LUBAN_ROBOCASA_ROOT`. The standalone atomic-skill and
+Chemistry protocol packages retain their separate boundaries. No legacy runtime
+alias is advertised. Required upstream/source attribution remains accurate.
+
+User guides have complete English/Chinese pairs, linked from docs/README.md and
+docs/README.zh-CN.md. The documentation check validates counterparts and identical
+executable code blocks. This does not change module ownership or dependency direction.

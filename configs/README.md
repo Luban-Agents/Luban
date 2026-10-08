@@ -1,3 +1,5 @@
+[English](README.md) · [简体中文](README.zh-CN.md)
+
 # Configurations
 
 Start with `agents/offline.yaml` + `runs/offline.yaml` for CPU mock flow,

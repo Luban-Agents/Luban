@@ -1,7 +1,7 @@
 import json
 import time
 
-from omniroboagent.agent_core.streaming_memory import StreamingMemorySidecar
+from luban.agent_core.streaming_memory import StreamingMemorySidecar
 
 
 def test_sidecar_prefetch_and_scope_invalidation(tmp_path):

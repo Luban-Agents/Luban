@@ -7,15 +7,15 @@ from pathlib import Path
 
 import numpy as np
 
-from omni_atomic_skills import SkillRegistry
-from omni_atomic_skills.runtime import ExecutionContext, JsonlEventSink, SkillRuntime
-from omniroboagent.backends.atomic_skills import AtomicSemanticGuard
-from omniroboagent.backends.atomic_skills.verifiers import WipeToolStrokeVerifier
-from omniroboagent.backends.atomic_skills.wipe_backend import (
+from luban.backends.atomic_skills import AtomicSemanticGuard
+from luban.backends.atomic_skills.verifiers import WipeToolStrokeVerifier
+from luban.backends.atomic_skills.wipe_backend import (
     XR1_CAMERA_IDS,
     Xr1WipeEnvironment,
     Xr1WipeStrokeBackend,
 )
+from omni_atomic_skills import SkillRegistry
+from omni_atomic_skills.runtime import ExecutionContext, JsonlEventSink, SkillRuntime
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 V22_CATALOG = REPO_ROOT / "catalogs" / "v2.2" / "atomic_skills.json"

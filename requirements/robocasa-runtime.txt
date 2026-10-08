@@ -1,5 +1,5 @@
 # Inference-only RoboCasa365 runtime, tested with Python 3.11.
-# RoboCasa source is loaded via OMNIROBOAGENT_ROBOCASA_ROOT; assets are separate.
+# RoboCasa source is loaded via LUBAN_ROBOCASA_ROOT; assets are separate.
 # Training/data-pipeline dependencies (lerobot, tianshou, Torch) are not required
 # by the tested simulator path. Policy inference runs in its own environment.
 numpy==2.2.5

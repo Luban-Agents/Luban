@@ -6,8 +6,8 @@ from copy import deepcopy
 import numpy as np
 import pytest
 
-from omniroboagent.agent_core.memories.spatial import SpatialMemory
-from omniroboagent.backends.world_models.data import (
+from luban.agent_core.memories.spatial import SpatialMemory
+from luban.backends.world_models.data import (
     ACTION_KEYS,
     CAMERA_KEYS,
     PROPRIO_KEYS,

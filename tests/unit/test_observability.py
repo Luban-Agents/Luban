@@ -5,7 +5,7 @@ from typing import Any
 import pytest
 from PIL import Image
 
-from omniroboagent.observability import LocalEpisodeRecorder
+from luban.observability import LocalEpisodeRecorder
 
 
 def _fake_ffmpeg(tmp_path: Path) -> Path:

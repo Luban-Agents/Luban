@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""生成 OmniRoboAgent Agent 架构图（SVG + PNG）。
+"""生成 Luban Agent 架构图（SVG + PNG）。
 
 事实来源（当前仓库）：
   impl_docs/architecture/overview.md     逻辑架构、组件职责、数据策略
   docs/models.md、docs/environments.md  模型与环境契约
-  src/omniroboagent/agent_core/**        组件实现与自进化模块
+  src/luban/agent_core/**        组件实现与自进化模块
   src/omni_atomic_skills/**              原子技能契约、注册、路由、执行、演化
   configs/agents/*.yaml                  组件装配示例
 
 运行：python3 scripts/build_agent_architecture_svg.py
-输出：outputs/omniroboagent_agent_architecture_20260912.svg / .png
+输出：outputs/luban_agent_architecture_20260912.svg / .png
 """
 
 from __future__ import annotations
@@ -18,8 +18,8 @@ import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(ROOT, "outputs")
-SVG_PATH = os.path.join(OUT_DIR, "omniroboagent_agent_architecture_20260912.svg")
-PNG_PATH = os.path.join(OUT_DIR, "omniroboagent_agent_architecture_20260912.png")
+SVG_PATH = os.path.join(OUT_DIR, "luban_agent_architecture_20260912.svg")
+PNG_PATH = os.path.join(OUT_DIR, "luban_agent_architecture_20260912.png")
 
 W, H = 1800, 1170
 FONT = "PingFang SC, Hiragino Sans GB, Heiti SC, Arial, sans-serif"
@@ -160,7 +160,7 @@ parts.append(
 rect(0, 0, W, H, fill=WHITE, stroke=WHITE, rx=0)
 
 # 标题
-text(40, 46, "OmniRoboAgent Agent 架构（自进化分支）", size=26, color=NAVY, bold=True)
+text(40, 46, "Luban Agent 架构（自进化分支）", size=26, color=NAVY, bold=True)
 text(
     40,
     72,

@@ -28,23 +28,23 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "src"))
 
+from luban.backends.atomic_skills import AtomicSemanticGuard  # noqa: E402
+from luban.backends.atomic_skills.verifiers import (  # noqa: E402
+    WipeToolStrokeVerifier,
+)
+from luban.backends.atomic_skills.wipe_backend import (  # noqa: E402
+    XR1_CAMERA_IDS,
+    Xr1WipeEnvironment,
+    Xr1WipeStrokeBackend,
+)
+from luban.backends.skills.xiaomi_remote import (  # noqa: E402
+    XiaomiRemotePolicyBackend,
+)
 from omni_atomic_skills import SkillRegistry  # noqa: E402
 from omni_atomic_skills.runtime import (  # noqa: E402
     ExecutionContext,
     JsonlEventSink,
     SkillRuntime,
-)
-from omniroboagent.backends.atomic_skills import AtomicSemanticGuard  # noqa: E402
-from omniroboagent.backends.atomic_skills.verifiers import (  # noqa: E402
-    WipeToolStrokeVerifier,
-)
-from omniroboagent.backends.atomic_skills.wipe_backend import (  # noqa: E402
-    XR1_CAMERA_IDS,
-    Xr1WipeEnvironment,
-    Xr1WipeStrokeBackend,
-)
-from omniroboagent.backends.skills.xiaomi_remote import (  # noqa: E402
-    XiaomiRemotePolicyBackend,
 )
 
 DEFAULT_CATALOG = REPO_ROOT / "catalogs" / "v2.2" / "atomic_skills.json"
@@ -63,7 +63,7 @@ STATE_KEYS = (
     "state.base_position",
     "state.base_rotation",
 )
-# RoboCasa365 的 12 维动作布局（与 omniroboagent.environments.benchmarks.robocasa
+# RoboCasa365 的 12 维动作布局（与 luban.environments.benchmarks.robocasa
 # 的 _ACTION_DIMS 一致）：pos(3) → rot(3) → gripper(1) → base(4) → control(1)。
 ACTION_LAYOUT: tuple[tuple[str, int], ...] = (
     ("action.end_effector_position", 3),

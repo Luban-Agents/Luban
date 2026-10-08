@@ -1,4 +1,4 @@
-# OmniRoboAgent Project Rules
+# Luban Project Rules
 
 本文件是整个项目的工程规则。根目录和所有子目录的新代码都必须遵守；第三方 clone 仓库保持上游风格，不做无关修改。
 

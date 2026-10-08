@@ -3,8 +3,8 @@ from pathlib import Path
 from threading import Event
 from typing import Any
 
-from omniroboagent.agent_core import LongMemory
-from omniroboagent.backends.llm import LLMBackend
+from luban.agent_core import LongMemory
+from luban.backends.llm import LLMBackend
 
 
 class SequencedSummaryBackend(LLMBackend):

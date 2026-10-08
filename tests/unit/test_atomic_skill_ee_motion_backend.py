@@ -14,14 +14,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from omni_atomic_skills import SkillRegistry
-from omni_atomic_skills.runtime import (
-    ExecutionContext,
-    RuntimeExecutionError,
-    SkillRuntime,
-    VerificationVerdict,
-)
-from omniroboagent.backends.atomic_skills.ee_motion_backend import (
+from luban.backends.atomic_skills.ee_motion_backend import (
     DEFAULT_FRAME_ID,
     POS_STEP_M,
     ROT_STEP_RAD,
@@ -35,7 +28,14 @@ from omniroboagent.backends.atomic_skills.ee_motion_backend import (
     quat_multiply,
     quat_normalize,
 )
-from omniroboagent.backends.atomic_skills.guards import AtomicSemanticGuard
+from luban.backends.atomic_skills.guards import AtomicSemanticGuard
+from omni_atomic_skills import SkillRegistry
+from omni_atomic_skills.runtime import (
+    ExecutionContext,
+    RuntimeExecutionError,
+    SkillRuntime,
+    VerificationVerdict,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 CATALOG = REPO_ROOT / "catalogs" / "v2.2" / "atomic_skills.json"

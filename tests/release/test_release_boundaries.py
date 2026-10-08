@@ -9,15 +9,15 @@ from pathlib import Path
 import httpx
 import pytest
 
-from omniroboagent.agent_core import DefaultAgent, InMemoryMemory, Planner, Verifier
-from omniroboagent.backends.llm import OpenAICompatibleLLMBackend
-from omniroboagent.backends.skills import LanguageSkillBackend
-from omniroboagent.config import build_agent, load_yaml
-from omniroboagent.dashboard import store
-from omniroboagent.environments import Environment
-from omniroboagent.exceptions import BackendError, ConfigError
-from omniroboagent.pipelines import DirectPipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.agent_core import DefaultAgent, InMemoryMemory, Planner, Verifier
+from luban.backends.llm import OpenAICompatibleLLMBackend
+from luban.backends.skills import LanguageSkillBackend
+from luban.config import build_agent, load_yaml
+from luban.dashboard import store
+from luban.environments import Environment
+from luban.exceptions import BackendError, ConfigError
+from luban.pipelines import DirectPipeline
+from luban.runtimes import SyncRuntime
 
 
 class Plan(Planner):
@@ -190,7 +190,7 @@ def test_runtime_disk_full_on_trace_still_closes_resources(tmp_path, monkeypatch
 
 
 def test_cli_infrastructure_failure_has_nonzero_exit(monkeypatch):
-    import omniroboagent.cli as cli
+    import luban.cli as cli
 
     monkeypatch.setattr(
         cli,
@@ -201,9 +201,7 @@ def test_cli_infrastructure_failure_has_nonzero_exit(monkeypatch):
             "exceptions": 1,
         },
     )
-    monkeypatch.setattr(
-        sys, "argv", ["omniroboagent", "run", "--config", "synthetic.yaml"]
-    )
+    monkeypatch.setattr(sys, "argv", ["luban", "run", "--config", "synthetic.yaml"])
     code = 0
     try:
         cli.main()
@@ -213,7 +211,7 @@ def test_cli_infrastructure_failure_has_nonzero_exit(monkeypatch):
 
 
 def test_config_partial_construction_closes_created_backend(monkeypatch):
-    import omniroboagent.config as config
+    import luban.config as config
 
     closed = []
 
@@ -231,7 +229,7 @@ def test_config_partial_construction_closes_created_backend(monkeypatch):
     with pytest.raises(ConfigError):
         build_agent(
             {
-                "agent": {"class_path": "omniroboagent.agent_core.DefaultAgent"},
+                "agent": {"class_path": "luban.agent_core.DefaultAgent"},
                 "planner": {"class_path": "does.not.Exist"},
                 "memory": {},
                 "skill_backend": "backend",

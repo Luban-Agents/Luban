@@ -10,10 +10,10 @@ import numpy as np
 import pytest
 from test_release_boundary_v2 import evaluation, propose, write_latent_checkpoint
 
-from omniroboagent.agent_core.module_evolution import ModuleEvolutionManager
-from omniroboagent.backends.world_models.latent import LightweightLatentDynamics
-from omniroboagent.config import load_yaml, resolve_config_path
-from omniroboagent.serialization import redact_secrets
+from luban.agent_core.module_evolution import ModuleEvolutionManager
+from luban.backends.world_models.latent import LightweightLatentDynamics
+from luban.config import load_yaml, resolve_config_path
+from luban.serialization import redact_secrets
 
 
 @pytest.mark.parametrize("name", ["password", "api_key", "OPENAI_API_KEY"])
@@ -115,7 +115,7 @@ def test_developer_probe_resolves_bundled_script_and_configured_python(
     name, monkeypatch
 ):
     root = Path(__file__).resolve().parents[2]
-    monkeypatch.setenv("OMNIROBOAGENT_SIM_PYTHON", "/example/simulator/python")
+    monkeypatch.setenv("LUBAN_SIM_PYTHON", "/example/simulator/python")
     spec = importlib.util.spec_from_file_location(
         name, root / "scripts/study/g0_probes" / f"{name}.py"
     )

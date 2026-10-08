@@ -1,6 +1,8 @@
+[English](environments.md) · [简体中文](environments.zh-CN.md)
+
 # Environment and robot contracts
 
-`omniroboagent.environments.base.Environment` has three operations:
+`luban.environments.base.Environment` has three operations:
 
 ```python
 def reset(self, task): ...  # return initial observation
@@ -15,7 +17,7 @@ Planners propose work, policies generate payloads, environments execute them,
 verifiers interpret feedback, pipelines transition state, runtimes enforce budgets.
 
 The complete minimal implementation is
-[`CounterEnvironment`](https://github.com/Luban-Agents/Luban/blob/codex/private-readiness/src/omniroboagent/examples/offline.py). It accepts only
+[`CounterEnvironment`](https://github.com/Luban-Agents/Luban/blob/codex/private-readiness/src/luban/examples/offline.py). It accepts only
 `increment`, returns `observation`, `task_success`, `task_progress`,
 `last_action_success`, `done`, `executed_steps`, and marks success after two actions.
 Use its [`offline` run](https://github.com/Luban-Agents/Luban/blob/codex/private-readiness/configs/runs/offline.yaml) to test a custom component
@@ -27,7 +29,7 @@ must be finite. Other pipelines interpret their own structured verification
 outputs; there is no framework-wide Verifier decision enum. Native benchmark
 success takes priority over a planner or model's opinion.
 
-| Adapter path under `omniroboagent` | Scope in this preparation |
+| Adapter path under `luban` | Scope in this preparation |
 | --- | --- |
 | `environments.benchmarks.robocasa.RoboCasaEnvironment` | Real XR-1 single episode; source/pins in validation |
 | `environments.benchmarks.libero.LiberoEnvironment` | Software contracts/tests; no new live LIBERO run |

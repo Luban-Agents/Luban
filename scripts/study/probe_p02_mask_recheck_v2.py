@@ -40,10 +40,10 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "src"))
 
-from omniroboagent.backends.atomic_skills.perception_backend import (  # noqa: E402
+from luban.backends.atomic_skills.perception_backend import (  # noqa: E402
     DEFAULT_CAMERA_ID,
 )
-from omniroboagent.perception.client import VisualPerceptionClient  # noqa: E402
+from luban.perception.client import VisualPerceptionClient  # noqa: E402
 
 DEFAULT_QUERIES = ("cutting board", "knife")
 TOLERANCE_PX = 1.0

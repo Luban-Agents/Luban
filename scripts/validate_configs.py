@@ -23,7 +23,7 @@ import traceback
 from collections.abc import Iterator
 from pathlib import Path
 
-from omniroboagent.config import (
+from luban.config import (
     build_agent,
     build_run_components,
     instantiate,
@@ -91,7 +91,7 @@ def _classify(error: Exception) -> str:
         if isinstance(item, ModuleNotFoundError) and item.name:
             if item.name.split(".")[0] in OPTIONAL_MODULES:
                 return "NEEDS_ENV"
-            if item.name.startswith("omniroboagent"):
+            if item.name.startswith("luban"):
                 return "FAIL"
             return "FAIL"
     text = " ".join(str(item) for item in chain).lower()

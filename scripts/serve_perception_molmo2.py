@@ -6,7 +6,7 @@ boxes, which is enough for a *second opinion* on whether a queried concept is
 present at roughly the place SAM3 reported.
 
 Reuses the project's own prompt compiler and response decoder
-(``omniroboagent.perception.server``) so the wire contract stays identical to SAM3.
+(``luban.perception.server``) so the wire contract stays identical to SAM3.
 
 Example: python scripts/serve_perception_molmo2.py --help
 """
@@ -48,7 +48,7 @@ def _to_pil(frame: Any):
 
 
 def build_analyzer(model: Any, processor: Any, *, max_new_tokens: int) -> Any:
-    from omniroboagent.perception.server import (
+    from luban.perception.server import (
         compile_concept_queries,
         extract_molmo2_multi_image_points,
     )
@@ -225,7 +225,7 @@ def build_analyzer(model: Any, processor: Any, *, max_new_tokens: int) -> Any:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Molmo2 perception server for OmniRoboAgent"
+        description="Molmo2 perception server for Luban"
     )
     parser.add_argument(
         "--model-path",
@@ -241,12 +241,12 @@ def main() -> int:
     parser.add_argument("--max-new-tokens", type=int, default=256)
     args = parser.parse_args()
 
-    sys.path.insert(0, os.environ.get("OMNIROBOAGENT_SRC", DEFAULT_SRC))
+    sys.path.insert(0, os.environ.get("LUBAN_SRC", DEFAULT_SRC))
 
     import torch
     from transformers import AutoModelForImageTextToText, AutoProcessor
 
-    from omniroboagent.perception.server import VisualPerceptionServer
+    from luban.perception.server import VisualPerceptionServer
 
     dtype = getattr(torch, args.dtype)
     started = time.perf_counter()

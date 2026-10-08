@@ -3,8 +3,8 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core import NodeRecoveryStateMachine, TaskDecomposer
-from omniroboagent.backends.llm.base import LLMBackend
+from luban.agent_core import NodeRecoveryStateMachine, TaskDecomposer
+from luban.backends.llm.base import LLMBackend
 
 
 class SequenceBackend(LLMBackend):
@@ -381,7 +381,7 @@ def test_replan_payload_without_advisor_keeps_the_baseline_shape() -> None:
 
 def test_temporal_frames_fall_back_to_the_current_observation() -> None:
     """缺多帧时必须退化为当前观测，而不是让整集以 exception 终止。"""
-    from omniroboagent.agent_core.task_decomposer import _resolved_temporal_frames
+    from luban.agent_core.task_decomposer import _resolved_temporal_frames
 
     runtime_frames = [{"observation": {"video.a": 1}, "phase": "historical"}]
     frames, source = _resolved_temporal_frames(
@@ -430,7 +430,7 @@ def test_revise_plan_graph_accepts_a_single_current_observation() -> None:
 
 
 def test_revise_plan_graph_still_rejects_missing_frames_and_observation() -> None:
-    from omniroboagent.exceptions import PlannerOutputError
+    from luban.exceptions import PlannerOutputError
 
     decomposer = TaskDecomposer(backend=SequenceBackend({}), max_nodes=8)
     with pytest.raises(PlannerOutputError):
@@ -496,7 +496,7 @@ def test_replan_frozen_branch_sends_json_object_in_json_object_mode() -> None:
 
 def test_replan_json_object_mode_still_validates_response_fields() -> None:
     """丢失 schema 约束后，response 字段校验必须继续兜底。"""
-    from omniroboagent.exceptions import ProtocolSchemaError
+    from luban.exceptions import ProtocolSchemaError
 
     invalid_outputs = [
         {"replacement_nodes": [], "revision_reason": "no replacement"},

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Probe P01 end to end against the SAM3 perception service.
 
-Run this in the OmniRoboAgent environment while ``scripts/serve_perception.py``
+Run this in the Luban environment while ``scripts/serve_perception.py``
 runs separately in the SAM3 environment.  The probe
 
   1. loads one real rendered RGB frame,
@@ -24,22 +24,22 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "src"))
 
+from luban.backends.atomic_skills import AtomicSemanticGuard  # noqa: E402
+from luban.backends.atomic_skills.perception_backend import (  # noqa: E402
+    DEFAULT_CAMERA_ID,
+    Sam3DetectBackend,
+    Sam3PerceptionEnvironment,
+)
+from luban.backends.atomic_skills.verifiers import (  # noqa: E402
+    DetectObjectsVerifier,
+)
+from luban.perception.client import VisualPerceptionClient  # noqa: E402
 from omni_atomic_skills import SkillRegistry  # noqa: E402
 from omni_atomic_skills.runtime import (  # noqa: E402
     ExecutionContext,
     JsonlEventSink,
     SkillRuntime,
 )
-from omniroboagent.backends.atomic_skills import AtomicSemanticGuard  # noqa: E402
-from omniroboagent.backends.atomic_skills.perception_backend import (  # noqa: E402
-    DEFAULT_CAMERA_ID,
-    Sam3DetectBackend,
-    Sam3PerceptionEnvironment,
-)
-from omniroboagent.backends.atomic_skills.verifiers import (  # noqa: E402
-    DetectObjectsVerifier,
-)
-from omniroboagent.perception.client import VisualPerceptionClient  # noqa: E402
 
 SAM3_CAPABILITIES = frozenset({"rgb_camera", "object_detector"})
 DEFAULT_CATALOG = REPO_ROOT / "catalogs" / "v2.1" / "atomic_skills.json"

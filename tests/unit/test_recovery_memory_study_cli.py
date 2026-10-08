@@ -23,7 +23,7 @@ def _load_cli():
 
 
 def _fabricated_study(tmp_path: Path) -> Path:
-    from omniroboagent.evals.study_evidence import build_evidence_bundle
+    from luban.evals.study_evidence import build_evidence_bundle
 
     attempt = (
         tmp_path

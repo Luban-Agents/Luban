@@ -16,7 +16,7 @@ Related plan: [new-machine readiness](../plans/2026-10-08-new-machine-readiness.
 ## Files
 
 README.md, README.zh-CN.md, docs/, configs/agents/xr1_graph_simple.yaml,
-src/omniroboagent/agent_core/agents/self_evolving.py,
+src/luban/agent_core/agents/self_evolving.py,
 tests/unit/test_self_evolving_agent.py, scripts/, MANIFEST.in, pyproject.toml,
 uv.lock, .github/workflows/ci.yml and implementation architecture/status documents.
 

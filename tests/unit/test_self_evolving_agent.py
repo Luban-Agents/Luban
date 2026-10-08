@@ -4,7 +4,7 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     AtomicSkillSystem,
     InMemoryMemory,
     JsonlKnowledgeBase,
@@ -16,12 +16,12 @@ from omniroboagent.agent_core import (
     SubtaskSkillPlanner,
     SubtaskVerifier,
 )
-from omniroboagent.agent_core.planners.base import Planner
-from omniroboagent.agent_core.verifiers.base import Verifier
-from omniroboagent.backends.llm.base import LLMBackend
-from omniroboagent.backends.skills.base import SkillBackend
-from omniroboagent.pipelines import SkillExecutionConfig, SkillExecutionPipeline
-from omniroboagent.runtimes import SyncRuntime, SyncRuntimeConfig
+from luban.agent_core.planners.base import Planner
+from luban.agent_core.verifiers.base import Verifier
+from luban.backends.llm.base import LLMBackend
+from luban.backends.skills.base import SkillBackend
+from luban.pipelines import SkillExecutionConfig, SkillExecutionPipeline
+from luban.runtimes import SyncRuntime, SyncRuntimeConfig
 
 ROOT = Path(__file__).parents[2]
 CATALOGS = [ROOT / "catalogs/atomic_skills.json", ROOT / "catalogs/composites.json"]
@@ -927,7 +927,7 @@ def test_streaming_packet_reaches_planner_and_verifier(tmp_path: Path) -> None:
     )
     planner = RecordingPlanner()
     verifier = RecordingVerifier()
-    from omniroboagent.agent_core.streaming_memory import StreamingMemorySidecar
+    from luban.agent_core.streaming_memory import StreamingMemorySidecar
 
     sidecar = StreamingMemorySidecar(
         enabled=True,
@@ -1051,7 +1051,7 @@ def test_memory_attribution_marks_graph_reconciliation_failure() -> None:
 
 
 def test_provider_independent_experience_candidate_path(tmp_path: Path) -> None:
-    from omniroboagent.agent_core.experience_capsules import ExperienceCapsuleStore
+    from luban.agent_core.experience_capsules import ExperienceCapsuleStore
 
     store = ExperienceCapsuleStore(tmp_path / "capsules.jsonl")
     agent = SelfEvolvingAgent(
@@ -1098,7 +1098,7 @@ def test_provider_independent_experience_candidate_path(tmp_path: Path) -> None:
 
 
 def test_experience_candidate_accepts_non_skill_gap_causes(tmp_path: Path) -> None:
-    from omniroboagent.agent_core.experience_capsules import ExperienceCapsuleStore
+    from luban.agent_core.experience_capsules import ExperienceCapsuleStore
 
     store = ExperienceCapsuleStore(tmp_path / "capsules.jsonl")
     agent = SelfEvolvingAgent(
@@ -1141,7 +1141,7 @@ def test_experience_candidate_accepts_non_skill_gap_causes(tmp_path: Path) -> No
 
 
 def test_task_skill_aliases_join_contract_knowledge(tmp_path: Path) -> None:
-    from omniroboagent.agent_core.robocasa_atomic_skill_catalog import (
+    from luban.agent_core.robocasa_atomic_skill_catalog import (
         RoboCasaAtomicSkillCatalog,
     )
 

@@ -12,19 +12,19 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     DefaultAgent,
     EnvironmentVerifier,
     InMemoryMemory,
     TaskSkillPlanner,
 )
-from omniroboagent.backends.llm import OpenAICompatibleLLMBackend
-from omniroboagent.backends.skills.rldx import _RLDXMsgSerializer, _RLDXZMQClient
-from omniroboagent.backends.skills.xiaomi_remote import _XiaomiZMQClient
-from omniroboagent.evals.benchmarks.robocasa import RoboCasa365Evaluator
-from omniroboagent.exceptions import BackendError, ConfigError
-from omniroboagent.pipelines import SkillExecutionPipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.backends.llm import OpenAICompatibleLLMBackend
+from luban.backends.skills.rldx import _RLDXMsgSerializer, _RLDXZMQClient
+from luban.backends.skills.xiaomi_remote import _XiaomiZMQClient
+from luban.evals.benchmarks.robocasa import RoboCasa365Evaluator
+from luban.exceptions import BackendError, ConfigError
+from luban.pipelines import SkillExecutionPipeline
+from luban.runtimes import SyncRuntime
 
 
 @contextmanager

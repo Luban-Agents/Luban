@@ -1,4 +1,4 @@
-"""OmniRoboAgent atomic-skill catalog and execution framework."""
+"""Luban atomic-skill catalog and execution framework."""
 
 from .composition import (
     AtomicStepRunner,
@@ -47,8 +47,8 @@ from .evolution import (
 )
 from .evolution_loop import AtomicSkillEvolutionEngine, EvolutionCycle, ProposalFactory
 from .omni_adapter import (
+    LubanAdapter,
     OmniPredictBackendAdapter,
-    OmniRoboAgentAdapter,
     OmniSkillBackendAdapter,
     OmniVerifierAdapter,
     PendingPrediction,
@@ -142,7 +142,7 @@ __all__ = [
     "JsonlEventSink",
     "MemoryEventSink",
     "OmniPredictBackendAdapter",
-    "OmniRoboAgentAdapter",
+    "LubanAdapter",
     "OmniSkillBackendAdapter",
     "OmniVerifierAdapter",
     "PairedEvaluationSummary",

@@ -49,7 +49,7 @@ class CatalogInfo:
     generated_at: str
     title: str = ""
     description: str = ""
-    project: str = "OmniRoboAgent"
+    project: str = "Luban"
     metadata: Mapping[str, JsonValue] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, JsonValue]:
@@ -484,7 +484,7 @@ class SkillRegistry:
         for key, default in (
             ("title", ""),
             ("description", ""),
-            ("project", "OmniRoboAgent"),
+            ("project", "Luban"),
         ):
             item = value.get(key, default)
             if not isinstance(item, str):

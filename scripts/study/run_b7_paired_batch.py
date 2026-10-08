@@ -29,15 +29,15 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "src"))
 
-from omniroboagent.agent_core.module_evolution import (  # noqa: E402
+from luban.agent_core.module_evolution import (  # noqa: E402
     ModuleEvolutionManager,
 )
-from omniroboagent.evals.evolution_validation import (  # noqa: E402
+from luban.evals.evolution_validation import (  # noqa: E402
     ValidationIdentity,
     build_protocol_id,
     run_paired_validation,
 )
-from omniroboagent.evals.paired_episode_runner import (  # noqa: E402
+from luban.evals.paired_episode_runner import (  # noqa: E402
     build_paired_episode_runner,
 )
 

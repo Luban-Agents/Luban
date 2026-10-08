@@ -28,15 +28,15 @@ from peft import PeftModel
 from PIL import Image
 from transformers import AutoModelForImageTextToText, AutoProcessor
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     DefaultAgent,
     SubtaskPlanPlanner,
     SubtaskVerifier,
     TieredMemory,
 )
-from omniroboagent.backends.llm.base import LLMBackend
-from omniroboagent.pipelines import SkillExecutionPipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.backends.llm.base import LLMBackend
+from luban.pipelines import SkillExecutionPipeline
+from luban.runtimes import SyncRuntime
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_BASE_MODEL = (

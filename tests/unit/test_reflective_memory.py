@@ -4,7 +4,7 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core import ReflectiveMemory
+from luban.agent_core import ReflectiveMemory
 
 
 def event(

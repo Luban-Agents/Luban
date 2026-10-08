@@ -1,12 +1,12 @@
 agent_config: ../agents/eb_alfred_spatial_memory.yaml
 
 pipeline:
-  class_path: omniroboagent.pipelines.DirectPipeline
+  class_path: luban.pipelines.DirectPipeline
   init_args:
     action_execution_mode: full
 
 runtime:
-  class_path: omniroboagent.runtimes.SyncRuntime
+  class_path: luban.runtimes.SyncRuntime
   init_args:
     max_steps: 30
     max_invalid_actions: 10
@@ -14,7 +14,7 @@ runtime:
     timeout_seconds: 1800
     output_dir: runs/eb_alfred_spatial_memory_smoke/traces
     observability:
-      class_path: omniroboagent.observability.LocalEpisodeRecorder
+      class_path: luban.observability.LocalEpisodeRecorder
       init_args:
         record_agent_trace: true
         record_video: true
@@ -22,16 +22,16 @@ runtime:
         video_fps: 2
 
 environment:
-  class_path: omniroboagent.environments.benchmarks.embodiedbench.EBAlfredEnvironment
+  class_path: luban.environments.benchmarks.embodiedbench.EBAlfredEnvironment
   init_args:
     eval_set: base
     selected_indexes: [0]
     resolution: 300
-    exp_name: omniroboagent_spatial_memory_smoke
+    exp_name: luban_spatial_memory_smoke
     display: 1
     embodiedbench_root: benchmarks/EmbodiedBench
 
 benchmark:
-  class_path: omniroboagent.evals.benchmarks.embodiedbench.EBAlfredBenchmark
+  class_path: luban.evals.benchmarks.embodiedbench.EBAlfredBenchmark
   init_args:
     output_dir: runs/eb_alfred_spatial_memory_smoke

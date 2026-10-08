@@ -51,7 +51,7 @@ def main():
         "steps": {},
     }
 
-    from omniroboagent.environments.benchmarks.robocasa import RoboCasaEnvironment
+    from luban.environments.benchmarks.robocasa import RoboCasaEnvironment
 
     t0 = time.time()
     env = RoboCasaEnvironment(

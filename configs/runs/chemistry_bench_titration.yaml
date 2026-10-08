@@ -1,10 +1,10 @@
 agent_config: ../agents/chemistry_bench_titration.yaml
 pipeline:
-  class_path: omniroboagent.pipelines.DirectPipeline
+  class_path: luban.pipelines.DirectPipeline
   init_args:
     action_execution_mode: full
 runtime:
-  class_path: omniroboagent.runtimes.SyncRuntime
+  class_path: luban.runtimes.SyncRuntime
   init_args:
     max_steps: 30
     max_invalid_actions: 5
@@ -12,13 +12,13 @@ runtime:
     timeout_seconds: 1800
     output_dir: runs/chemistry_bench_titration
     observability:
-      class_path: omniroboagent.observability.LocalEpisodeRecorder
+      class_path: luban.observability.LocalEpisodeRecorder
       init_args:
         record_video: true
         video_camera_keys: [head_rgb]
         video_fps: 2
 environment:
-  class_path: omniroboagent.environments.benchmarks.chemistry_bench.ChemistryBenchEnvironment
+  class_path: luban.environments.benchmarks.chemistry_bench.ChemistryBenchEnvironment
   init_args:
     address: 127.0.0.1:50051
     timeout_seconds: 600

@@ -1,3 +1,5 @@
+[English](new-machine.md) · [简体中文](new-machine.zh-CN.md)
+
 # Test on a new machine
 
 This is the complete CPU software acceptance path for a new Ubuntu machine.
@@ -41,8 +43,8 @@ No shared environment is needed. Windows/macOS execution is not acceptance-teste
 
 ```bash
 uv sync --frozen --no-dev --python 3.11
-uv run --frozen --no-dev python -m omniroboagent.examples.offline
-uv run --frozen --no-dev omniroboagent run --config configs/runs/offline.yaml
+uv run --frozen --no-dev python -m luban.examples.offline
+uv run --frozen --no-dev luban run --config configs/runs/offline.yaml
 ```
 
 Both must report `success: true`, `termination_reason: task_success`, two steps

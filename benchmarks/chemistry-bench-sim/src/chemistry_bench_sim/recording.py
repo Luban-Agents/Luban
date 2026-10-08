@@ -35,7 +35,7 @@ class DemoRecorder:
         draw = ImageDraw.Draw(canvas)
         draw.text(
             (20, 12),
-            "OmniRoboAgent | Chemistry Bench",
+            "Luban | Chemistry Bench",
             font=self.font,
             fill=(225, 236, 247),
         )

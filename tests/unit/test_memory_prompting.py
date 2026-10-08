@@ -1,6 +1,6 @@
 from typing import Any
 
-from omniroboagent.agent_core.prompting import (
+from luban.agent_core.prompting import (
     MEMORY_PARTITION_PRIORITY,
     WORKING_MEMORY_HEADER,
     memory_text_payload,

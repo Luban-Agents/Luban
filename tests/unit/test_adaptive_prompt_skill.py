@@ -3,7 +3,7 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core.adaptive_prompt_skill import (
+from luban.agent_core.adaptive_prompt_skill import (
     AdaptivePromptSkill,
     CallMode,
     EvidenceSource,
@@ -13,12 +13,12 @@ from omniroboagent.agent_core.adaptive_prompt_skill import (
     SkillSpec,
     VisibilityStatus,
 )
-from omniroboagent.agent_core.planners.subtask_skill import SubtaskSkillPlanner
-from omniroboagent.agent_core.task_decomposer import TaskDecomposer
-from omniroboagent.agent_core.verifiers.subtask import SubtaskVerifier
-from omniroboagent.backends.llm.base import LLMBackend
-from omniroboagent.exceptions import PlannerOutputError, ProtocolSchemaError
-from omniroboagent.pipelines.skill_execution import SkillExecutionPipeline
+from luban.agent_core.planners.subtask_skill import SubtaskSkillPlanner
+from luban.agent_core.task_decomposer import TaskDecomposer
+from luban.agent_core.verifiers.subtask import SubtaskVerifier
+from luban.backends.llm.base import LLMBackend
+from luban.exceptions import PlannerOutputError, ProtocolSchemaError
+from luban.pipelines.skill_execution import SkillExecutionPipeline
 
 
 class FakeBackend(LLMBackend):

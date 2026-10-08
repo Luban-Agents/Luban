@@ -14,9 +14,9 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.evals import paired_episode_runner as runner_module
-from omniroboagent.evals.evolution_validation import ValidationIdentity
-from omniroboagent.evals.paired_episode_runner import (
+from luban.evals import paired_episode_runner as runner_module
+from luban.evals.evolution_validation import ValidationIdentity
+from luban.evals.paired_episode_runner import (
     _classify_outcome,
     _safety_violations,
     build_paired_episode_runner,
@@ -292,7 +292,7 @@ def test_paired_runner_requires_shadow_candidate(
 
     monkeypatch.setattr(runner_module, "ModuleEvolutionManager", FakeManager)
 
-    from omniroboagent.exceptions import ConfigError
+    from luban.exceptions import ConfigError
 
     with pytest.raises(ConfigError, match="shadow candidate"):
         build_paired_episode_runner(

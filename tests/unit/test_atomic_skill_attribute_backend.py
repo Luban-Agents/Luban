@@ -14,22 +14,22 @@ from pathlib import Path
 
 import numpy as np
 
-from omni_atomic_skills import SkillRegistry
-from omni_atomic_skills.runtime import (
-    ExecutionContext,
-    SkillRuntime,
-    VerificationVerdict,
-)
-from omniroboagent.backends.atomic_skills.attribute_backend import (
+from luban.backends.atomic_skills.attribute_backend import (
     CROP_CAMERA_ID,
     Molmo2AttributeBackend,
     Molmo2AttributeEnvironment,
     normalize_answer,
 )
-from omniroboagent.backends.atomic_skills.guards import AtomicSemanticGuard
-from omniroboagent.backends.atomic_skills.verifiers import (
+from luban.backends.atomic_skills.guards import AtomicSemanticGuard
+from luban.backends.atomic_skills.verifiers import (
     UNKNOWN_ATTRIBUTE_VALUE,
     ClassifyObjectAttributesVerifier,
+)
+from omni_atomic_skills import SkillRegistry
+from omni_atomic_skills.runtime import (
+    ExecutionContext,
+    SkillRuntime,
+    VerificationVerdict,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[2]

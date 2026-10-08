@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from omniroboagent.agent_core.experience_capsules import (
+from luban.agent_core.experience_capsules import (
     ExperienceCapsule,
     ExperienceCapsuleStore,
 )

@@ -18,7 +18,7 @@ export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-${HOME}/.cache/huggingface/datase
 export TOKENIZERS_PARALLELISM=false
 export OMP_NUM_THREADS=4
 export MUJOCO_GL=egl
-export WANDB_PROJECT="OmniRoboAgent"
+export WANDB_PROJECT="Luban"
 # The cluster proxy is not reachable from every host; W&B is reachable directly.
 unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY all_proxy
 
@@ -58,7 +58,7 @@ exec "${PYTHON}" -m accelerate.commands.launch "${LAUNCH_ARGS[@]}" \
   --peft.method_type=LORA \
   --peft.r=64 \
   --wandb.enable=true \
-  --wandb.project=OmniRoboAgent \
+  --wandb.project=Luban \
   --wandb.disable_artifact=true \
   --wandb.notes="PI0.5 LoRA on official LIBERO expert trajectories relabeled by executable subtask" \
   --seed=1000

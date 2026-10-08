@@ -5,13 +5,13 @@
 # The VLA still receives the concrete subtask and the environment remains the
 # authority for benchmark task success.
 agent:
-  class_path: omniroboagent.agent_core.DefaultAgent
+  class_path: luban.agent_core.DefaultAgent
 
 planner:
-  class_path: omniroboagent.agent_core.SubtaskPlanPlanner
+  class_path: luban.agent_core.SubtaskPlanPlanner
   init_args:
     backend:
-      class_path: omniroboagent.backends.llm.OpenAICompatibleLLMBackend
+      class_path: luban.backends.llm.OpenAICompatibleLLMBackend
       init_args:
         base_url: http://127.0.0.1:8001
         model: qwen_schedule
@@ -20,10 +20,10 @@ planner:
     scheduled_chunks: true
 
 verifier:
-  class_path: omniroboagent.agent_core.SubtaskVerifier
+  class_path: luban.agent_core.SubtaskVerifier
   init_args:
     backend:
-      class_path: omniroboagent.backends.llm.OpenAICompatibleLLMBackend
+      class_path: luban.backends.llm.OpenAICompatibleLLMBackend
       init_args:
         base_url: http://127.0.0.1:8001
         model: qwen_schedule
@@ -33,7 +33,7 @@ verifier:
     planned_chunk_schedule: true
 
 memory:
-  class_path: omniroboagent.agent_core.TieredMemory
+  class_path: luban.agent_core.TieredMemory
   init_args:
     visual_window_size: 4
     recent_event_limit: 20
@@ -43,7 +43,7 @@ memory:
     camera_keys: [head_rgb, left_rgb, right_rgb]
 
 skill_backend:
-  class_path: omniroboagent.backends.skills.pi05_worker.Pi05WorkerBackend
+  class_path: luban.backends.skills.pi05_worker.Pi05WorkerBackend
   init_args:
     host: 127.0.0.1
     port: 9665

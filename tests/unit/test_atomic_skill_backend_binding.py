@@ -13,18 +13,18 @@ from pathlib import Path
 
 import pytest
 
+from luban.agent_core import AtomicSkillSystem
+from luban.backends.atomic_skills import (
+    STUB_ENVIRONMENT_KEY,
+    StubWorldEnvironment,
+    build_stub_atomic_skill_runtime,
+)
 from omni_atomic_skills import SkillRegistry, TaskSkillResolver
 from omni_atomic_skills.runtime import (
     ExecutionContext,
     ExecutionStatus,
     RuntimeExecutionError,
     VerificationVerdict,
-)
-from omniroboagent.agent_core import AtomicSkillSystem
-from omniroboagent.backends.atomic_skills import (
-    STUB_ENVIRONMENT_KEY,
-    StubWorldEnvironment,
-    build_stub_atomic_skill_runtime,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[2]

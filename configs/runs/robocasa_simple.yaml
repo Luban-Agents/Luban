@@ -1,12 +1,12 @@
 # Real simulation and real XR-1 inference; deterministic task planner, no LLM.
 agent_config: ../agents/xr1_simple.yaml
 pipeline:
-  class_path: omniroboagent.pipelines.DirectPipeline
+  class_path: luban.pipelines.DirectPipeline
   init_args:
     action_execution_mode: receding_horizon
     execute_steps: 16
 runtime:
-  class_path: omniroboagent.runtimes.SyncRuntime
+  class_path: luban.runtimes.SyncRuntime
   init_args:
     config:
       max_environment_steps: 600
@@ -17,7 +17,7 @@ runtime:
       timeout_seconds: 600
       output_dir: runs/robocasa_simple
       observability:
-        class_path: omniroboagent.observability.LocalEpisodeRecorder
+        class_path: luban.observability.LocalEpisodeRecorder
         init_args:
           record_agent_trace: true
           record_video: true
@@ -27,7 +27,7 @@ runtime:
             - video.robot0_agentview_right
             - video.robot0_eye_in_hand
 environment:
-  class_path: omniroboagent.environments.benchmarks.robocasa.RoboCasaEnvironment
+  class_path: luban.environments.benchmarks.robocasa.RoboCasaEnvironment
   init_args:
     enable_render: true
     render_gpu_device_id: 0

@@ -2,16 +2,16 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core import DefaultAgent
-from omniroboagent.backends.skills import (
+from luban.agent_core import DefaultAgent
+from luban.backends.skills import (
     LocalPolicyBackend,
     SkillBackend,
     SkillBackendRegistry,
     register_skill_backend,
     skill_backend_registry,
 )
-from omniroboagent.config import build_agent
-from omniroboagent.exceptions import BackendError, ConfigError
+from luban.config import build_agent
+from luban.exceptions import BackendError, ConfigError
 
 
 class FakeBackend(SkillBackend):
@@ -43,7 +43,7 @@ def test_registry_registers_and_creates_backend() -> None:
 
 def test_registry_loads_lazy_dotted_path() -> None:
     registry = SkillBackendRegistry(
-        {"language": ("omniroboagent.backends.skills.language.LanguageSkillBackend")}
+        {"language": ("luban.backends.skills.language.LanguageSkillBackend")}
     )
 
     assert isinstance(registry.create("language"), SkillBackend)
@@ -78,14 +78,12 @@ def test_build_agent_supports_registered_skill_backend() -> None:
 
     agent = build_agent(
         {
-            "agent": {"class_path": "omniroboagent.agent_core.DefaultAgent"},
+            "agent": {"class_path": "luban.agent_core.DefaultAgent"},
             "planner": {
-                "class_path": "omniroboagent.agent_core.LanguageSkillPlanner",
+                "class_path": "luban.agent_core.LanguageSkillPlanner",
                 "init_args": {
                     "backend": {
-                        "class_path": (
-                            "omniroboagent.backends.llm.OpenAICompatibleLLMBackend"
-                        ),
+                        "class_path": ("luban.backends.llm.OpenAICompatibleLLMBackend"),
                         "init_args": {
                             "base_url": "http://localhost:8000",
                             "model": "test-model",
@@ -93,8 +91,8 @@ def test_build_agent_supports_registered_skill_backend() -> None:
                     }
                 },
             },
-            "verifier": {"class_path": "omniroboagent.agent_core.EnvironmentVerifier"},
-            "memory": {"class_path": "omniroboagent.agent_core.InMemoryMemory"},
+            "verifier": {"class_path": "luban.agent_core.EnvironmentVerifier"},
+            "memory": {"class_path": "luban.agent_core.InMemoryMemory"},
             "skill_backend": {
                 "name": "test_config_backend",
                 "init_args": {"value": "configured"},

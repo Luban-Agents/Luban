@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import pytest
 
-from omniroboagent.agent_core.delegation import DelegationRequest, DelegationResult
-from omniroboagent.exceptions import ProtocolSchemaError
-from omniroboagent.pipelines.skill_execution import SkillExecutionPipeline
+from luban.agent_core.delegation import DelegationRequest, DelegationResult
+from luban.exceptions import ProtocolSchemaError
+from luban.pipelines.skill_execution import SkillExecutionPipeline
 
 
 class _RecordingAdvisor:

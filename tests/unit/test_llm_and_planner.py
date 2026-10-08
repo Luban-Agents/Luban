@@ -5,9 +5,9 @@ import httpx
 import pytest
 from PIL import Image
 
-from omniroboagent.agent_core import LanguageSkillPlanner, SubtaskSkillPlanner
-from omniroboagent.backends.llm import LLMBackend, OpenAICompatibleLLMBackend
-from omniroboagent.exceptions import BackendError, ConfigError, PlannerOutputError
+from luban.agent_core import LanguageSkillPlanner, SubtaskSkillPlanner
+from luban.backends.llm import LLMBackend, OpenAICompatibleLLMBackend
+from luban.exceptions import BackendError, ConfigError, PlannerOutputError
 
 
 def test_openai_backend_health_and_multimodal_request() -> None:

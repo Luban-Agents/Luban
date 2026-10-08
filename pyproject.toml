@@ -3,7 +3,7 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "omniroboagent"
+name = "luban"
 version = "0.1.0"
 description = "Luban: modular runtime and evaluation framework for embodied agents."
 readme = "README.md"
@@ -65,15 +65,15 @@ docs = ["mkdocs>=1.6,<2", "mkdocs-material>=9,<10"]
 full-test = ["h5py>=3.16,<4", "torch==2.14.1"]
 
 [project.scripts]
-omniroboagent = "omniroboagent.cli:main"
+luban = "luban.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src", "benchmarks/chemistry-bench-proto/src"]
 
 [tool.setuptools.package-data]
-omniroboagent = ["py.typed"]
+luban = ["py.typed"]
 omni_atomic_skills = ["py.typed"]
-"omniroboagent.environments.benchmarks.chemistry_bench" = ["*.yaml"]
+"luban.environments.benchmarks.chemistry_bench" = ["*.yaml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -88,7 +88,7 @@ select = ["B", "E", "F", "I", "UP"]
 [tool.mypy]
 python_version = "3.11"
 strict = true
-packages = ["omniroboagent", "omni_atomic_skills"]
+packages = ["luban", "omni_atomic_skills"]
 mypy_path = "src"
 
 # Dashboard remains optional; only this external SDK may be absent in core CI.

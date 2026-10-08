@@ -4,7 +4,7 @@ from typing import Any
 
 import numpy as np
 
-from omniroboagent.backends.skills.rldx import RLDXRemotePolicyBackend
+from luban.backends.skills.rldx import RLDXRemotePolicyBackend
 
 
 def action_chunk(batch: bool = False) -> dict[str, np.ndarray]:

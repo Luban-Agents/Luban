@@ -53,8 +53,8 @@ def main():
         "model_path": os.environ.get("XR1_MODEL_PATH"),
     }
 
-    from omniroboagent.backends.skills.xiaomi_remote import XiaomiRemotePolicyBackend
-    from omniroboagent.environments.benchmarks.robocasa import RoboCasaEnvironment
+    from luban.backends.skills.xiaomi_remote import XiaomiRemotePolicyBackend
+    from luban.environments.benchmarks.robocasa import RoboCasaEnvironment
 
     env = RoboCasaEnvironment(
         enable_render=True,

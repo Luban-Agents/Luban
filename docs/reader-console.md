@@ -1,3 +1,5 @@
+[English](reader-console.md) · [简体中文](reader-console.zh-CN.md)
+
 # Reader Console / 读者操作演示台
 
 **[Open the reader operation console](https://luban-consoles-20261008.netlify.app/reader/)**
@@ -13,9 +15,3 @@ its supported backend and configuration format.
 
 The framework CLI can be used independently of this external page. Publication of
 a console link does not change this GitHub repository's visibility or access rights.
-
-## 中文说明
-
-入口沿用已有读者控制台，不在本仓库重新开发或部署一套前端。实际执行需要自行准备
-后端服务、策略模型与仿真资源；网页本身不提供公共 GPU。操作台的连接方法与支持的
-后台版本以页面说明为准。本仓库提供可独立使用的安装、配置和 CLI 运行路径。

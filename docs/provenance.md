@@ -1,3 +1,5 @@
+[English](provenance.md) · [简体中文](provenance.zh-CN.md)
+
 # Source provenance and distribution boundary
 
 This candidate comes from the current `Final agent` working tree delivered on
@@ -8,7 +10,7 @@ changes and untracked source/tests, was the preparation input. A fresh history i
 used; the parent's unreviewed Git history is not redistributed.
 
 Upstream reference: [OmniRoboAgent](https://github.com/choucaicai/OmniRoboAgent).
-The Python namespace, Apache-2.0 license and existing file-level attribution remain.
+The runtime namespace is now `luban`. The Apache-2.0 license and original file-level attribution remain.
 Preparation modifications are described in
 [the change record](https://github.com/Luban-Agents/Luban/blob/codex/private-readiness/impl_docs/changes/2026-10-07-private-github-preparation.md).
 No authors, paper, DOI or benchmark performance number was invented for this copy.

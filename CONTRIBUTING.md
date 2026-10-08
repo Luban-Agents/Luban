@@ -1,3 +1,5 @@
+[English](CONTRIBUTING.md) · [简体中文](CONTRIBUTING.zh-CN.md)
+
 # Contributing
 
 Keep contributions focused on the current package scope.

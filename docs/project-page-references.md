@@ -1,3 +1,5 @@
+[English](project-page-references.md) · [简体中文](project-page-references.zh-CN.md)
+
 # Project-page presentation references
 
 Inspected on 2026-10-08 using the actual upstream GitHub READMEs and project pages.

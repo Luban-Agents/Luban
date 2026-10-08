@@ -14,18 +14,18 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+from luban.backends.atomic_skills.guards import AtomicSemanticGuard
+from luban.backends.atomic_skills.segment_backend import (
+    Sam3SegmentBackend,
+    Sam3SegmentEnvironment,
+)
+from luban.backends.atomic_skills.verifiers import SegmentInstancesVerifier
 from omni_atomic_skills import SkillRegistry
 from omni_atomic_skills.runtime import (
     ExecutionContext,
     SkillRuntime,
     VerificationVerdict,
 )
-from omniroboagent.backends.atomic_skills.guards import AtomicSemanticGuard
-from omniroboagent.backends.atomic_skills.segment_backend import (
-    Sam3SegmentBackend,
-    Sam3SegmentEnvironment,
-)
-from omniroboagent.backends.atomic_skills.verifiers import SegmentInstancesVerifier
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 CATALOG = REPO_ROOT / "catalogs" / "v2.2" / "atomic_skills.json"

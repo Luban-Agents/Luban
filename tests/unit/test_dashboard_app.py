@@ -7,7 +7,7 @@ import pytest
 
 gradio = pytest.importorskip("gradio")
 
-from omniroboagent.dashboard.app import create_app  # noqa: E402
+from luban.dashboard.app import create_app  # noqa: E402
 
 
 def _fixture_runs(tmp_path: Path) -> Path:
@@ -33,7 +33,7 @@ def test_create_app_on_empty_directory(tmp_path: Path) -> None:
 
 
 def test_store_roundtrip_through_app_fixture(tmp_path: Path) -> None:
-    from omniroboagent.dashboard import store
+    from luban.dashboard import store
 
     runs_dir = _fixture_runs(tmp_path)
     create_app(runs_dir)

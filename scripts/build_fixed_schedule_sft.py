@@ -16,17 +16,17 @@ except ImportError:  # Replayed, pre-extracted images do not require HDF5.
     h5py = None
 from PIL import Image
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     DefaultAgent,
     SubtaskPlanPlanner,
     SubtaskVerifier,
     TieredMemory,
 )
-from omniroboagent.backends.llm.base import LLMBackend
-from omniroboagent.backends.skills.base import SkillBackend
-from omniroboagent.environments.base import Environment
-from omniroboagent.pipelines import SkillExecutionPipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.backends.llm.base import LLMBackend
+from luban.backends.skills.base import SkillBackend
+from luban.environments.base import Environment
+from luban.pipelines import SkillExecutionPipeline
+from luban.runtimes import SyncRuntime
 
 CAMERAS = {
     "head_rgb": "head_camera",
@@ -480,14 +480,14 @@ def main() -> None:
     # These specs are also used for served-model inference. The endpoint/model
     # are supplied when a trained Qwen is served, not needed by the teacher.
     llm_backend = {
-        "class_path": "omniroboagent.backends.llm.OpenAICompatibleLLMBackend",
+        "class_path": "luban.backends.llm.OpenAICompatibleLLMBackend",
         "init_args": {
             "base_url": "http://127.0.0.1:8001",
             "model": "qwen_schedule",
         },
     }
     planner_spec = {
-        "class_path": "omniroboagent.agent_core.SubtaskPlanPlanner",
+        "class_path": "luban.agent_core.SubtaskPlanPlanner",
         "init_args": {
             "backend": llm_backend,
             "camera_keys": list(CAMERAS),
@@ -502,14 +502,14 @@ def main() -> None:
     write_json(
         output / "agent_config.json",
         {
-            "agent": {"class_path": "omniroboagent.agent_core.DefaultAgent"},
+            "agent": {"class_path": "luban.agent_core.DefaultAgent"},
             "planner": planner_spec,
             "verifier": {
-                "class_path": "omniroboagent.agent_core.SubtaskVerifier",
+                "class_path": "luban.agent_core.SubtaskVerifier",
                 "init_args": verifier_args,
             },
             "memory": {
-                "class_path": "omniroboagent.agent_core.TieredMemory",
+                "class_path": "luban.agent_core.TieredMemory",
                 "init_args": {
                     "camera_keys": list(CAMERAS),
                     "save_key_event_artifacts": False,
@@ -517,7 +517,7 @@ def main() -> None:
             },
             "skill_backend": {
                 "class_path": (
-                    "omniroboagent.backends.skills.pi05_worker.Pi05WorkerBackend"
+                    "luban.backends.skills.pi05_worker.Pi05WorkerBackend"
                 ),
                 "init_args": {
                     "port": 9665,

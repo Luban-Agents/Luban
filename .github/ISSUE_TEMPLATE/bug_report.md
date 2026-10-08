@@ -7,7 +7,7 @@ labels: bug
 **环境**
 
 - OS / Python 版本:
-- OmniRoboAgent 版本(commit / tag):
+- Luban 版本(commit / tag):
 - 涉及的 benchmark(如适用):
 
 **复现步骤**

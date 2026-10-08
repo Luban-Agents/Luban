@@ -29,7 +29,7 @@ def main() -> int:
         "Expected: simulator Python 3.11; policy Python 3.12",
     )
     packages = (
-        ("numpy", "mujoco", "robosuite", "gymnasium", "omniroboagent", "msgpack", "zmq")
+        ("numpy", "mujoco", "robosuite", "gymnasium", "luban", "msgpack", "zmq")
         if args.mode == "simulator"
         else ("torch", "transformers", "msgpack", "zmq")
     )
@@ -44,12 +44,12 @@ def main() -> int:
                 f"Import failed ({type(error).__name__}); check the installation guide",
             )
     if args.mode == "simulator":
-        root = os.environ.get("OMNIROBOAGENT_ROBOCASA_ROOT", "")
+        root = os.environ.get("LUBAN_ROBOCASA_ROOT", "")
         sdk = Path(root).expanduser()
         record(
             "robocasa_source",
             bool(root) and (sdk / "robocasa/__init__.py").is_file(),
-            "Set OMNIROBOAGENT_ROBOCASA_ROOT to the pinned RoboCasa checkout",
+            "Set LUBAN_ROBOCASA_ROOT to the pinned RoboCasa checkout",
         )
         for name in ("fixtures", "objects", "scenes", "textures"):
             path = sdk / "robocasa/models/assets" / name

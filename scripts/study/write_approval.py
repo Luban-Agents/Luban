@@ -24,8 +24,8 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "src"))
 
-from omniroboagent.config import load_yaml  # noqa: E402
-from omniroboagent.evals.recovery_memory_study import (  # noqa: E402
+from luban.config import load_yaml  # noqa: E402
+from luban.evals.recovery_memory_study import (  # noqa: E402
     ARM_SPECS,
     STUDY_TASKS,
     effective_horizon,

@@ -8,20 +8,20 @@ from unittest.mock import Mock
 import pytest
 from PIL import Image
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     DefaultAgent,
     EnvironmentVerifier,
     InMemoryMemory,
     Planner,
 )
-from omniroboagent.backends.skills import LanguageSkillBackend
-from omniroboagent.environments.benchmarks.chemistry_bench import (
+from luban.backends.skills import LanguageSkillBackend
+from luban.environments.benchmarks.chemistry_bench import (
     ChemistryBenchEnvironment,
 )
-from omniroboagent.environments.benchmarks.chemistry_bench.environment import TASK_ID
-from omniroboagent.exceptions import EnvironmentError
-from omniroboagent.pipelines import DirectPipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.environments.benchmarks.chemistry_bench.environment import TASK_ID
+from luban.exceptions import EnvironmentError
+from luban.pipelines import DirectPipeline
+from luban.runtimes import SyncRuntime
 
 
 @pytest.fixture

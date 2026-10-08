@@ -217,6 +217,8 @@ def build_catalog(src, curation, descriptions, stats, v1_sha):
         "schema_version", "catalog_version", "title", "description", "project",
     ] if k in src}
     catalog["schema_version"] = SCHEMA_VERSION
+    catalog["project"] = "Luban"
+    catalog["title"] = "Luban parameterized atomic skill catalog — ground/air revision"
     catalog["catalog_version"] = CATALOG_VERSION
     catalog["generated_at"] = datetime.now(timezone(timedelta(hours=8))).isoformat(timespec="seconds")
     catalog["source_generated_at"] = src["generated_at"]

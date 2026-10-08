@@ -24,13 +24,8 @@ Luban is an embodied-agent framework that combines self-evolution, memory and sp
 
 ## Roadmap
 
-- [ ] Publish the arXiv preprint and final citation information (BibTeX)
-- [ ] Add collaborator, institution and funding acknowledgements
 - [ ] Open-source the Franka FR3 / MR1000 and Go2 / LIMO real-robot workspaces
-- [ ] Release full benchmark reproduction scripts for RoboCasa365 and RoboTwin 2.0
 - [ ] Share a curated set of knowledge capsules and evolved experience records
-- [ ] Provide an online Reader Console demo with a public video walkthrough
-- [ ] Establish minimum GPU VRAM requirements and broaden hardware compatibility
 - [ ] Generalize bimanual and multi-agent collaboration tasks
 
 ## Leaderboard · Reported results
@@ -114,8 +109,8 @@ and repository access. The tested host is Ubuntu 22.04.5.
 git clone --branch codex/private-readiness --single-branch https://github.com/Luban-Agents/Luban.git
 cd Luban
 uv sync --frozen --no-dev --python 3.11
-uv run --frozen --no-dev python -m omniroboagent.examples.offline
-uv run --frozen --no-dev omniroboagent run --config configs/runs/offline.yaml
+uv run --frozen --no-dev python -m luban.examples.offline
+uv run --frozen --no-dev luban run --config configs/runs/offline.yaml
 ```
 
 Expect two `increment` actions, `success: true` and
@@ -150,13 +145,13 @@ runner, read-only repository permissions and no private service credentials.
 First prepare the simulator, licensed assets and independent policy service in
 [installation](docs/installation.md), then use the complete
 [episode guide](docs/episodes.md). With `SIM_PYTHON` and
-`OMNIROBOAGENT_ROBOCASA_ROOT` set to your installation:
+`LUBAN_ROBOCASA_ROOT` set to your installation:
 
 ```bash
 export MUJOCO_GL=egl PYOPENGL_PLATFORM=egl
 export CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0
-"$SIM_PYTHON" -m omniroboagent health --agent-config configs/agents/xr1_simple.yaml
-"$SIM_PYTHON" -m omniroboagent run --config configs/runs/robocasa_simple.yaml
+"$SIM_PYTHON" -m luban health --agent-config configs/agents/xr1_simple.yaml
+"$SIM_PYTHON" -m luban run --config configs/runs/robocasa_simple.yaml
 ```
 
 The service listens on `127.0.0.1:18400` in `planner_subtask` / `episode_step`
@@ -165,8 +160,8 @@ mode. The example fixes `CloseBlenderLid`, target split, index 0, seed 7,
 planner selects the native instruction; XR-1 produces real actions. This example
 does not use an LLM planner.
 
-The fresh simulator-environment run ended with native `task_success`, 376 environment steps,
-24 chunks and zero exceptions. It produced a trace, result, artifact manifest and
+The fresh simulator-environment run ended with native `task_success`, 352 environment steps,
+22 chunks and zero exceptions. It produced a trace, result, artifact manifest and
 video. This single episode is an execution check, not a success-rate estimate.
 CLI exit 0 alone does not indicate task success; inspect `result.json`.
 
@@ -191,6 +186,8 @@ the optional live-model counter example.
 
 ## Documentation
 
+Every detailed guide is available in English and 简体中文; switch languages at the top of a guide.
+
 | Get started | Run and integrate | Maintain and review |
 | --- | --- | --- |
 | [Quickstart](docs/quickstart.md) | [Episodes](docs/episodes.md) | [Development and tests](docs/development.md) |
@@ -205,8 +202,7 @@ For cloning and edit locations, see [Access and editing](docs/access.md).
 ## Contributing and license
 
 See [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE](LICENSE), [NOTICE](NOTICE) and
-[third-party notices](THIRD_PARTY_NOTICES.md). The Python package and CLI remain
-`omniroboagent`; original source attribution is retained in [provenance](docs/provenance.md).
+[third-party notices](THIRD_PARTY_NOTICES.md). Original source attribution is retained in [provenance](docs/provenance.md).
 
 ## Citation and Acknowledgement
 

@@ -1,10 +1,12 @@
+[English](troubleshooting.md) · [简体中文](troubleshooting.zh-CN.md)
+
 # Troubleshooting
 
 | Symptom | Cause and action |
 | --- | --- |
 | Package rejects Python 3.12 | Use a Python 3.11 environment for the agent; the separate upstream policy env has a different support boundary |
 | Dependency download timeout | Check the PyPI/GitHub route; retry with your approved package mirror/cache. Preparation moved metadata/downloads through a second network route; no shared environment was modified |
-| `RoboCasa root does not exist` | Set `OMNIROBOAGENT_ROBOCASA_ROOT` to the SDK checkout or provide `robocasa_root`; it is not the assets directory |
+| `RoboCasa root does not exist` | Set `LUBAN_ROBOCASA_ROOT` to the SDK checkout or provide `robocasa_root`; it is not the assets directory |
 | Asset XML/mesh not found | Obtain the official compatible asset tree and verify the SDK assets location; neither wheel nor source repo includes large assets |
 | XR-1 timeout / failed ping | Start the correct ZeroMQ server on configured host/port, check GPU/model availability and seed/instruction metadata; do not restart another user's service |
 | `planner subtask` / graph contract mismatch | Match the client/server `instruction_mode`; use `planner_subtask` for the simple example, not task_graph |

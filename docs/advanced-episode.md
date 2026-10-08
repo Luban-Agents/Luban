@@ -1,3 +1,5 @@
+[English](advanced-episode.md) · [简体中文](advanced-episode.zh-CN.md)
+
 # Bounded multimodal task-graph episode
 
 This optional example uses the existing `SelfEvolvingAgent`, `TaskDecomposer`,
@@ -33,13 +35,13 @@ export LLM_MODEL=your-image-capable-model-id
 read -r -s -p 'API key: ' OPENAI_API_KEY; echo
 export OPENAI_API_KEY
 export SIM_PYTHON="$PWD/.venv-robocasa/bin/python"
-export OMNIROBOAGENT_ROBOCASA_ROOT="$PWD/third_party/checkouts/robocasa"
+export LUBAN_ROBOCASA_ROOT="$PWD/third_party/checkouts/robocasa"
 export MUJOCO_GL=egl PYOPENGL_PLATFORM=egl
 export CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0
 export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1
 export NO_PROXY=localhost,127.0.0.1,::1
-"$SIM_PYTHON" -m omniroboagent health --agent-config configs/agents/xr1_graph_simple.yaml
-"$SIM_PYTHON" -m omniroboagent run --config configs/runs/robocasa_graph_simple.yaml
+"$SIM_PYTHON" -m luban health --agent-config configs/agents/xr1_graph_simple.yaml
+"$SIM_PYTHON" -m luban run --config configs/runs/robocasa_graph_simple.yaml
 unset OPENAI_API_KEY
 ```
 

@@ -2,17 +2,17 @@ from pathlib import Path
 from types import SimpleNamespace
 from typing import Any
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     DefaultAgent,
     EnvironmentVerifier,
     InMemoryMemory,
     Planner,
 )
-from omniroboagent.backends.skills import LanguageSkillBackend
-from omniroboagent.environments.benchmarks.embodiedbench import EBAlfredEnvironment
-from omniroboagent.evals.benchmarks.embodiedbench import EBAlfredBenchmark
-from omniroboagent.pipelines import DirectPipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.backends.skills import LanguageSkillBackend
+from luban.environments.benchmarks.embodiedbench import EBAlfredEnvironment
+from luban.evals.benchmarks.embodiedbench import EBAlfredBenchmark
+from luban.pipelines import DirectPipeline
+from luban.runtimes import SyncRuntime
 
 
 class FakeEBAlfEnv:

@@ -1,7 +1,7 @@
 # Embed under a SelfEvolvingAgent config that already defines *api_backend and
 # *camera_keys. Child agents are proposal-only and do not execute XR-1 actions.
 subagent_scheduler:
-  class_path: omniroboagent.agent_core.SubAgentScheduler
+  class_path: luban.agent_core.SubAgentScheduler
   init_args:
     max_calls: 4
     max_concurrent: 1
@@ -9,7 +9,7 @@ subagent_scheduler:
     min_failure_count: 2
     subagents:
       node_observation:
-        class_path: omniroboagent.agent_core.NodeObservationSubAgent
+        class_path: luban.agent_core.NodeObservationSubAgent
         init_args:
           # The Gemini 3.7 backend is shared with the main Planner in the
           # self_evolving_xr1_atomic.yaml example.

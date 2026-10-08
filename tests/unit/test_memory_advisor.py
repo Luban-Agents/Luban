@@ -7,20 +7,20 @@ from pathlib import Path
 
 import pytest
 
-from omniroboagent.agent_core.delegation import (
+from luban.agent_core.delegation import (
     DelegationRequest,
     DelegationResult,
     SubAgentScheduler,
 )
-from omniroboagent.agent_core.memories.recovery import (
+from luban.agent_core.memories.recovery import (
     RecoveryMemory,
     RecoveryMemoryBank,
 )
-from omniroboagent.agent_core.memory_advisor import (
+from luban.agent_core.memory_advisor import (
     NO_RETRIEVAL_NOTICE,
     MemoryAdvisorSubAgent,
 )
-from omniroboagent.backends.llm.base import LLMBackend
+from luban.backends.llm.base import LLMBackend
 
 NODE = {"id": "scrub_cutting_board", "skill": "Pick_Place", "subtask": "scrub"}
 

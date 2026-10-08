@@ -9,8 +9,8 @@ import sys
 import numpy as np
 import pytest
 
-from omniroboagent.backends.skills.rldx import _RLDXMsgSerializer
-from omniroboagent.observability.video import EpisodeVideoWriter
+from luban.backends.skills.rldx import _RLDXMsgSerializer
+from luban.observability.video import EpisodeVideoWriter
 
 
 @pytest.mark.parametrize("size", [(32, 32), (255, 255), (128, 96)])
@@ -61,7 +61,7 @@ def perception_server():
     port = reservation.getsockname()[1]
     reservation.close()
     code = (
-        "from omniroboagent.perception.server import VisualPerceptionServer; "
+        "from luban.perception.server import VisualPerceptionServer; "
         "VisualPerceptionServer(provider='sam3',analyzer=lambda payload: {})"
         ".serve_forever(bind_host='127.0.0.1',port=" + str(port) + ")"
     )

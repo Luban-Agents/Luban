@@ -8,7 +8,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from omniroboagent.evals.study_evidence import (
+from luban.evals.study_evidence import (
     build_evidence_bundle,
     reconstruct_attempt,
     verify_evidence_bundle,

@@ -1,3 +1,5 @@
+[English](configuration.md) · [简体中文](configuration.zh-CN.md)
+
 # Configuration
 
 `load_yaml` requires a YAML mapping, expands environment variables recursively
@@ -17,14 +19,14 @@ the environment injected; without it, CLI executes exactly the supplied task.
 ```yaml
 agent_config: ../agents/offline.yaml
 pipeline:
-  class_path: omniroboagent.pipelines.DirectPipeline
+  class_path: luban.pipelines.DirectPipeline
 runtime:
-  class_path: omniroboagent.runtimes.SyncRuntime
+  class_path: luban.runtimes.SyncRuntime
   init_args:
     max_steps: 3
     output_dir: runs/offline_config
 environment:
-  class_path: omniroboagent.examples.offline.CounterEnvironment
+  class_path: luban.examples.offline.CounterEnvironment
 task:
   name: increment
 ```
@@ -45,7 +47,7 @@ root, or use absolute paths. The packaged module example works from any director
 | `LLM_MODEL` | Example YAML, defaults to the explicit placeholder `replace-with-your-model-id`; set an actual provider model ID |
 | `XR1_HOST` | `xr1_simple.yaml`, defaults to loopback |
 | `XR1_MODEL_PATH` | Legacy graph configurations' expected checkpoint; server launcher uses `--model-path` explicitly |
-| `OMNIROBOAGENT_ROBOCASA_ROOT` | RoboCasa adapter when no `robocasa_root` argument is supplied; default `benchmarks/RoboCasa` |
+| `LUBAN_ROBOCASA_ROOT` | RoboCasa adapter when no `robocasa_root` argument is supplied; default `benchmarks/RoboCasa` |
 | `XIAOMI_REMOTE_PORTS` | Comma-separated ports, overrides configured XR-1 ports |
 | `ROBOCASA_WORKER_INDEX` | Chooses XR-1 replica, defaults to 0 |
 | `MUJOCO_GL`, `PYOPENGL_PLATFORM`, `MUJOCO_EGL_DEVICE_ID` | External renderer configuration, use EGL for the headless example |

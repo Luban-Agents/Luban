@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""生成《OmniRoboAgent 参数化原子技能目录 V2.1 详解》PPT。
+"""生成《Luban 参数化原子技能目录 V2.1 详解》PPT。
 
 数据来源（全部取自已校验交付物，不虚构）：
   catalogs/v2.1/atomic_skills.json                     64 项契约
@@ -26,7 +26,7 @@ from pptx.util import Inches, Pt
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 V21 = os.path.join(ROOT, "catalogs", "v2.1")
 BUNDLES = os.path.join(V21, "skill_bundles")
-OUT = os.path.join(ROOT, "OmniRoboAgent_原子技能V2.1详解_20260912.pptx")
+OUT = os.path.join(ROOT, "Luban_原子技能V2.1详解_20260912.pptx")
 
 NAVY = RGBColor(0x1B, 0x36, 0x5D)
 ACCENT = RGBColor(0xD3, 0x6B, 0x2A)
@@ -238,7 +238,7 @@ def build():
     frame = box.text_frame
     frame.word_wrap = True
     para = frame.paragraphs[0]
-    para.text = "OmniRoboAgent 参数化原子技能目录 V2.1"
+    para.text = "Luban 参数化原子技能目录 V2.1"
     para.font.size = Pt(40)
     para.font.bold = True
     para.font.color.rgb = WHITE

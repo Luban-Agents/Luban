@@ -8,8 +8,8 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from omniroboagent.agent_core import AtomicSkillSystem
-from omniroboagent.backends.atomic_skills.recheck import (
+from luban.agent_core import AtomicSkillSystem
+from luban.backends.atomic_skills.recheck import (
     CrossProviderRecheck,
     CrossScaleRecheck,
     iou,
@@ -401,7 +401,7 @@ def test_skill_required_capabilities_reads_contract_truth():
 def test_v22_main_experiment_config_points_at_v22_and_stays_planning_shadow():
     """主实验线 V2.2 配置：catalog 与 route 都指向 V2.2，且保持 planning_shadow。"""
 
-    from omniroboagent.config import load_yaml
+    from luban.config import load_yaml
 
     config = load_yaml(
         REPO_ROOT / "configs" / "agents" / "self_evolving_xr1_atomic_v22.yaml"

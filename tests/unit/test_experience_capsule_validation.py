@@ -4,16 +4,16 @@ from pathlib import Path
 
 import pytest
 
-from omniroboagent.agent_core.agents.self_evolving import SelfEvolvingAgent
-from omniroboagent.agent_core.experience_capsules import (
+from luban.agent_core.agents.self_evolving import SelfEvolvingAgent
+from luban.agent_core.experience_capsules import (
     ExperienceCapsule,
     ExperienceCapsuleStore,
 )
-from omniroboagent.agent_core.memories import InMemoryMemory
-from omniroboagent.agent_core.planners.base import Planner
-from omniroboagent.agent_core.verifiers.base import Verifier
-from omniroboagent.backends.skills.base import SkillBackend
-from omniroboagent.evals.evolution_validation import (
+from luban.agent_core.memories import InMemoryMemory
+from luban.agent_core.planners.base import Planner
+from luban.agent_core.verifiers.base import Verifier
+from luban.backends.skills.base import SkillBackend
+from luban.evals.evolution_validation import (
     ValidationIdentity,
     run_experience_capsule_validation,
 )

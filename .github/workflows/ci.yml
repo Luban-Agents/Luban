@@ -41,9 +41,9 @@ jobs:
       - name: Install core only and run both entry points
         run: |
           uv sync --frozen --no-dev
-          .venv/bin/python -m omniroboagent.examples.offline
-          .venv/bin/omniroboagent health --agent-config configs/agents/offline.yaml
-          .venv/bin/omniroboagent run --config configs/runs/offline.yaml
+          .venv/bin/python -m luban.examples.offline
+          .venv/bin/luban health --agent-config configs/agents/offline.yaml
+          .venv/bin/luban run --config configs/runs/offline.yaml
       - name: Install all CPU test dependencies
         run: uv sync --frozen --all-extras --group dev --group docs --group full-test
       - name: Lint, types, all tests, configs, catalogs and docs

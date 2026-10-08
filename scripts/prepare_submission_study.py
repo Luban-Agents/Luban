@@ -17,7 +17,7 @@ from typing import Any
 
 import yaml
 
-from omniroboagent.agent_core.experience_capsules import ExperienceCapsule
+from luban.agent_core.experience_capsules import ExperienceCapsule
 
 
 def validate_constructor_arguments(value: Any) -> None:
@@ -90,10 +90,10 @@ def prepare_study(
 
     agent = yaml.safe_load(agent_template.read_text())
     run = yaml.safe_load(run_template.read_text())
-    if agent["agent"]["class_path"] != "omniroboagent.agent_core.SelfEvolvingAgent":
+    if agent["agent"]["class_path"] != "luban.agent_core.SelfEvolvingAgent":
         raise ValueError("SelfEvolvingAgent template is required")
     if run["pipeline"]["class_path"] != (
-        "omniroboagent.pipelines.AtomicSpatialSkillExecutionPipeline"
+        "luban.pipelines.AtomicSpatialSkillExecutionPipeline"
     ):
         raise ValueError("the final atomic-spatial pipeline template is required")
     args = agent["agent"].setdefault("init_args", {})
@@ -119,7 +119,7 @@ def prepare_study(
     def portable_backend(value: Any) -> None:
         if isinstance(value, dict):
             if value.get("class_path") == (
-                "omniroboagent.backends.llm.OpenAICompatibleLLMBackend"
+                "luban.backends.llm.OpenAICompatibleLLMBackend"
             ):
                 backend = value.setdefault("init_args", {})
                 backend.pop("api_key", None)
@@ -216,7 +216,7 @@ def prepare_study(
                 dict(
                     pair_id=pair_id,
                     identity=identity,
-                    runner="omniroboagent.evals.experience_episode_runner.build_paired_experience_episode_runner",
+                    runner="luban.evals.experience_episode_runner.build_paired_experience_episode_runner",
                     runner_args=dict(
                         run_config_path=str(pair_path),
                         experiment_dir=str(output_dir / "runs/experience" / name),

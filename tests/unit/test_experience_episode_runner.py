@@ -6,13 +6,13 @@ from typing import Any
 
 import yaml
 
-from omniroboagent.agent_core.experience_capsules import (
+from luban.agent_core.experience_capsules import (
     ExperienceCapsule,
     ExperienceCapsuleStore,
 )
-from omniroboagent.evals import experience_episode_runner as runner_module
-from omniroboagent.evals.evolution_validation import ValidationIdentity
-from omniroboagent.evals.experience_episode_runner import (
+from luban.evals import experience_episode_runner as runner_module
+from luban.evals.evolution_validation import ValidationIdentity
+from luban.evals.experience_episode_runner import (
     build_paired_experience_episode_runner,
 )
 

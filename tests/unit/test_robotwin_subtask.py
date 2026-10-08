@@ -8,12 +8,12 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core.planners.subtask_plan import SubtaskPlanPlanner
-from omniroboagent.backends.llm.base import LLMBackend
-from omniroboagent.backends.skills.pi05_worker import Pi05WorkerBackend
-from omniroboagent.config import build_agent, build_run_components, load_yaml
-from omniroboagent.environments.benchmarks.robotwin import RoboTwinEnvironment
-from omniroboagent.exceptions import BackendError, PlannerOutputError
+from luban.agent_core.planners.subtask_plan import SubtaskPlanPlanner
+from luban.backends.llm.base import LLMBackend
+from luban.backends.skills.pi05_worker import Pi05WorkerBackend
+from luban.config import build_agent, build_run_components, load_yaml
+from luban.environments.benchmarks.robotwin import RoboTwinEnvironment
+from luban.exceptions import BackendError, PlannerOutputError
 
 
 @pytest.fixture

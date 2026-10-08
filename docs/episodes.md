@@ -1,3 +1,5 @@
+[English](episodes.md) · [简体中文](episodes.zh-CN.md)
+
 # Run one real RoboCasa episode
 
 This guide uses a real environment and checkpoint. It does not use mock actions,
@@ -9,16 +11,16 @@ selects the native task and instruction; XR-1 generates continuous actions and
 
 Complete [installation](installation.md), including assets, FFmpeg and the
 independent XR-1 service. Keep that service terminal open. From the repository
-root, set `SIM_PYTHON` and `OMNIROBOAGENT_ROBOCASA_ROOT` to your actual paths.
+root, set `SIM_PYTHON` and `LUBAN_ROBOCASA_ROOT` to your actual paths.
 
 ```bash
 export SIM_PYTHON="$PWD/.venv-robocasa/bin/python"
-export OMNIROBOAGENT_ROBOCASA_ROOT="$PWD/third_party/checkouts/robocasa"
+export LUBAN_ROBOCASA_ROOT="$PWD/third_party/checkouts/robocasa"
 export MUJOCO_GL=egl PYOPENGL_PLATFORM=egl
 export CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0
 export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1
 "$SIM_PYTHON" scripts/check_gpu_setup.py --mode simulator --check-render
-"$SIM_PYTHON" -m omniroboagent health --agent-config configs/agents/xr1_simple.yaml
+"$SIM_PYTHON" -m luban health --agent-config configs/agents/xr1_simple.yaml
 ```
 
 Expect overall `healthy: true`. This checks policy ping and seed/schema metadata;
@@ -29,7 +31,7 @@ the client shell to that same port. Leave this variable unset to use 18400.
 ## Execute
 
 ```bash
-"$SIM_PYTHON" -m omniroboagent run --config configs/runs/robocasa_simple.yaml
+"$SIM_PYTHON" -m luban run --config configs/runs/robocasa_simple.yaml
 ```
 
 Initialization: native RoboCasa reset, `CloseBlenderLid`, split `target`,
@@ -66,7 +68,9 @@ confirmed the task. A clean budget stop with `success=false` remains a valid fai
 task episode. One success is not a success-rate estimate.
 
 The preparation run completed in 396 environment steps / 25 chunks with native
-success. Exact artifacts and scope are in [validation](validation.md).
+success. A later fresh simulator environment completed 376 steps / 24 chunks.
+The Luban namespace verification completed 352 steps / 22 chunks; see
+[validation](validation.md) for the separate records.
 
 ## Advanced configurations
 

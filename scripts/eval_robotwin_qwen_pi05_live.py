@@ -9,17 +9,17 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     DefaultAgent,
     SubtaskPlanPlanner,
     SubtaskVerifier,
     TieredMemory,
 )
-from omniroboagent.backends.llm import OpenAICompatibleLLMBackend
-from omniroboagent.backends.skills.pi05_worker import Pi05WorkerBackend
-from omniroboagent.environments.benchmarks.robotwin import RoboTwinEnvironment
-from omniroboagent.pipelines import SkillExecutionPipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.backends.llm import OpenAICompatibleLLMBackend
+from luban.backends.skills.pi05_worker import Pi05WorkerBackend
+from luban.environments.benchmarks.robotwin import RoboTwinEnvironment
+from luban.pipelines import SkillExecutionPipeline
+from luban.runtimes import SyncRuntime
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATASET = (

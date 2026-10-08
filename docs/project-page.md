@@ -1,6 +1,8 @@
+[English](project-page.md) · [简体中文](project-page.zh-CN.md)
+
 # Project · arXiv · Demo
 
-Luban uses the existing **OmniRoboAgent-Page** frontend. This code repository
+Luban uses the existing **project presentation** frontend. This code repository
 contains the framework, examples and documentation; the presentation website is
 maintained in its own [source repository](https://github.com/yuliu-ai/OmniRoboAgent-Page).
 
@@ -46,12 +48,3 @@ The English and Chinese README files contain a `project-links` block near the to
 Once final URLs exist, replace the Project and Demo destinations with the existing
 website homepage and `demos.html`; replace arXiv with the actual paper's
 `https://arxiv.org/abs/...` URL. Until then, all three buttons resolve to this page.
-
-## 中文说明
-
-沿用已有 `OmniRoboAgent-Page` 前端：`index.html` 为项目首页，`demos.html` 为任务演示。
-现有页面和素材保持原有结构，不在框架仓库另建网站。Project 和 Demo 的正式网址
-尚未填入；论文未发布，arXiv 入口暂时说明状态。上面的命令用于已有前端目录的本地预览。
-
-前端展示包含更大研究项目及历史实验，其能力和结果不能直接当作本包的验证结论。
-本包安装与 GPU 回合入口以本仓库文档和配置为准。

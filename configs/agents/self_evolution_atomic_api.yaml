@@ -1,12 +1,12 @@
 agent:
-  class_path: omniroboagent.agent_core.DefaultAgent
+  class_path: luban.agent_core.DefaultAgent
   init_args:
     high_skill_write_mode: propose
     max_validated_experiences: 4
     experience_capsule_store:
-      class_path: omniroboagent.agent_core.ExperienceCapsuleStore
+      class_path: luban.agent_core.ExperienceCapsuleStore
       init_args:
-        path: ~/.local/share/omniroboagent/self_evolution/capsules.jsonl
+        path: ~/.local/share/luban/self_evolution/capsules.jsonl
         min_positive_validations: 2
     experience_context:
       code_version: codex/self-evolution-atomic-skills@c97c3d5+working-tree
@@ -15,10 +15,10 @@ agent:
       responsible_module: planner
 
 task_decomposer:
-  class_path: omniroboagent.agent_core.TaskDecomposer
+  class_path: luban.agent_core.TaskDecomposer
   init_args:
     backend: &api_backend
-      class_path: omniroboagent.backends.llm.OpenAICompatibleLLMBackend
+      class_path: luban.backends.llm.OpenAICompatibleLLMBackend
       init_args:
         base_url: "${LLM_BASE_URL:-http://127.0.0.1:8000/v1}"
         model: "${LLM_MODEL:-replace-with-your-model-id}"
@@ -35,20 +35,20 @@ task_decomposer:
     temperature: 0
     response_format_mode: json_object
     task_atomic_skill_catalog:
-      class_path: omniroboagent.agent_core.RoboCasaAtomicSkillCatalog
+      class_path: luban.agent_core.RoboCasaAtomicSkillCatalog
 
 planner:
-  class_path: omniroboagent.agent_core.LanguageSkillPlanner
+  class_path: luban.agent_core.LanguageSkillPlanner
   init_args:
     backend: *api_backend
     max_tokens: 8192
     temperature: 0
 
 verifier:
-  class_path: omniroboagent.agent_core.EnvironmentVerifier
+  class_path: luban.agent_core.EnvironmentVerifier
 
 memory:
-  class_path: omniroboagent.agent_core.LongMemory
+  class_path: luban.agent_core.LongMemory
   init_args:
     recent_event_limit: 16
     failed_event_limit: 6
@@ -57,15 +57,15 @@ memory:
     summary_async: false
 
 skill_backend:
-  class_path: omniroboagent.backends.skills.LanguageSkillBackend
+  class_path: luban.backends.skills.LanguageSkillBackend
 
 skill_manager:
-  class_path: omniroboagent.agent_core.SkillManager
+  class_path: luban.agent_core.SkillManager
   init_args:
-    root: ~/.local/share/omniroboagent/self_evolution/high_skills
+    root: ~/.local/share/luban/self_evolution/high_skills
 
 high_skill_reasoner:
-  class_path: omniroboagent.agent_core.HighSkillReasoner
+  class_path: luban.agent_core.HighSkillReasoner
   init_args:
     backend: *api_backend
     max_selected_skills: 3

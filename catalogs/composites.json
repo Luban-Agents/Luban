@@ -2,9 +2,9 @@
   "schema_version": "1.0.0",
   "catalog_version": "1.0.0",
   "generated_at": "2026-09-03T00:00:00+08:00",
-  "title": "OmniRoboAgent non-countable composite skill catalog",
+  "title": "Luban non-countable composite skill catalog",
   "description": "12个固定DAG组合模板。它们不计入64个原子技能，不包含规划器、诊断器或演化算子。",
-  "project": "OmniRoboAgent",
+  "project": "Luban",
   "metadata": {
     "countable_total": 0,
     "composite_total": 12,

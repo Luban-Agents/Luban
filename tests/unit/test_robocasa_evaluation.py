@@ -7,21 +7,21 @@ from typing import Any
 import numpy as np
 import pytest
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     DefaultAgent,
     EnvironmentVerifier,
     InMemoryMemory,
     TaskSkillPlanner,
 )
-from omniroboagent.backends.skills import SkillBackend
-from omniroboagent.backends.world_models import PersistenceWorldModelBackend
-from omniroboagent.environments import Environment
-from omniroboagent.environments.benchmarks.robocasa import RoboCasaEnvironment
-from omniroboagent.evals.benchmarks.robocasa import RoboCasa365Evaluator
-from omniroboagent.evals.benchmarks.robocasa import evaluator as evaluator_module
-from omniroboagent.exceptions import ConfigError, EnvironmentError
-from omniroboagent.pipelines import SkillExecutionPipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.backends.skills import SkillBackend
+from luban.backends.world_models import PersistenceWorldModelBackend
+from luban.environments import Environment
+from luban.environments.benchmarks.robocasa import RoboCasaEnvironment
+from luban.evals.benchmarks.robocasa import RoboCasa365Evaluator
+from luban.evals.benchmarks.robocasa import evaluator as evaluator_module
+from luban.exceptions import ConfigError, EnvironmentError
+from luban.pipelines import SkillExecutionPipeline
+from luban.runtimes import SyncRuntime
 
 
 def action_chunk(horizon: int = 4) -> dict[str, np.ndarray]:
@@ -267,7 +267,7 @@ def test_robocasa_evaluator_runs_one_resolved_task(tmp_path: Path) -> None:
     assert result["resolved"]["episode_index_semantics"] == (
         "global_task_episode_offset"
     )
-    assert result["resolved"]["omniroboagent"]["python"]
+    assert result["resolved"]["luban"]["python"]
     assert result["resolved"]["pipeline"]["max_attempts_per_execution"] == 2
     assert result["resolved"]["pipeline"]["max_uncertain_verifications"] == 2
     assert "world_model_mode" not in result["resolved"]["pipeline"]
@@ -653,7 +653,7 @@ def test_robocasa_evaluator_records_configured_world_model_only(tmp_path: Path) 
     )
 
     assert result["resolved"]["components"]["world_model"] == (
-        "omniroboagent.backends.world_models.persistence.PersistenceWorldModelBackend"
+        "luban.backends.world_models.persistence.PersistenceWorldModelBackend"
     )
     assert result["resolved"]["pipeline"]["world_model_mode"] == "shadow"
     assert result["episodes"][0]["success"] is True

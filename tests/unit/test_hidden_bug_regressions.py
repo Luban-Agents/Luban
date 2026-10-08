@@ -19,23 +19,23 @@ import json
 from pathlib import Path
 from typing import Any
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     DefaultAgent,
     InMemoryMemory,
     Planner,
     Verifier,
 )
-from omniroboagent.agent_core.planners.state_grounded_subtask import (
+from luban.agent_core.planners.state_grounded_subtask import (
     STATE_GROUNDED_PROMPT,
     StateGroundedSubtaskPlanner,
 )
-from omniroboagent.backends.llm.base import LLMBackend
-from omniroboagent.backends.skills import LanguageSkillBackend
-from omniroboagent.environments import Environment
-from omniroboagent.exceptions import ActionRangeError
-from omniroboagent.pipelines import DirectPipeline
-from omniroboagent.pipelines.skill_execution import SkillExecutionPipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.backends.llm.base import LLMBackend
+from luban.backends.skills import LanguageSkillBackend
+from luban.environments import Environment
+from luban.exceptions import ActionRangeError
+from luban.pipelines import DirectPipeline
+from luban.pipelines.skill_execution import SkillExecutionPipeline
+from luban.runtimes import SyncRuntime
 
 
 class FakePlanner(Planner):

@@ -1,5 +1,7 @@
 # Tasks
 
+- [x] `DONE` Luban package identity and bilingual user guides ([plan](plans/2026-10-08-luban-package-bilingual.md)).
+
 - [x] `DONE` Standardize LIBERO report labels and metric definitions ([plan](plans/2026-10-08-report-labels.md)).
 
 - [x] `DONE` README research layout, centered branding and reader-console entry ([plan](plans/2026-10-08-readme-research-layout.md)).

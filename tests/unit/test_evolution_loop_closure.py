@@ -13,18 +13,18 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core.agents.self_evolving import SelfEvolvingAgent
-from omniroboagent.agent_core.atomic_skill_system import AtomicSkillSystem
-from omniroboagent.agent_core.evolution_candidates import extract_evolution_candidates
-from omniroboagent.agent_core.memories import InMemoryMemory
-from omniroboagent.agent_core.module_evolution import (
+from luban.agent_core.agents.self_evolving import SelfEvolvingAgent
+from luban.agent_core.atomic_skill_system import AtomicSkillSystem
+from luban.agent_core.evolution_candidates import extract_evolution_candidates
+from luban.agent_core.memories import InMemoryMemory
+from luban.agent_core.module_evolution import (
     ModuleEvolutionManager,
     ModuleEvolutionReasoner,
 )
-from omniroboagent.agent_core.planners.base import Planner
-from omniroboagent.agent_core.verifiers.base import Verifier
-from omniroboagent.backends.skills.base import SkillBackend
-from omniroboagent.evals.evolution_validation import (
+from luban.agent_core.planners.base import Planner
+from luban.agent_core.verifiers.base import Verifier
+from luban.backends.skills.base import SkillBackend
+from luban.evals.evolution_validation import (
     ValidationIdentity,
     build_protocol_id,
     run_paired_validation,
@@ -875,7 +875,7 @@ def test_validated_verifier_candidate_stays_out_of_production_verifier(
     proposal_id = validated_verifier_candidate(store)
     assert store.get(proposal_id).state == "validated"
 
-    from omniroboagent.agent_core import SubtaskVerifier
+    from luban.agent_core import SubtaskVerifier
 
     backend = FakeVerifierLLMBackend(
         json.dumps(
@@ -920,7 +920,7 @@ def test_promoted_verifier_candidate_reaches_the_real_subtask_verifier(
     proposal_id = validated_verifier_candidate(store)
     store.promote(proposal_id, approved_by="state-admission-regression-test")
 
-    from omniroboagent.agent_core import SubtaskVerifier
+    from luban.agent_core import SubtaskVerifier
 
     backend = FakeVerifierLLMBackend(
         json.dumps(

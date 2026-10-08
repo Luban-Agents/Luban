@@ -19,8 +19,8 @@ from typing import Any
 
 import pyarrow.parquet as pq
 
-from omniroboagent.backends.skills.pi05_libero import LiberoPi05PolicyBackend
-from omniroboagent.environments.benchmarks.libero import LiberoEnvironment
+from luban.backends.skills.pi05_libero import LiberoPi05PolicyBackend
+from luban.environments.benchmarks.libero import LiberoEnvironment
 
 GLOBAL_TO_SUITE = (
     (0, 10, "libero_10"),

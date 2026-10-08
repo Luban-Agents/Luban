@@ -20,3 +20,5 @@ recursive-include .github *.yml *.yaml *.md
 recursive-include ci *.yml
 
 recursive-include requirements *.txt
+
+include CONTRIBUTING.zh-CN.md SECURITY.zh-CN.md REPRODUCTION.zh-CN.md CITATION.zh-CN.md THIRD_PARTY_NOTICES.zh-CN.md

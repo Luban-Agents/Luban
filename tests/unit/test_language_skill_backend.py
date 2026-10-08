@@ -1,6 +1,6 @@
 import pytest
 
-from omniroboagent.backends.skills import LanguageSkillBackend, SkillBackend
+from luban.backends.skills import LanguageSkillBackend, SkillBackend
 
 
 def test_language_skill_backend_implements_contract() -> None:

@@ -4,8 +4,8 @@ import json
 from collections.abc import Mapping
 from typing import Any
 
-from omniroboagent.backends.skills.rldx import _RLDXMsgSerializer
-from omniroboagent.backends.skills.xiaomi import (
+from luban.backends.skills.rldx import _RLDXMsgSerializer
+from luban.backends.skills.xiaomi import (
     XIAOMI_STATELESS_HISTORY_SCHEMA,
     XIAOMI_TASK_GRAPH_CONTRACT_VERSION,
     XiaomiRobotics1VLAPolicyBackend,

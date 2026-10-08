@@ -3,9 +3,9 @@ from typing import Any
 import pytest
 from PIL import Image
 
-from omniroboagent.agent_core import SubtaskVerifier
-from omniroboagent.backends.llm import LLMBackend
-from omniroboagent.exceptions import VerifierOutputError
+from luban.agent_core import SubtaskVerifier
+from luban.backends.llm import LLMBackend
+from luban.exceptions import VerifierOutputError
 
 
 class FakeLLMBackend(LLMBackend):

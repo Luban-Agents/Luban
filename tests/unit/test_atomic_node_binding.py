@@ -8,8 +8,8 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from omniroboagent.backends.atomic_skills.node_binding import run_atomic_node_binding
-from omniroboagent.pipelines.atomic_spatial_skill_execution import (
+from luban.backends.atomic_skills.node_binding import run_atomic_node_binding
+from luban.pipelines.atomic_spatial_skill_execution import (
     AtomicSpatialSkillExecutionPipeline,
 )
 

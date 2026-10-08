@@ -3,7 +3,7 @@ from typing import Any
 import numpy as np
 import pytest
 
-from omniroboagent.backends.skills.xiaomi_remote import XiaomiRemotePolicyBackend
+from luban.backends.skills.xiaomi_remote import XiaomiRemotePolicyBackend
 
 
 def action_chunk() -> dict[str, np.ndarray]:

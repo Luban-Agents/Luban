@@ -9,20 +9,20 @@ from typing import Any
 
 from PIL import Image, ImageStat
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     DefaultAgent,
     EnvironmentVerifier,
     InMemoryMemory,
     Planner,
 )
-from omniroboagent.backends.skills import LanguageSkillBackend
-from omniroboagent.config import build_agent, load_yaml
-from omniroboagent.environments.benchmarks.chemistry_bench import (
+from luban.backends.skills import LanguageSkillBackend
+from luban.config import build_agent, load_yaml
+from luban.environments.benchmarks.chemistry_bench import (
     ChemistryBenchEnvironment,
 )
-from omniroboagent.observability import LocalEpisodeRecorder
-from omniroboagent.pipelines import DirectPipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.observability import LocalEpisodeRecorder
+from luban.pipelines import DirectPipeline
+from luban.runtimes import SyncRuntime
 
 
 class ScriptedPlanner(Planner):
@@ -130,7 +130,7 @@ def main() -> None:
         finally:
             env.close()
     # Runtime owns detailed traces and video; this file contains only summary data.
-    from omniroboagent.serialization import to_jsonable
+    from luban.serialization import to_jsonable
 
     (args.output / "smoke_summary.json").write_text(
         json.dumps(to_jsonable(results), indent=2), encoding="utf-8"

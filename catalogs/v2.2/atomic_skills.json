@@ -1,9 +1,9 @@
 {
   "schema_version": "2.1.0",
   "catalog_version": "2.2.0",
-  "title": "OmniRoboAgent parameterized atomic skill catalog — ground/air revision",
+  "title": "Luban parameterized atomic skill catalog — ground/air revision",
   "description": "64项参数化原子技能契约修订提案：48项原编号保留并修订，6项合并后不重复计数，10项移入原始扩展归档，新增16项导航/飞行/观测契约。",
-  "project": "OmniRoboAgent",
+  "project": "Luban",
   "generated_at": "2026-09-12T01:37:15+08:00",
   "source_generated_at": "2026-09-11T22:17:59+08:00",
   "changelog": "CHANGELOG.md",

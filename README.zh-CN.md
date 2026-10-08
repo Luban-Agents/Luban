@@ -10,13 +10,13 @@
     <img src="docs/assets/luban-pillars.svg" width="560" alt="Plan · Execute · Verify · Memory">
   </picture></p>
   <!-- project-links:start -->
-  <p><a href="docs/project-page.md#project">Project</a> · <a href="docs/project-page.md#arxiv">arXiv (Coming soon)</a> · <a href="docs/project-page.md#demo">Demo</a> · <a href="docs/README.md">Docs</a> · <a href="https://luban-consoles-20261008.netlify.app/reader/">Reader Console</a></p>
+  <p><a href="docs/project-page.zh-CN.md#project">Project</a> · <a href="docs/project-page.zh-CN.md#arxiv">arXiv (Coming soon)</a> · <a href="docs/project-page.zh-CN.md#demo">Demo</a> · <a href="docs/README.zh-CN.md">Docs</a> · <a href="https://luban-consoles-20261008.netlify.app/reader/">Reader Console</a></p>
   <!-- project-links:end -->
 </div>
 
 ## 摘要 · Abstract
 
-六通智能体（Luban）是一个融合自进化、记忆与空间重建的具身智能体框架。它以类型化原子技能作为能力单元：任务图规划负责分解语言目标，独立验证器跟踪每个子任务的进展，出现停滞或失败时自动触发重试、节点恢复或重规划。分层记忆保留近期观测与关键事件，反思式记忆归纳任务经验，空间记忆组织场景实体与空间关系，知识胶囊沉淀可检索的过程知识；自进化则把执行记录转化为经过评估、可复用的经验，反哺后续任务规划。目前进展：在 LIBERO 四个套件、40 个任务、共 2,000 个回合上，Without Agent 与 Agent 的报告结果分别为 96.7% 和 98.9%（统计定义见[结果说明](docs/reported-results.md)）；在 RoboCasa365 上，加入自进化将复合已见任务成功率从 65.0% 提升至 68.6%、原子已见任务从 82.1% 提升至 85.5%；此外还完成了 RoboTwin 2.0 双臂协作、Isaac Sim 化学操作演示、Franka FR3 / MR1000 真机操作以及 Go2 / LIMO 导航平台的验证。
+六通智能体（Luban）是一个融合自进化、记忆与空间重建的具身智能体框架。它以类型化原子技能作为能力单元：任务图规划负责分解语言目标，独立验证器跟踪每个子任务的进展，出现停滞或失败时自动触发重试、节点恢复或重规划。分层记忆保留近期观测与关键事件，反思式记忆归纳任务经验，空间记忆组织场景实体与空间关系，知识胶囊沉淀可检索的过程知识；自进化则把执行记录转化为经过评估、可复用的经验，反哺后续任务规划。目前进展：在 LIBERO 四个套件、40 个任务、共 2,000 个回合上，Without Agent 与 Agent 的报告结果分别为 96.7% 和 98.9%（统计定义见[结果说明](docs/reported-results.zh-CN.md)）；在 RoboCasa365 上，加入自进化将复合已见任务成功率从 65.0% 提升至 68.6%、原子已见任务从 82.1% 提升至 85.5%；此外还完成了 RoboTwin 2.0 双臂协作、Isaac Sim 化学操作演示、Franka FR3 / MR1000 真机操作以及 Go2 / LIMO 导航平台的验证。
 
 [![Luban 完整框架](docs/assets/luban-framework.svg)](docs/assets/luban-framework.svg)
 
@@ -24,18 +24,13 @@
 
 ## Roadmap · 未来展望
 
-- [ ] 发布 arXiv 预印本并补齐正式引用信息（BibTeX，文献条目格式）
-- [ ] 补充合作者、机构与资助致谢
 - [ ] 开源 Franka FR3 / MR1000 与 Go2 / LIMO 真机工作区
-- [ ] 发布 RoboCasa365、RoboTwin 2.0 完整基准复现脚本
 - [ ] 共享精选知识胶囊与自进化经验记录
-- [ ] 提供在线 Reader Console 演示与公开讲解视频
-- [ ] 测定最低显存要求，扩展硬件兼容范围
 - [ ] 泛化双臂与多智能体协作任务
 
 ## Leaderboard · 汇报结果
 
-以下沿用项目展示页中的汇报数据，具体统计口径见[结果说明](docs/reported-results.md)。
+以下沿用项目展示页中的汇报数据，具体统计口径见[结果说明](docs/reported-results.zh-CN.md)。
 
 **RoboCasa365 · XR-1** — 任务成功率
 
@@ -55,9 +50,9 @@
 | LIBERO Long（libero_10） | 93.4% | 97.6% |
 | **整体** | **96.7%** | **98.9%** |
 
-LIBERO 指标按原始回合 ID 统计，两列执行预算不同，详见[结果说明](docs/reported-results.md)。
+LIBERO 指标按原始回合 ID 统计，两列执行预算不同，详见[结果说明](docs/reported-results.zh-CN.md)。
 
-这是项目历史汇报数据；本安装包的单回合运行结果见[运行指南](docs/episodes.md)。
+这是项目历史汇报数据；本安装包的单回合运行结果见[运行指南](docs/episodes.zh-CN.md)。
 
 ## Hardware
 
@@ -70,15 +65,15 @@ LIBERO 指标按原始回合 ID 统计，两列执行预算不同，详见[结�
 | **实体机器人** | `Environment` 扩展接口与 ROS2 注入式通信契约；本仓库没有完成具体实体机器人的部署验收。 |
 
 项目摘要涉及的 Franka FR3／MR1000、Go2／LIMO 来自更大项目的独立机器人与导航工作区，
-这些工作区不随本仓库分发。接入职责见[环境与机器人接口](docs/environments.md)，
-计算设备和资源准备见[安装指南](docs/installation.md)。
+这些工作区不随本仓库分发。接入职责见[环境与机器人接口](docs/environments.zh-CN.md)，
+计算设备和资源准备见[安装指南](docs/installation.zh-CN.md)。
 
 ## 读者操作演示台 · Reader Console
 
 **[打开读者操作演示台 ↗](https://luban-consoles-20261008.netlify.app/reader/)**
 
 用于读者自行配置运行环境的独立控制台入口。真实运行需要读者自己的后端、模型服务和
-仿真资源；本仓库没有提供公共 GPU 服务。当前链接可用性及准备方式见[操作台说明](docs/reader-console.md)。
+仿真资源；本仓库没有提供公共 GPU 服务。当前链接可用性及准备方式见[操作台说明](docs/reader-console.zh-CN.md)。
 
 ## 主要能力
 
@@ -92,7 +87,7 @@ LIBERO 指标按原始回合 ID 统计，两列执行预算不同，详见[结�
 | **低成本入门** | CPU mock 计数环境，检查安装和配置，不需要模型、GPU 或 API |
 
 环境适配器还包括 LIBERO、RoboTwin、EB-ALFRED 与 Chemistry；外部 SDK、模型与
-资产按所选环境准备。适配接口和实际运行范围见[环境指南](docs/environments.md)。
+资产按所选环境准备。适配接口和实际运行范围见[环境指南](docs/environments.zh-CN.md)。
 
 同步 Runtime 管理步数、动作块、重试、超时及明确的终止原因。Pipeline 组织调用顺序；
 策略产生动作，环境执行动作，Verifier 解释反馈，Memory 记录事实和事件。
@@ -108,8 +103,8 @@ LIBERO 指标按原始回合 ID 统计，两列执行预算不同，详见[结�
 git clone --branch codex/private-readiness --single-branch https://github.com/Luban-Agents/Luban.git
 cd Luban
 uv sync --frozen --no-dev --python 3.11
-uv run --frozen --no-dev python -m omniroboagent.examples.offline
-uv run --frozen --no-dev omniroboagent run --config configs/runs/offline.yaml
+uv run --frozen --no-dev python -m luban.examples.offline
+uv run --frozen --no-dev luban run --config configs/runs/offline.yaml
 ```
 
 预期执行两次 `increment`，得到 `success: true` 和
@@ -117,7 +112,7 @@ uv run --frozen --no-dev omniroboagent run --config configs/runs/offline.yaml
 `runs/offline_demo/<session_id>/` 与 `runs/offline_config/<session_id>/`。
 这是 mock 计数环境，只验证安装与软件流程，不是模型或机器人评测。
 
-其他安装方式、分发包和外部资源见[安装说明](docs/installation.md)。锁文件根据
+其他安装方式、分发包和外部资源见[安装说明](docs/installation.zh-CN.md)。锁文件根据
 项目实际要求维护，没有将共享服务器的整个 Python 环境导出为依赖。
 
 ## 在新机器上完整验证
@@ -133,21 +128,21 @@ REQUIRE_NO_SKIPS=1 bash scripts/ci.sh
 .venv/bin/python scripts/check_distribution.py
 ```
 
-[新机器指南](docs/new-machine.md)包含仓库认证、系统工具、预期输出，以及软件
+[新机器指南](docs/new-machine.zh-CN.md)包含仓库认证、系统工具、预期输出，以及软件
 检查与真实仿真的区别。[CI workflow](.github/workflows/ci.yml)在全新 Ubuntu runner
 上执行，只具有仓库读取权限，不使用模型密钥或私有服务。
 
 ## GPU 仿真与策略运行
 
-先按[安装说明](docs/installation.md)准备模拟器、授权资产和独立策略服务，再按
-[回合指南](docs/episodes.md)运行。将 `SIM_PYTHON` 和
-`OMNIROBOAGENT_ROBOCASA_ROOT` 设置为你实际安装的位置：
+先按[安装说明](docs/installation.zh-CN.md)准备模拟器、授权资产和独立策略服务，再按
+[回合指南](docs/episodes.zh-CN.md)运行。将 `SIM_PYTHON` 和
+`LUBAN_ROBOCASA_ROOT` 设置为你实际安装的位置：
 
 ```bash
 export MUJOCO_GL=egl PYOPENGL_PLATFORM=egl
 export CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0
-"$SIM_PYTHON" -m omniroboagent health --agent-config configs/agents/xr1_simple.yaml
-"$SIM_PYTHON" -m omniroboagent run --config configs/runs/robocasa_simple.yaml
+"$SIM_PYTHON" -m luban health --agent-config configs/agents/xr1_simple.yaml
+"$SIM_PYTHON" -m luban run --config configs/runs/robocasa_simple.yaml
 ```
 
 策略服务使用 `127.0.0.1:18400`，配置为 `planner_subtask` / `episode_step` 模式。
@@ -155,12 +150,12 @@ export CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0
 38 个动作块、600 秒 Runtime 预算。确定性规划器选择原生任务指令，XR-1 产生真实
 动作；这个示例不调用 LLM 规划器。
 
-独立仿真环境的新回合得到原生 `task_success`，376 个环境步、24 个动作块、0 个异常，并生成
+独立仿真环境的新回合得到原生 `task_success`，352 个环境步、22 个动作块、0 个异常，并生成
 trace、结果、产物清单和视频。这一次成功只证明该回合运行结果，不构成总体成功率。
 CLI exit 0 不等于任务成功，还要检查 `result.json`。
 
 已有组合任务目录中的 `ScrubCuttingBoard` 提供了可选的
-[多模态任务图示例](docs/advanced-episode.md)，模型调用与实际失败结果单独记录。
+[多模态任务图示例](docs/advanced-episode.zh-CN.md)，模型调用与实际失败结果单独记录。
 
 ## 配置与输出
 
@@ -173,34 +168,33 @@ CLI exit 0 不等于任务成功，还要检查 `result.json`。
 
 YAML 的 `class_path` / `init_args` 对应真实构造函数。加载时支持 `${NAME}` 和
 `${NAME:-default}` 展开。`.env` 不自动加载，需要显式 export；HTTP 后端从环境
-读取 `OPENAI_API_KEY`。[配置说明](docs/configuration.md)列出默认值和路径规则；
-[模型与策略](docs/models.md)说明观测、动作要求与可选真实模型计数示例。
+读取 `OPENAI_API_KEY`。[配置说明](docs/configuration.zh-CN.md)列出默认值和路径规则；
+[模型与策略](docs/models.zh-CN.md)说明观测、动作要求与可选真实模型计数示例。
 
 ## 文档导航
 
-首页提供完整中英两版，下列详细技术指南当前以英文为主。
+首页与详细使用指南均提供中英两版，可在每篇文档顶部切换语言。
 
 | 开始使用 | 运行与接入 | 开发与审阅 |
 | --- | --- | --- |
-| [快速开始](docs/quickstart.md) | [运行回合](docs/episodes.md) | [开发与测试](docs/development.md) |
-| [新机器验证](docs/new-machine.md) | [模型与策略](docs/models.md) | [Project 与 Demo](docs/project-page.md) |
-| [环境与资源](docs/installation.md) | [环境/机器人接口](docs/environments.md) | [源码来源](docs/provenance.md) |
-| [配置](docs/configuration.md) | [日志与结果](docs/results.md) | [第三方声明](THIRD_PARTY_NOTICES.md) |
-| [故障排查](docs/troubleshooting.md) | [已有实验配置](configs/README.md) | [项目页参考](docs/project-page-references.md) |
+| [快速开始](docs/quickstart.zh-CN.md) | [运行回合](docs/episodes.zh-CN.md) | [开发与测试](docs/development.zh-CN.md) |
+| [新机器验证](docs/new-machine.zh-CN.md) | [模型与策略](docs/models.zh-CN.md) | [Project 与 Demo](docs/project-page.zh-CN.md) |
+| [环境与资源](docs/installation.zh-CN.md) | [环境/机器人接口](docs/environments.zh-CN.md) | [源码来源](docs/provenance.zh-CN.md) |
+| [配置](docs/configuration.zh-CN.md) | [日志与结果](docs/results.zh-CN.md) | [第三方声明](THIRD_PARTY_NOTICES.zh-CN.md) |
+| [故障排查](docs/troubleshooting.zh-CN.md) | [已有实验配置](configs/README.zh-CN.md) | [项目页参考](docs/project-page-references.zh-CN.md) |
 
-仓库访问、clone 和修改入口见[访问与编辑指南](docs/access.md)。
+仓库访问、clone 和修改入口见[访问与编辑指南](docs/access.zh-CN.md)。
 
 
 ## 贡献与许可证
 
-参见 [CONTRIBUTING.md](CONTRIBUTING.md)、[LICENSE](LICENSE)、[NOTICE](NOTICE)
-和[第三方声明](THIRD_PARTY_NOTICES.md)。Python 包与 CLI 保持 `omniroboagent`，源码
-来源保留在[来源说明](docs/provenance.md)。
+参见 [CONTRIBUTING.md](CONTRIBUTING.zh-CN.md)、[LICENSE](LICENSE)、[NOTICE](NOTICE)
+和[第三方声明](THIRD_PARTY_NOTICES.zh-CN.md)。源码来源保留在[来源说明](docs/provenance.zh-CN.md)。
 
 ## Citation and Acknowledgement
 
 **Citation — 待补充。** 论文标题、作者、arXiv 编号与 BibTeX 将在定稿时提供。
-当前软件来源引用见 [CITATION.md](CITATION.md)。
+当前软件来源引用见 [CITATION.md](CITATION.zh-CN.md)。
 
 **Acknowledgement — 待补充。** 合作者、机构与资助信息将在发布前补齐。
-已有代码及第三方资源归属继续保留在 [NOTICE](NOTICE) 与[第三方声明](THIRD_PARTY_NOTICES.md)。
+已有代码及第三方资源归属继续保留在 [NOTICE](NOTICE) 与[第三方声明](THIRD_PARTY_NOTICES.zh-CN.md)。

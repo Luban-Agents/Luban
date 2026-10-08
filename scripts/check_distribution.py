@@ -55,12 +55,14 @@ def main() -> int:
             [
                 "from pathlib import Path",
                 "from importlib.resources import files",
-                "import omniroboagent, omni_atomic_skills",
+                "import luban, omni_atomic_skills",
+                "from importlib.metadata import distribution",
+                "assert distribution('luban').metadata['Name'] == 'luban'",
                 "from chemistry_bench_proto import embodiment_pb2, embodiment_pb2_grpc",
-                "assert 'site-packages' in str(Path(omniroboagent.__file__).resolve())",
-                "assert files('omniroboagent').joinpath('py.typed').is_file()",
+                "assert 'site-packages' in str(Path(luban.__file__).resolve())",
+                "assert files('luban').joinpath('py.typed').is_file()",
                 "assert files('omni_atomic_skills').joinpath('py.typed').is_file()",
-                "from omniroboagent.environments.benchmarks import chemistry_bench",
+                "from luban.environments.benchmarks import chemistry_bench",
                 "resource = files(chemistry_bench)",
                 "assert any(p.name.endswith('.yaml') for p in resource.iterdir())",
                 "print('Independent wheel imports and packaged resources passed')",
@@ -68,7 +70,7 @@ def main() -> int:
         )
         subprocess.run([str(python), "-c", smoke], cwd=stage, env=env, check=True)
         subprocess.run(
-            [str(python), "-m", "omniroboagent", "--help"],
+            [str(python), "-m", "luban", "--help"],
             cwd=stage,
             env=env,
             check=True,
@@ -77,10 +79,16 @@ def main() -> int:
             [
                 str(python),
                 "-m",
-                "omniroboagent.examples.offline",
+                "luban.examples.offline",
                 "--output-dir",
                 str(stage / "wheel-demo"),
             ],
+            cwd=stage,
+            env=env,
+            check=True,
+        )
+        subprocess.run(
+            [str(python.parent / "luban"), "--help"],
             cwd=stage,
             env=env,
             check=True,
@@ -94,6 +102,10 @@ def main() -> int:
         for relative in (
             "README.md",
             "README.zh-CN.md",
+            "docs/README.zh-CN.md",
+            "docs/installation.zh-CN.md",
+            "docs/configuration.zh-CN.md",
+            "docs/models.zh-CN.md",
             "CODE_OF_CONDUCT.md",
             "CONTRIBUTING.md",
             "LICENSE",
@@ -149,7 +161,7 @@ def main() -> int:
             [
                 str(archive_python),
                 "-m",
-                "omniroboagent",
+                "luban",
                 "run",
                 "--config",
                 "configs/runs/offline.yaml",

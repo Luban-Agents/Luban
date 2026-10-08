@@ -146,7 +146,7 @@ def build_manifest() -> dict[str, Any]:
     source_path = str(CODE / "src")
     if source_path not in sys.path:
         sys.path.insert(0, source_path)
-    from omniroboagent.environments.benchmarks.robocasa import RoboCasaEnvironment
+    from luban.environments.benchmarks.robocasa import RoboCasaEnvironment
 
     environment = RoboCasaEnvironment(
         robocasa_root=ROBOCASA_ROOT,
@@ -316,7 +316,7 @@ def make_worker_config(worker: int, manifest: dict[str, Any]) -> dict[str, Any]:
             "trace_compression": "gzip",
         },
         "pipeline": {
-            "class_path": "omniroboagent.pipelines.SkillExecutionWithMemPipeline",
+            "class_path": "luban.pipelines.SkillExecutionWithMemPipeline",
             "init_args": {
                 "action_execution_mode": "receding_horizon",
                 "execute_steps": 16,
@@ -338,7 +338,7 @@ def make_worker_config(worker: int, manifest: dict[str, Any]) -> dict[str, Any]:
             },
         },
         "runtime": {
-            "class_path": "omniroboagent.runtimes.SyncRuntime",
+            "class_path": "luban.runtimes.SyncRuntime",
             "init_args": {
                 "max_environment_steps": maximum_horizon,
                 "max_action_chunks": maximum_horizon,
@@ -353,7 +353,7 @@ def make_worker_config(worker: int, manifest: dict[str, Any]) -> dict[str, Any]:
                 "trace_compression": "gzip",
                 "output_dir": str(output / "traces"),
                 "observability": {
-                    "class_path": "omniroboagent.observability.LocalEpisodeRecorder",
+                    "class_path": "luban.observability.LocalEpisodeRecorder",
                     "init_args": {
                         "record_agent_trace": True,
                         "record_video": False,
@@ -370,7 +370,7 @@ def make_worker_config(worker: int, manifest: dict[str, Any]) -> dict[str, Any]:
         },
         "environment": {
             "class_path": (
-                "omniroboagent.environments.benchmarks.robocasa."
+                "luban.environments.benchmarks.robocasa."
                 "RoboCasaEnvironment"
             ),
             "init_args": {
@@ -384,7 +384,7 @@ def make_worker_config(worker: int, manifest: dict[str, Any]) -> dict[str, Any]:
         },
         "benchmark": {
             "class_path": (
-                "omniroboagent.evals.benchmarks.robocasa.RoboCasa365Evaluator"
+                "luban.evals.benchmarks.robocasa.RoboCasa365Evaluator"
             ),
             "init_args": {
                 "task_set": "target50",

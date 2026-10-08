@@ -1,3 +1,5 @@
+[English](validation.md) · [简体中文](validation.zh-CN.md)
+
 # Validation record
 
 Preparation: 2026-10-07–08. These results were obtained from this independently
@@ -188,3 +190,27 @@ Raw test/install reports, dependency metadata, scans and runtime outputs remain 
 ignored local evidence storage. The original source preservation and final exact
 revision/Private receipts are included in the private delivery report. See
 [source provenance](provenance.md) and [development](development.md).
+
+## Luban namespace and bilingual guide verification (2026-10-08)
+
+The installable distribution, import namespace and CLI are now `luban`; source
+is under `src/luban`. Owned SDK-root variables use `LUBAN_ROBOCASA_ROOT`.
+Nineteen complete English/Chinese guide pairs share identical executable code
+blocks and paired navigation. The original upstream attribution remains unchanged.
+
+A new isolated environment installed the frozen all-extras/dev/docs/full-test set.
+The migrated local suite passed 973 tests with zero skips; lint, formatting, strict
+types and 35 configuration constructors passed. The GPU client used the owned
+simulator environment reinstalled as Luban, and the policy environment/weights
+were reused read-only. GPU 4 and loopback port 18408 were checked before startup.
+
+The migrated real task used the existing CloseBlenderLid target/index 0/seed 7,
+600-step, 38-chunk, 600-second configuration. It ended with native task_success,
+352 environment steps, 22 chunks and zero exceptions. Session:
+`18c04c6f-a2f8-41ae-9bfa-3bef5ff93773` under `runs/robocasa_simple/`.
+Both traces, result, artifact manifest and video were produced. The owned policy
+service stopped after verification. No shared environment or original source changed.
+
+Independent distribution/resource checks and the final exact-commit GitHub CI are
+recorded with this migration's delivery evidence; historical runs above retain
+their original dates and identities.

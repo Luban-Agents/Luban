@@ -1,3 +1,5 @@
+[English](THIRD_PARTY_NOTICES.md) · [简体中文](THIRD_PARTY_NOTICES.zh-CN.md)
+
 # Third-party notices
 
 Checked for this preparation on 2026-10-07. The existing project LICENSE is

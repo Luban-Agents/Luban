@@ -2,19 +2,19 @@ import json
 from pathlib import Path
 from typing import Any
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     DefaultAgent,
     InMemoryMemory,
     Planner,
     TieredMemory,
     Verifier,
 )
-from omniroboagent.backends.skills import LanguageSkillBackend
-from omniroboagent.backends.world_models import WorldModelBackend
-from omniroboagent.environments import Environment
-from omniroboagent.observability import EpisodeRecorder, LocalEpisodeRecorder
-from omniroboagent.pipelines import DirectPipeline, Pipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.backends.skills import LanguageSkillBackend
+from luban.backends.world_models import WorldModelBackend
+from luban.environments import Environment
+from luban.observability import EpisodeRecorder, LocalEpisodeRecorder
+from luban.pipelines import DirectPipeline, Pipeline
+from luban.runtimes import SyncRuntime
 
 
 class FakePlanner(Planner):

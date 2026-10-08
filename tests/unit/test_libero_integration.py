@@ -5,20 +5,20 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     DefaultAgent,
     InMemoryMemory,
     SubtaskVerifier,
     TaskSkillPlanner,
 )
-from omniroboagent.backends.skills import LiberoPi05PolicyBackend, SkillBackend
-from omniroboagent.config import build_agent, build_run_components, load_yaml
-from omniroboagent.environments import Environment
-from omniroboagent.environments.benchmarks.libero import LiberoEnvironment
-from omniroboagent.evals.benchmarks.libero import LiberoEvaluator
-from omniroboagent.exceptions import EnvironmentError
-from omniroboagent.pipelines import SkillExecutionPipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.backends.skills import LiberoPi05PolicyBackend, SkillBackend
+from luban.config import build_agent, build_run_components, load_yaml
+from luban.environments import Environment
+from luban.environments.benchmarks.libero import LiberoEnvironment
+from luban.evals.benchmarks.libero import LiberoEvaluator
+from luban.exceptions import EnvironmentError
+from luban.pipelines import SkillExecutionPipeline
+from luban.runtimes import SyncRuntime
 
 
 def _install_fake_clawvla(monkeypatch: pytest.MonkeyPatch) -> type[Any]:

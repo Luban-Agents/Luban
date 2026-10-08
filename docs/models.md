@@ -1,8 +1,10 @@
+[English](models.md) · [简体中文](models.zh-CN.md)
+
 # Models and policies
 
 ## LLMBackend
 
-`omniroboagent.backends.llm.base.LLMBackend` defines `complete(inputs)`,
+`luban.backends.llm.base.LLMBackend` defines `complete(inputs)`,
 `healthcheck()` and `close()`. `OpenAICompatibleLLMBackend` implements HTTP
 `/models` and `/chat/completions`; it adds `/v1` if the base URL lacks it, reads
 `OPENAI_API_KEY`, uses finite timeout/retries and redacts diagnostic credentials.
@@ -19,8 +21,8 @@ export LLM_BASE_URL=https://your-provider.example/api/v1
 export LLM_MODEL=your-actual-model-id
 read -r -s -p 'API key: ' OPENAI_API_KEY; echo
 export OPENAI_API_KEY
-.venv/bin/omniroboagent health --agent-config configs/agents/llm_counter.yaml
-.venv/bin/omniroboagent run --config configs/runs/llm_counter.yaml
+.venv/bin/luban health --agent-config configs/agents/llm_counter.yaml
+.venv/bin/luban run --config configs/runs/llm_counter.yaml
 unset OPENAI_API_KEY
 ```
 

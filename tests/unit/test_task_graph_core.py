@@ -3,14 +3,14 @@ from typing import Any
 
 import pytest
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     SubtaskVerifier,
     TaskDecomposer,
 )
-from omniroboagent.agent_core.memories.long_memory import LongMemory
-from omniroboagent.backends.llm.base import LLMBackend
-from omniroboagent.exceptions import PlannerOutputError, ProtocolSchemaError
-from omniroboagent.pipelines.skill_execution import SkillExecutionPipeline
+from luban.agent_core.memories.long_memory import LongMemory
+from luban.backends.llm.base import LLMBackend
+from luban.exceptions import PlannerOutputError, ProtocolSchemaError
+from luban.pipelines.skill_execution import SkillExecutionPipeline
 
 
 class SequenceBackend(LLMBackend):

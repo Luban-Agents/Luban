@@ -4,33 +4,31 @@ from typing import Any
 import numpy as np
 import pytest
 
-from omniroboagent.agent_core import (
+from luban.agent_core import (
     DefaultAgent,
     SubtaskSkillPlanner,
     SubtaskVerifier,
 )
-from omniroboagent.backends.skills.openpi import (
+from luban.backends.skills.openpi import (
     OpenPIRoboCasaPolicyBackend,
     OpenPIWebSocketPolicyBackend,
 )
-from omniroboagent.config import build_agent, instantiate, load_yaml
-from omniroboagent.exceptions import BackendError, ConfigError
-from omniroboagent.observability import LocalEpisodeRecorder
-from omniroboagent.pipelines import SkillExecutionPipeline
-from omniroboagent.runtimes import SyncRuntime
+from luban.config import build_agent, instantiate, load_yaml
+from luban.exceptions import BackendError, ConfigError
+from luban.observability import LocalEpisodeRecorder
+from luban.pipelines import SkillExecutionPipeline
+from luban.runtimes import SyncRuntime
 
 
 def test_build_agent_from_component_specs() -> None:
     agent = build_agent(
         {
-            "agent": {"class_path": "omniroboagent.agent_core.DefaultAgent"},
+            "agent": {"class_path": "luban.agent_core.DefaultAgent"},
             "planner": {
-                "class_path": "omniroboagent.agent_core.LanguageSkillPlanner",
+                "class_path": "luban.agent_core.LanguageSkillPlanner",
                 "init_args": {
                     "backend": {
-                        "class_path": (
-                            "omniroboagent.backends.llm.OpenAICompatibleLLMBackend"
-                        ),
+                        "class_path": ("luban.backends.llm.OpenAICompatibleLLMBackend"),
                         "init_args": {
                             "base_url": "http://localhost:8000",
                             "model": "test-model",
@@ -38,10 +36,10 @@ def test_build_agent_from_component_specs() -> None:
                     }
                 },
             },
-            "verifier": {"class_path": "omniroboagent.agent_core.EnvironmentVerifier"},
-            "memory": {"class_path": "omniroboagent.agent_core.InMemoryMemory"},
+            "verifier": {"class_path": "luban.agent_core.EnvironmentVerifier"},
+            "memory": {"class_path": "luban.agent_core.InMemoryMemory"},
             "skill_backend": {
-                "class_path": ("omniroboagent.backends.skills.LanguageSkillBackend")
+                "class_path": ("luban.backends.skills.LanguageSkillBackend")
             },
         }
     )
