@@ -1,0 +1,10 @@
+agent:
+  class_path: omniroboagent.agent_core.DefaultAgent
+planner:
+  class_path: omniroboagent.agent_core.TaskSkillPlanner
+verifier:
+  class_path: omniroboagent.agent_core.EnvironmentVerifier
+memory:
+  class_path: omniroboagent.agent_core.InMemoryMemory
+skill_backend:
+  class_path: omniroboagent.backends.skills.LanguageSkillBackend

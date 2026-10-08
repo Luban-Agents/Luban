@@ -1,0 +1,32 @@
+site_name: Luban
+site_description: Luban — 具身智能体框架 / Composable embodied agents
+docs_dir: docs
+theme:
+  name: material
+nav:
+  - Home: README.md
+  - Quickstart: quickstart.md
+  - Access and editing: access.md
+  - New machine: new-machine.md
+  - Installation: installation.md
+  - Configuration: configuration.md
+  - Episodes: episodes.md
+  - Advanced episode: advanced-episode.md
+  - Models and policies: models.md
+  - Environments: environments.md
+  - Results: results.md
+  - Troubleshooting: troubleshooting.md
+  - Development: development.md
+  - Validation: validation.md
+  - Provenance: provenance.md
+  - Project and demo: project-page.md
+  - Reported results: reported-results.md
+  - Reader Console: reader-console.md
+  - Presentation references: project-page-references.md
+
+validation:
+  links:
+    not_found: info
+
+exclude_docs: |
+  _sidebar.md
