@@ -1,5 +1,7 @@
 # Tasks
 
+- [x] `DONE` Standardize LIBERO report labels and metric definitions ([plan](plans/2026-10-08-report-labels.md)).
+
 - [x] `DONE` README research layout, centered branding and reader-console entry ([plan](plans/2026-10-08-readme-research-layout.md)).
 
 - [ ] `PLANNED` Next stage: asynchronous execution; current version remains unpublished ([plan](plans/2026-10-08-next-stage-async.md)).

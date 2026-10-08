@@ -8,7 +8,7 @@ user-supplied complete SVG, reproduce the existing frontend abstract, and add
 What's NEW!, reported Leaderboard results, current Hardware scope, Reader Console,
 and pending Citation and Acknowledgement sections.
 
-Results must retain first-pass versus cumulative semantics. Hardware must describe
+Results must retain their metric and execution-budget definitions. Hardware must describe
 this independent repository, with broader project demonstrations identified as
 separate workspaces. Authors, funding and paper metadata remain pending.
 

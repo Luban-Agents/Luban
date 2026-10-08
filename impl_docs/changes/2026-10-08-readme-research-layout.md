@@ -24,7 +24,7 @@ docs/reader-console.md; documentation navigation and distribution resource asser
 ## Verification
 
 - Both abstracts match the supplied frontend text; reported table values checked.
-- LIBERO cumulative result retains replay budget and denominator semantics.
+- LIBERO reported values retain execution-budget and denominator definitions.
 - SVG XML and marker units checked; framework SVG preserved byte-for-byte.
 - Browser layout: logo group center 639.66 px versus canvas center 640 px at 1280 px width.
 - Local Markdown targets, strict MkDocs and git diff --check passed.

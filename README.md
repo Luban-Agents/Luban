@@ -16,7 +16,7 @@
 
 ## Abstract
 
-Luban is an embodied-agent framework that combines self-evolution, memory and spatial reconstruction. Typed atomic skills serve as its units of capability: task-graph planning decomposes language goals, an independent verifier tracks each subtask, and stalls or failures trigger retries, node recovery or replanning. Tiered memory retains recent observations and key events; reflective memory summarizes task experience; spatial memory organizes scene entities and relations; knowledge capsules store retrievable procedural knowledge; and self-evolution turns execution records into evaluated, reusable experience for later planning. Current progress: on LIBERO (four suites, 40 tasks, 2,000 episodes), OpenVLA-OFT alone reaches 96.7% success, rising to 98.9% with the framework; on RoboCasa365, self-evolution lifts composite seen success from 65.0% to 68.6% and atomic seen success from 82.1% to 85.5%; validation also covers RoboTwin 2.0 bimanual collaboration, an Isaac Sim chemistry demo, Franka FR3 / MR1000 real-robot manipulation, and Go2 / LIMO navigation.
+Luban is an embodied-agent framework that combines self-evolution, memory and spatial reconstruction. Typed atomic skills serve as its units of capability: task-graph planning decomposes language goals, an independent verifier tracks each subtask, and stalls or failures trigger retries, node recovery or replanning. Tiered memory retains recent observations and key events; reflective memory summarizes task experience; spatial memory organizes scene entities and relations; knowledge capsules store retrievable procedural knowledge; and self-evolution turns execution records into evaluated, reusable experience for later planning. Current progress: on LIBERO (four suites, 40 tasks, 2,000 episodes), the reported results are 96.7% for Without Agent and 98.9% for Agent (see [metric definitions](docs/reported-results.md)); on RoboCasa365, self-evolution lifts composite seen success from 65.0% to 68.6% and atomic seen success from 82.1% to 85.5%; validation also covers RoboTwin 2.0 bimanual collaboration, an Isaac Sim chemistry demo, Franka FR3 / MR1000 real-robot manipulation, and Go2 / LIMO navigation.
 
 [![Luban complete framework](docs/assets/luban-framework.svg)](docs/assets/luban-framework.svg)
 
@@ -47,13 +47,16 @@ Results reproduced from the project presentation. See [protocol and provenance](
 
 **LIBERO · OpenVLA-OFT** — 40 tasks, 2,000 episodes
 
-| Suite | only-VLA | Luban_agent |
+| Suite | Without Agent | Agent |
 | --- | ---: | ---: |
 | LIBERO Goal | 98.4% | 99.4% |
 | LIBERO Spatial | 97.6% | 99.4% |
 | LIBERO Object | 97.4% | 99.2% |
 | LIBERO Long (libero_10) | 93.4% | 97.6% |
 | **Overall** | **96.7%** | **98.9%** |
+
+The LIBERO figures are computed over the original episode IDs with different
+execution budgets; see [metric definitions](docs/reported-results.md).
 
 These are historical project report results;
 this package's execution example is documented in the [episode guide](docs/episodes.md).
