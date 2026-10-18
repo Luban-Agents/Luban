@@ -1,13 +1,9 @@
 [English](reader-console.md) · [简体中文](reader-console.zh-CN.md)
 
-# 读者操作演示台
+# 离线案例演示台
 
-**[打开读者操作演示台](https://luban-consoles-20261008.netlify.app/reader/)**
+[打开 2026-10-13 在线预览](https://6acda06095d8304cc3c58976--luban-consoles-20261008.netlify.app/offline/)。公开展示提供八个录制回合、三路相机画面、任务图、Planner 与 Verifier 事件。选择案例后点击开始，可暂停、拖动进度和查看节点详情。此入口不连接模型服务，也不执行新的机器人任务。
 
-该控制台独立维护。README 连接已有入口，不将前后端另行打包或部署到框架包中。
+2026-10-18 本地交付将控制台与项目展示页整理在同一网站目录。`offline/` 是回放入口，`expert/` 与 `reader/` 兼容旧路径并显示同一离线页面。新账号发布后可使用同域名链接，当前线上预览保持原版本。
 
-真实执行需要读者自己的后端、模型／策略服务和仿真资源；静态网页不提供 GPU 计算。
-框架准备见[安装](installation.zh-CN.md)、[配置](configuration.zh-CN.md)、[回合](episodes.zh-CN.md)。
-控制台的兼容后端、配置格式和连接方法以控制台页面说明为准。
-
-Luban CLI 可脱离该网页独立运行。添加控制台链接不改变 GitHub 仓库的可见性或访问权限。
+任务图使用录像帧对应的展示时间轴。环境成功终帧可将记录延迟的目标显示为随任务达成，原始节点状态与执行记录仍保留。控制台是独立维护的前端，框架安装包范围保持不变。自行执行任务请按[安装](installation.zh-CN.md)、[配置](configuration.zh-CN.md)与[回合指南](episodes.zh-CN.md)准备资源。

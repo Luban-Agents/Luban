@@ -20,3 +20,5 @@ repository as a backup; legacy main history was excluded, without force push.
 Private preparation has no remaining history decision. Future public release still
 requires the owner's separate authorization and fixture/attribution review in
 THIRD_PARTY_NOTICES.md. Historical evaluations are not acceptance evidence here.
+
+- [x] `DONE` Presentation-material update, latest architecture diagram and unified local website handoff ([plan](plans/2026-10-18-presentation-materials.md)).

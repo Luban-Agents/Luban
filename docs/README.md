@@ -22,7 +22,8 @@ Every guide has a complete English and Simplified Chinese edition. Use the langu
 | Source provenance | [English](provenance.md) | [源码来源](provenance.zh-CN.md) |
 | Project / arXiv / Demo | [English](project-page.md) | [项目与演示入口](project-page.zh-CN.md) |
 | Reported results | [English](reported-results.md) | [汇报结果](reported-results.zh-CN.md) |
-| Reader Console | [English](reader-console.md) | [读者操作台](reader-console.zh-CN.md) |
+| Offline replay console | [English](reader-console.md) | [离线案例演示台](reader-console.zh-CN.md) |
+| Spatial memory report | [English](spatial-memory-report.md) | [空间记忆报告](spatial-memory-report.zh-CN.md) |
 | Presentation references | [English](project-page-references.md) | [展示参考](project-page-references.zh-CN.md) |
 
 Start with the CPU mock example, then prepare resources for a real GPU episode.

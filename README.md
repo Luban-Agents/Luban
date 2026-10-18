@@ -10,7 +10,7 @@
     <img src="docs/assets/luban-pillars.svg" width="560" alt="Plan · Execute · Verify · Memory">
   </picture></p>
   <!-- project-links:start -->
-  <p><a href="docs/project-page.md#project">Project</a> · <a href="docs/project-page.md#arxiv">arXiv (Coming soon)</a> · <a href="docs/project-page.md#demo">Demo</a> · <a href="docs/README.md">Docs</a> · <a href="https://luban-consoles-20261008.netlify.app/reader/">Reader Console</a></p>
+  <p><a href="https://6acd9e44e89af57fccde9564--friendly-hotteok-b5a87f.netlify.app/">Project</a> · <a href="docs/project-page.md#arxiv">arXiv (Coming soon)</a> · <a href="https://6acd9e44e89af57fccde9564--friendly-hotteok-b5a87f.netlify.app/demos.html">Demo</a> · <a href="docs/README.md">Docs</a> · <a href="https://6acda06095d8304cc3c58976--luban-consoles-20261008.netlify.app/offline/">Offline Replay</a></p>
   <!-- project-links:end -->
 </div>
 
@@ -20,7 +20,13 @@ Luban is an embodied-agent framework that combines self-evolution, memory and sp
 
 [![Luban complete framework](docs/assets/luban-framework.svg)](docs/assets/luban-framework.svg)
 
-<p align="center"><sub>Full framework overview · Open the original SVG for detail; development-stage modules retain their labels.</sub></p>
+<p align="center"><sub>Latest supplied architecture diagram (2026-10-18). Open the original SVG for detail.</sub></p>
+
+## Spatial memory and application materials
+
+The spatial module turns RGB-D, camera poses and existing point clouds into queryable scene entities. The supplied single-scene record contains 16 entities, with 3.368 s SpatialLM inference. An interface replay experiment reports 0.1496 ms mean recall latency and unchanged global-scene output after 1,000 resets. See [spatial report provenance and settings](docs/spatial-memory-report.md).
+
+The 2026-10-18 local website adds traffic robot, tunnel quadruped and highway drone materials as partner application scenarios. Physical-robot integration support remains defined by this repository's hardware and environment guides. The updated website and offline console share one local delivery folder, awaiting publication with a new account. Project and Offline Replay links at the top still point to the 2026-10-13 previews.
 
 ## Roadmap
 
@@ -53,6 +59,10 @@ Results reproduced from the project presentation. See [protocol and provenance](
 The LIBERO figures are computed over the original episode IDs with different
 execution budgets; see [metric definitions](docs/reported-results.md).
 
+**RoboTwin 2.0 and RoboSynChallenge**
+
+RoboTwin 2.0 reports 3,079 successful episodes out of 5,000 (61.58%). RoboSynChallenge reports 412 out of 1,000 (41.2%). They use separate bimanual and laboratory-manipulation settings. See [protocols and sources](docs/reported-results.md).
+
 These are historical project report results;
 this package's execution example is documented in the [episode guide](docs/episodes.md).
 
@@ -71,13 +81,9 @@ belong to separate robot/navigation workspaces in the broader project. Those
 workspaces are not distributed here. See [environment/robot interfaces](docs/environments.md)
 and [hardware/resource installation](docs/installation.md).
 
-## Reader Console
+## Offline replay console
 
-**[Open the reader operation console ↗](https://luban-consoles-20261008.netlify.app/reader/)**
-
-An independent console entry for readers configuring their own environment. Live
-execution requires the reader's own backend, model service and simulation resources;
-this repository does not provide a shared GPU service. See [console setup and link status](docs/reader-console.md).
+[Open the offline replay console](https://6acda06095d8304cc3c58976--luban-consoles-20261008.netlify.app/offline/) to inspect eight recorded episodes with three camera views, task graphs and events. The current online version is the 2026-10-13 preview and requires no model API configuration or backend connection. For real execution, use the [episode guide](docs/episodes.md). See [console entry details](docs/reader-console.md).
 
 ## Capabilities
 

@@ -54,3 +54,11 @@ Agent 为 1,978 / 2,000 = 98.9%，基于原报告的 2,066 次执行。
 `assets/evidence/libero-oft-replay-20261004.json`，保留原值及底层计数。
 项目来源：[项目展示页](https://github.com/yuliu-ai/OmniRoboAgent-Page)。
 本包 GPU 运行入口见[回合指南](episodes.zh-CN.md)。
+
+## RoboTwin 2.0 与 RoboSynChallenge
+
+2026-10-13 展示页已接入两组报告。RoboTwin 2.0 使用 demo_clean 设置、50 个任务、每任务 100 回合，共 5,000 回合，3,079 次成功，成功率 61.58%。配置为 Qwen3.5-9B LoRA 规划器与共享多任务 π0.5 策略，来源分支 omniagent/robotwin-integration，commit 52d8a314e3679ba1cc6d2b0ecaf3caf11bfd313e。
+
+RoboSynChallenge 使用 random 设置，每个任务 seeds 0–99，10 个任务共 1,000 回合，412 次成功，成功率 41.2%。采用 Qwen3.5-9B 视觉规划与验证、公开的任务专用 ACT checkpoint，来源为 [2026-10-12 分支结果](https://github.com/choucaicai/OmniRoboAgent/blob/c9901442c396741fc3d30b73d7e6f058af09ca08/docs/robosynchallenge-results.md)。该基准与原 Isaac Sim 固定滴定演示分别记录。
+
+两组完整逐任务值保留在展示页 assets/evidence/ 的 robotwin-results-20261009.json 与 robosynchallenge-results-20261012.json。以上属于既有报告，未在本仓库重新执行。空间模块的场景记录与接口计时见[空间记忆报告](spatial-memory-report.zh-CN.md)。

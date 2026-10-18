@@ -10,7 +10,7 @@
     <img src="docs/assets/luban-pillars.svg" width="560" alt="Plan · Execute · Verify · Memory">
   </picture></p>
   <!-- project-links:start -->
-  <p><a href="docs/project-page.zh-CN.md#project">Project</a> · <a href="docs/project-page.zh-CN.md#arxiv">arXiv (Coming soon)</a> · <a href="docs/project-page.zh-CN.md#demo">Demo</a> · <a href="docs/README.zh-CN.md">Docs</a> · <a href="https://luban-consoles-20261008.netlify.app/reader/">Reader Console</a></p>
+  <p><a href="https://6acd9e44e89af57fccde9564--friendly-hotteok-b5a87f.netlify.app/">Project</a> · <a href="docs/project-page.zh-CN.md#arxiv">arXiv (Coming soon)</a> · <a href="https://6acd9e44e89af57fccde9564--friendly-hotteok-b5a87f.netlify.app/demos.html">Demo</a> · <a href="docs/README.zh-CN.md">Docs</a> · <a href="https://6acda06095d8304cc3c58976--luban-consoles-20261008.netlify.app/offline/">Offline Replay</a></p>
   <!-- project-links:end -->
 </div>
 
@@ -20,7 +20,13 @@
 
 [![Luban 完整框架](docs/assets/luban-framework.svg)](docs/assets/luban-framework.svg)
 
-<p align="center"><sub>完整框架全景 · 点击查看原始 SVG；图中开发中模块保留原标注。</sub></p>
+<p align="center"><sub>2026-10-18 指定的最新智能体架构图，点击查看原始 SVG。</sub></p>
+
+## 空间记忆与应用材料
+
+空间模块将 RGB-D、相机位姿与已有点云转换为可查询的场景实体。所提供单场景记录包含 16 个实体，SpatialLM 推理耗时 3.368 s。接口回放实验中，平均 recall 耗时为 0.1496 ms，全局场景经历 1,000 次 reset 后保持不变。运行配置与来源见[空间记忆报告说明](docs/spatial-memory-report.zh-CN.md)。
+
+2026-10-18 本地展示页补充了交通管理机器人、隧道机器狗与公路无人机素材。它们用于介绍合作应用场景，独立框架的实体机器人接入范围仍以本仓库硬件与环境文档为准。新版网站与离线控制台已整理为一个本地交付目录，待新账号就绪后发布。顶部 Project 和 Offline Replay 链接仍指向 2026-10-13 的在线预览。
 
 ## Roadmap · 未来展望
 
@@ -52,6 +58,10 @@
 
 LIBERO 指标按原始回合 ID 统计，两列执行预算不同，详见[结果说明](docs/reported-results.zh-CN.md)。
 
+**RoboTwin 2.0 与 RoboSynChallenge**
+
+RoboTwin 2.0 的报告结果为 3,079 / 5,000 回合成功，成功率 61.58%。RoboSynChallenge 的报告结果为 412 / 1,000 回合成功，成功率 41.2%。两组结果分别对应双臂操作与实验室操作设置，来源与配置见[结果说明](docs/reported-results.zh-CN.md)。
+
 这是项目历史汇报数据；本安装包的单回合运行结果见[运行指南](docs/episodes.zh-CN.md)。
 
 ## Hardware
@@ -68,12 +78,9 @@ LIBERO 指标按原始回合 ID 统计，两列执行预算不同，详见[结�
 这些工作区不随本仓库分发。接入职责见[环境与机器人接口](docs/environments.zh-CN.md)，
 计算设备和资源准备见[安装指南](docs/installation.zh-CN.md)。
 
-## 读者操作演示台 · Reader Console
+## 离线案例演示台
 
-**[打开读者操作演示台 ↗](https://luban-consoles-20261008.netlify.app/reader/)**
-
-用于读者自行配置运行环境的独立控制台入口。真实运行需要读者自己的后端、模型服务和
-仿真资源；本仓库没有提供公共 GPU 服务。当前链接可用性及准备方式见[操作台说明](docs/reader-console.zh-CN.md)。
+[打开离线案例演示台](https://6acda06095d8304cc3c58976--luban-consoles-20261008.netlify.app/offline/)，可查看八个录制回合的三路画面、任务图与事件。当前在线版本为 2026-10-13 预览，不需要配置模型 API 或连接后台。真实运行的安装与配置见[运行指南](docs/episodes.zh-CN.md)，演示入口说明见[控制台说明](docs/reader-console.zh-CN.md)。
 
 ## 主要能力
 
