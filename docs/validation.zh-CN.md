@@ -139,7 +139,7 @@ robosuite 1.5.2、MuJoCo 3.3.1、已获许可资产和 XR-1 RoboCasa365 权重�
 私有证据区，来源保留和精确 revision／Private 回执位于交付报告。
 参见[来源](provenance.zh-CN.md)及[开发](development.zh-CN.md)。
 
-## Luban 命名迁移与双语文档验证（2026-10-08）
+## `luban` 包命名迁移与双语文档验证（2026-10-08）
 
 安装包、import 命名空间和 CLI 均为 `luban`，源码位于 `src/luban`，SDK 根目录变量为
 `LUBAN_ROBOCASA_ROOT`。19 组完整中英指南共用一致的可执行代码块与成对导航。
@@ -147,7 +147,7 @@ robosuite 1.5.2、MuJoCo 3.3.1、已获许可资产和 XR-1 RoboCasa365 权重�
 
 新的独立环境按锁文件安装 all-extras／dev／docs／full-test。迁移后本地套件为 973 passed、
 零跳过，lint、格式、严格类型和 35 个配置构造均通过。
-GPU 客户端在本任务拥有的仿真环境中重装为 Luban，策略环境与权重仍只读复用。
+GPU 客户端在本任务拥有的仿真环境中重装为 `luban` 软件包，策略环境与权重仍只读复用。
 启动前检查了 GPU 4 和 loopback 18408。
 
 使用已有 CloseBlenderLid 配置：target、index 0、seed 7，最多 600 环境步、38 动作块、600 秒。

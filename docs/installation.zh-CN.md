@@ -93,7 +93,7 @@ EGL 渲染需要 NVIDIA 驱动和 EGL／OpenGL 库，视频需要带 H.264 编�
 
 按[官方部署说明](https://github.com/XiaomiRobotics/Xiaomi-Robotics-1/blob/0dd7aef8dc87296246aae812a1f59ccb708e5546/docs/DEPLOYMENT.md)
 建立独立策略环境。已测试的服务为 Python 3.12.14、Torch 2.8.0+cu128、Transformers 4.57.1。
-策略环境与权重被只读复用，仿真／客户端环境新装；Luban 安装包使用 Python 3.11。
+策略环境与权重被只读复用，仿真／客户端环境新装；六通智能体 安装包使用 Python 3.11。
 
 官方源码获取参考为 `XiaomiRobotics/Xiaomi-Robotics-1@0dd7aef8dc87296246aae812a1f59ccb708e5546`。
 既有策略源码归档没有 Git 元数据，已记录部分文件指纹，但未证明与该参考逐字等价。

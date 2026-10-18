@@ -1,7 +1,7 @@
 <div align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/luban-wordmark-dark.svg">
-    <img src="docs/assets/luban-wordmark.svg" width="540" alt="Luban — embodied agents, closed loop">
+    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/liutong-wordmark-dark.svg">
+    <img src="docs/assets/liutong-wordmark.svg" width="540" alt="六通智能体，具身任务闭环执行">
   </picture>
   <p><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a></p>
   <p><strong>可组合的具身智能体框架，提供可观测的闭环执行。<br>Composable embodied agents, with observable closed-loop execution.</strong></p>
@@ -16,11 +16,10 @@
 
 ## 摘要 · Abstract
 
-六通智能体（Luban）是一个融合自进化、记忆与空间重建的具身智能体框架。它以类型化原子技能作为能力单元：任务图规划负责分解语言目标，独立验证器跟踪每个子任务的进展，出现停滞或失败时自动触发重试、节点恢复或重规划。分层记忆保留近期观测与关键事件，反思式记忆归纳任务经验，空间记忆组织场景实体与空间关系，知识胶囊沉淀可检索的过程知识；自进化则把执行记录转化为经过评估、可复用的经验，反哺后续任务规划。目前进展：在 LIBERO 四个套件、40 个任务、共 2,000 个回合上，Without Agent 与 Agent 的报告结果分别为 96.7% 和 98.9%（统计定义见[结果说明](docs/reported-results.zh-CN.md)）；在 RoboCasa365 上，加入自进化将复合已见任务成功率从 65.0% 提升至 68.6%、原子已见任务从 82.1% 提升至 85.5%；此外还完成了 RoboTwin 2.0 双臂协作、Isaac Sim 化学操作演示、Franka FR3 / MR1000 真机操作以及 Go2 / LIMO 导航平台的验证。
+六通智能体是一个融合自进化、记忆与空间重建的具身智能体框架。它以类型化原子技能作为能力单元：任务图规划负责分解语言目标，独立验证器跟踪每个子任务的进展，出现停滞或失败时自动触发重试、节点恢复或重规划。分层记忆保留近期观测与关键事件，反思式记忆归纳任务经验，空间记忆组织场景实体与空间关系，知识胶囊沉淀可检索的过程知识；自进化则把执行记录转化为经过评估、可复用的经验，反哺后续任务规划。目前进展：在 LIBERO 四个套件、40 个任务、共 2,000 个回合上，Without Agent 与 Agent 的报告结果分别为 96.7% 和 98.9%（统计定义见[结果说明](docs/reported-results.zh-CN.md)）；在 RoboCasa365 上，加入自进化将复合已见任务成功率从 65.0% 提升至 68.6%、原子已见任务从 82.1% 提升至 85.5%；此外还完成了 RoboTwin 2.0 双臂协作、Isaac Sim 化学操作演示、Franka FR3 / MR1000 真机操作以及 Go2 / LIMO 导航平台的验证。
 
-[![Luban 完整框架](docs/assets/luban-framework.svg)](docs/assets/luban-framework.svg)
+[![六通智能体 完整框架](docs/assets/liutong-framework.svg)](docs/assets/liutong-framework.svg)
 
-<p align="center"><sub>2026-10-18 指定的最新智能体架构图，点击查看原始 SVG。</sub></p>
 
 ## 空间记忆与应用材料
 
@@ -43,8 +42,8 @@
 | 设置 | Composite seen | Atomic seen |
 | --- | ---: | ---: |
 | XR-1 基线 | 57.1% | 80.2% |
-| Luban，无自进化 | 65.0% | 82.1% |
-| **Luban，有自进化** | **68.6%** | **85.5%** |
+| 六通智能体，无自进化 | 65.0% | 82.1% |
+| **六通智能体，有自进化** | **68.6%** | **85.5%** |
 
 **LIBERO · OpenVLA-OFT** — 40 个任务，2,000 个回合
 

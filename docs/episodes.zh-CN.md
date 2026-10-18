@@ -58,7 +58,7 @@ ffprobe -v error -show_entries stream=codec_name,width,height,nb_frames \
 预算正常结束且 `success=false` 仍是有效的失败任务回合；单次成功不代表总体成功率。
 
 原准备记录为 396 步／25 个动作块成功，后续独立仿真环境记录为 376 步／24 个动作块。
-具体产物与范围见[验证记录](validation.zh-CN.md)，Luban 命名迁移后的新回合为 352 步／22 个动作块成功，单独记录。
+具体产物与范围见[验证记录](validation.zh-CN.md)，`luban` 包命名迁移后的新回合为 352 步／22 个动作块成功，单独记录。
 
 ## 高级配置
 

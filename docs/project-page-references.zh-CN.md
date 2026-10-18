@@ -11,6 +11,6 @@
 | [HorizonRobotics/HoloAgent](https://github.com/HorizonRobotics/HoloAgent)／[HoloAgent 页面](https://horizonrobotics.github.io/robot_lab/holoagent/) | `ef14d3152ca6246d8ae64920694c6c74581d246c` | 组件层级、执行闭环图与支持状态 |
 | [OpenHands software-agent-sdk](https://github.com/OpenHands/software-agent-sdk) | `69e26889401fe69157fff536e6a69049e6644cb3` | 简洁用途、可运行首例、仓库边界与文档导航 |
 
-Luban README 和原创图形描述当前仓库，没有复制参考项目的 Logo、图、演示、代码段或基准数字。
+六通智能体 README 和原创图形描述当前仓库，没有复制参考项目的 Logo、图、演示、代码段或基准数字。
 用户提供的完整框架图作为本项目素材另行插入。支持表区分 mock 软件检查、本地协议测试与
 真实 RoboCasa 回合。此次整理没有部署公开项目网站或新演示站点。

@@ -22,7 +22,7 @@ python3 -m http.server 8118 --bind 127.0.0.1
 
 ## arXiv
 
-Luban 论文尚无已确认的 arXiv 编号。引用见 [CITATION](../CITATION.zh-CN.md)。
+六通智能体 论文尚无已确认的 arXiv 编号。引用见 [CITATION](../CITATION.zh-CN.md)。
 
 ## 后续发布
 

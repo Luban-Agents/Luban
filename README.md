@@ -20,7 +20,6 @@ Luban is an embodied-agent framework that combines self-evolution, memory and sp
 
 [![Luban complete framework](docs/assets/luban-framework.svg)](docs/assets/luban-framework.svg)
 
-<p align="center"><sub>Latest supplied architecture diagram (2026-10-18). Open the original SVG for detail.</sub></p>
 
 ## Spatial memory and application materials
 
