@@ -10,7 +10,7 @@
     <img src="docs/assets/luban-pillars.svg" width="560" alt="Plan · Execute · Verify · Memory">
   </picture></p>
   <!-- project-links:start -->
-  <p><a href="https://6acd9e44e89af57fccde9564--friendly-hotteok-b5a87f.netlify.app/">Project</a> · <a href="docs/project-page.zh-CN.md#arxiv">arXiv (Coming soon)</a> · <a href="https://6acd9e44e89af57fccde9564--friendly-hotteok-b5a87f.netlify.app/demos.html">Demo</a> · <a href="docs/README.zh-CN.md">Docs</a> · <a href="https://6acda06095d8304cc3c58976--luban-consoles-20261008.netlify.app/offline/">Offline Replay</a></p>
+  <p><a href="https://liutong-luban-project.netlify.app/">Project</a> · <a href="docs/project-page.zh-CN.md#arxiv">arXiv (Coming soon)</a> · <a href="https://liutong-luban-project.netlify.app/demos.html">Demo</a> · <a href="docs/README.zh-CN.md">Docs</a> · <a href="https://liutong-luban-demo.netlify.app/">Offline Replay</a></p>
   <!-- project-links:end -->
 </div>
 
@@ -25,7 +25,7 @@
 
 空间模块将 RGB-D、相机位姿与已有点云转换为可查询的场景实体。所提供单场景记录包含 16 个实体，SpatialLM 推理耗时 3.368 s。接口回放实验中，平均 recall 耗时为 0.1496 ms，全局场景经历 1,000 次 reset 后保持不变。运行配置与来源见[空间记忆报告说明](docs/spatial-memory-report.zh-CN.md)。
 
-2026-10-18 本地展示页补充了交通管理机器人、隧道机器狗与公路无人机素材。它们用于介绍合作应用场景，独立框架的实体机器人接入范围仍以本仓库硬件与环境文档为准。新版网站与离线控制台已整理为一个本地交付目录，待新账号就绪后发布。顶部 Project 和 Offline Replay 链接仍指向 2026-10-13 的在线预览。
+2026-10-18 本地展示页补充了交通管理机器人、隧道机器狗与公路无人机素材。它们用于介绍合作应用场景，独立框架的实体机器人接入范围仍以本仓库硬件与环境文档为准。新版项目页与案例展示页已于 2026-10-20 分别发布，顶部 Project 和 Offline Replay 链接均指向当前版本。
 
 ## Roadmap · 未来展望
 
@@ -79,7 +79,7 @@ RoboTwin 2.0 的报告结果为 3,079 / 5,000 回合成功，成功率 61.58%。
 
 ## 离线案例演示台
 
-[打开离线案例演示台](https://6acda06095d8304cc3c58976--luban-consoles-20261008.netlify.app/offline/)，可查看八个录制回合的三路画面、任务图与事件。当前在线版本为 2026-10-13 预览，不需要配置模型 API 或连接后台。真实运行的安装与配置见[运行指南](docs/episodes.zh-CN.md)，演示入口说明见[控制台说明](docs/reader-console.zh-CN.md)。
+[打开离线案例演示台](https://liutong-luban-demo.netlify.app/)，可查看八个录制回合的三路画面、任务图与事件。当前在线版本于 2026-10-20 发布，不需要配置模型 API 或连接后台。真实运行的安装与配置见[运行指南](docs/episodes.zh-CN.md)，演示入口说明见[控制台说明](docs/reader-console.zh-CN.md)。
 
 ## 主要能力
 

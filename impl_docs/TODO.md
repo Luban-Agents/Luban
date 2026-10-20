@@ -21,4 +21,4 @@ Private preparation has no remaining history decision. Future public release sti
 requires the owner's separate authorization and fixture/attribution review in
 THIRD_PARTY_NOTICES.md. Historical evaluations are not acceptance evidence here.
 
-- [x] `DONE` Presentation-material update, Chinese display branding, archive asset fix and unified local website handoff ([plan](plans/2026-10-18-presentation-materials.md)).
+- [x] `DONE` Presentation-material update and named project/replay publication, with bilingual GitHub entry synchronization ([plan](plans/2026-10-18-presentation-materials.md)).

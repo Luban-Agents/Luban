@@ -1,7 +1,7 @@
 # Presentation materials and local delivery
 
 Date: 2026-10-18
-Status: DONE (documentation verified; Netlify deployment deferred)
+Status: DONE (new-account project and replay publication verified)
 
 ## Scope
 
@@ -21,3 +21,9 @@ The supplied 2026-10-18 architecture SVG replaces the README diagram unchanged. 
 ## CI and Chinese presentation follow-up
 
 The user requested checking the previous run, fixing failures, removing the architecture caption and using 六通智能体 in Simplified Chinese presentation. Run 39089550198 passed source tests and documentation build, then failed archive documentation checks because MANIFEST.in excluded PNG files. This follow-up includes PNG documentation assets, checks the required assets in the archive, localizes Chinese display branding and keeps package names/commands/URLs unchanged. Netlify remains deferred.
+
+## New-account publication (2026-10-20)
+
+The user authorized publication using the new Netlify account and confirmed the advisor already has access to the existing private GitHub repository. Publish the current static project and replay site, update bilingual entry links and verify deployment and CI. The repository visibility remains private.
+
+Publication completed with named project and demo domains. Anonymous HTTP checks passed for 49 resources, four legacy routes and video byte-range streaming. The bilingual README and console/project guides now use the published addresses.

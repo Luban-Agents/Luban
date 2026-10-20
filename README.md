@@ -10,7 +10,7 @@
     <img src="docs/assets/luban-pillars.svg" width="560" alt="Plan · Execute · Verify · Memory">
   </picture></p>
   <!-- project-links:start -->
-  <p><a href="https://6acd9e44e89af57fccde9564--friendly-hotteok-b5a87f.netlify.app/">Project</a> · <a href="docs/project-page.md#arxiv">arXiv (Coming soon)</a> · <a href="https://6acd9e44e89af57fccde9564--friendly-hotteok-b5a87f.netlify.app/demos.html">Demo</a> · <a href="docs/README.md">Docs</a> · <a href="https://6acda06095d8304cc3c58976--luban-consoles-20261008.netlify.app/offline/">Offline Replay</a></p>
+  <p><a href="https://liutong-luban-project.netlify.app/">Project</a> · <a href="docs/project-page.md#arxiv">arXiv (Coming soon)</a> · <a href="https://liutong-luban-project.netlify.app/demos.html">Demo</a> · <a href="docs/README.md">Docs</a> · <a href="https://liutong-luban-demo.netlify.app/">Offline Replay</a></p>
   <!-- project-links:end -->
 </div>
 
@@ -25,7 +25,7 @@ Luban is an embodied-agent framework that combines self-evolution, memory and sp
 
 The spatial module turns RGB-D, camera poses and existing point clouds into queryable scene entities. The supplied single-scene record contains 16 entities, with 3.368 s SpatialLM inference. An interface replay experiment reports 0.1496 ms mean recall latency and unchanged global-scene output after 1,000 resets. See [spatial report provenance and settings](docs/spatial-memory-report.md).
 
-The 2026-10-18 local website adds traffic robot, tunnel quadruped and highway drone materials as partner application scenarios. Physical-robot integration support remains defined by this repository's hardware and environment guides. The updated website and offline console share one local delivery folder, awaiting publication with a new account. Project and Offline Replay links at the top still point to the 2026-10-13 previews.
+The 2026-10-18 local website adds traffic robot, tunnel quadruped and highway drone materials as partner application scenarios. Physical-robot integration support remains defined by this repository's hardware and environment guides. The updated project website and dedicated replay website were published on 2026-10-20. Use the Project and Offline Replay links above for the current version.
 
 ## Roadmap
 
@@ -82,7 +82,7 @@ and [hardware/resource installation](docs/installation.md).
 
 ## Offline replay console
 
-[Open the offline replay console](https://6acda06095d8304cc3c58976--luban-consoles-20261008.netlify.app/offline/) to inspect eight recorded episodes with three camera views, task graphs and events. The current online version is the 2026-10-13 preview and requires no model API configuration or backend connection. For real execution, use the [episode guide](docs/episodes.md). See [console entry details](docs/reader-console.md).
+[Open the offline replay console](https://liutong-luban-demo.netlify.app/) to inspect eight recorded episodes with three camera views, task graphs and events. The current online version was published on 2026-10-20 and requires no model API configuration or backend connection. For real execution, use the [episode guide](docs/episodes.md). See [console entry details](docs/reader-console.md).
 
 ## Capabilities
 
