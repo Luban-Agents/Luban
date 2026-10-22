@@ -22,9 +22,15 @@ Every guide has a complete English and Simplified Chinese edition. Use the langu
 | Source provenance | [English](provenance.md) | [源码来源](provenance.zh-CN.md) |
 | Project / arXiv / Demo | [English](project-page.md) | [项目与演示入口](project-page.zh-CN.md) |
 | Reported results | [English](reported-results.md) | [汇报结果](reported-results.zh-CN.md) |
-| Offline replay console | [English](reader-console.md) | [离线案例演示台](reader-console.zh-CN.md) |
+| Demonstration console | [English](reader-console.md) | [演示控制台](reader-console.zh-CN.md) |
 | Spatial memory report | [English](spatial-memory-report.md) | [空间记忆报告](spatial-memory-report.zh-CN.md) |
 | Presentation references | [English](project-page-references.md) | [展示参考](project-page-references.zh-CN.md) |
 
+| Demonstration gallery | [English](demo-gallery.md) | [演示资料](demo-gallery.zh-CN.md) |
+
 Start with the CPU mock example, then prepare resources for a real GPU episode.
 [Project README](../README.md) · [中文首页](../README.zh-CN.md)
+
+[Atomic skills and examples](atomic-skills.md)
+
+[RoboSynChallenge guide](robosynchallenge.md)

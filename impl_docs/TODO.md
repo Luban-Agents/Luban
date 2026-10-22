@@ -22,3 +22,7 @@ requires the owner's separate authorization and fixture/attribution review in
 THIRD_PARTY_NOTICES.md. Historical evaluations are not acceptance evidence here.
 
 - [x] `DONE` Presentation-material update and named project/replay publication, with bilingual GitHub entry synchronization ([plan](plans/2026-10-18-presentation-materials.md)).
+
+- [x] `DONE` 本地GitHub首页补充演示与汇报结果，未推送或部署（[记录](changes/2026-10-21-github-showcase-local.md)）。
+
+- [x] DONE 2026-10-23: Bilingual presentation and RoboSyn adapter passed Tailscale server checks, including 1,012 tests and independent distribution validation ([plan](plans/2026-10-23-github-framework-refresh.md)).

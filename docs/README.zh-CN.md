@@ -22,9 +22,16 @@
 | 源码来源 | [阅读](provenance.zh-CN.md) | [English](provenance.md) |
 | 项目与演示入口 | [阅读](project-page.zh-CN.md) | [English](project-page.md) |
 | 汇报结果 | [阅读](reported-results.zh-CN.md) | [English](reported-results.md) |
-| 离线案例演示台 | [阅读](reader-console.zh-CN.md) | [English](reader-console.md) |
+| 演示控制台 | [阅读](reader-console.zh-CN.md) | [English](reader-console.md) |
 | 空间记忆报告 | [阅读](spatial-memory-report.zh-CN.md) | [English](spatial-memory-report.md) |
 | 展示参考 | [阅读](project-page-references.zh-CN.md) | [English](project-page-references.md) |
 
+| 演示资料 | [阅读](demo-gallery.zh-CN.md) | [English](demo-gallery.md) |
+
 先运行 CPU mock 示例，再准备真实 GPU 回合需要的资源。
 [中文首页](../README.zh-CN.md) · [English overview](../README.md)
+
+
+[原子技能与示例](atomic-skills.zh-CN.md)
+
+[RoboSynChallenge 运行指南](robosynchallenge.zh-CN.md)

@@ -27,3 +27,5 @@ The user requested checking the previous run, fixing failures, removing the arch
 The user authorized publication using the new Netlify account and confirmed the advisor already has access to the existing private GitHub repository. Publish the current static project and replay site, update bilingual entry links and verify deployment and CI. The repository visibility remains private.
 
 Publication completed with named project and demo domains. Anonymous HTTP checks passed for 49 resources, four legacy routes and video byte-range streaming. The bilingual README and console/project guides now use the published addresses.
+
+2026-10-21 本地后续更新：补充六组演示、自进化节点对比及科技报告结果，不推送或发布。

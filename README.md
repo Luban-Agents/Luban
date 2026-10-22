@@ -4,106 +4,117 @@
     <img src="docs/assets/luban-wordmark.svg" width="540" alt="Luban — embodied agents, closed loop">
   </picture>
   <p><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a></p>
-  <p><strong>Composable embodied agents, with observable closed-loop execution.<br>可组合的具身智能体框架，提供可观测的闭环执行。</strong></p>
+  <p><strong>An embodied-agent framework across tasks, environments and robot embodiments</strong></p>
   <p><picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/luban-pillars-dark.svg">
     <img src="docs/assets/luban-pillars.svg" width="560" alt="Plan · Execute · Verify · Memory">
   </picture></p>
   <!-- project-links:start -->
-  <p><a href="https://liutong-luban-project.netlify.app/">Project</a> · <a href="docs/project-page.md#arxiv">arXiv (Coming soon)</a> · <a href="https://liutong-luban-project.netlify.app/demos.html">Demo</a> · <a href="docs/README.md">Docs</a> · <a href="https://liutong-luban-demo.netlify.app/">Offline Replay</a></p>
+  <p><a href="https://liutong-luban-project.netlify.app/">Project</a> · <a href="docs/project-page.md#arxiv">arXiv</a> · <a href="docs/demo-gallery.md">Demos</a> · <a href="https://liutong-luban-project.netlify.app/offline/">Console</a> · <a href="docs/README.md">Docs</a></p>
   <!-- project-links:end -->
 </div>
 
 ## Abstract
 
-Luban is an embodied-agent framework that combines self-evolution, memory and spatial reconstruction. Typed atomic skills serve as its units of capability: task-graph planning decomposes language goals, an independent verifier tracks each subtask, and stalls or failures trigger retries, node recovery or replanning. Tiered memory retains recent observations and key events; reflective memory summarizes task experience; spatial memory organizes scene entities and relations; knowledge capsules store retrievable procedural knowledge; and self-evolution turns execution records into evaluated, reusable experience for later planning. Current progress: on LIBERO (four suites, 40 tasks, 2,000 episodes), the reported results are 96.7% for Without Agent and 98.9% for Agent (see [metric definitions](docs/reported-results.md)); on RoboCasa365, self-evolution lifts composite seen success from 65.0% to 68.6% and atomic seen success from 82.1% to 85.5%; validation also covers RoboTwin 2.0 bimanual collaboration, an Isaac Sim chemistry demo, Franka FR3 / MR1000 real-robot manipulation, and Go2 / LIMO navigation.
+Luban connects planning, atomic-skill execution, independent verification, memory and experience updates through a task graph. Instructions, multiview observations and available skills define each node's goal, dependencies and completion criteria. Policies produce actions, and a verifier checks subsequent observations and environment feedback. Retries, replanning within a node and selective branch revision preserve progress after local failures. Multiscale memory retains observations, spatial relations and completed-node facts. Experience is evaluated through paired trials and retrieved by task, skill and embodiment conditions, supporting kitchen, tabletop, dual-arm, laboratory and navigation tasks.
 
-[![Luban complete framework](docs/assets/luban-framework.svg)](docs/assets/luban-framework.svg)
+## Main capabilities
 
-
-## Spatial memory and application materials
-
-The spatial module turns RGB-D, camera poses and existing point clouds into queryable scene entities. The supplied single-scene record contains 16 entities, with 3.368 s SpatialLM inference. An interface replay experiment reports 0.1496 ms mean recall latency and unchanged global-scene output after 1,000 resets. See [spatial report provenance and settings](docs/spatial-memory-report.md).
-
-The 2026-10-18 local website adds traffic robot, tunnel quadruped and highway drone materials as partner application scenarios. Physical-robot integration support remains defined by this repository's hardware and environment guides. The updated project website and dedicated replay website were published on 2026-10-20. Use the Project and Offline Replay links above for the current version.
-
-## Roadmap
-
-- [ ] Open-source the Franka FR3 / MR1000 and Go2 / LIMO real-robot workspaces
-- [ ] Share a curated set of knowledge capsules and evolved experience records
-- [ ] Generalize bimanual and multi-agent collaboration tasks
-
-## Leaderboard · Reported results
-
-Results reproduced from the project presentation. See [protocol and provenance](docs/reported-results.md).
-
-**RoboCasa365 · XR-1** — task success rate
-
-| Setting | Composite seen | Atomic seen |
-| --- | ---: | ---: |
-| XR-1 baseline | 57.1% | 80.2% |
-| Luban without self-evolution | 65.0% | 82.1% |
-| **Luban with self-evolution** | **68.6%** | **85.5%** |
-
-**LIBERO · OpenVLA-OFT** — 40 tasks, 2,000 episodes
-
-| Suite | Without Agent | Agent |
-| --- | ---: | ---: |
-| LIBERO Goal | 98.4% | 99.4% |
-| LIBERO Spatial | 97.6% | 99.4% |
-| LIBERO Object | 97.4% | 99.2% |
-| LIBERO Long (libero_10) | 93.4% | 97.6% |
-| **Overall** | **96.7%** | **98.9%** |
-
-The LIBERO figures are computed over the original episode IDs with different
-execution budgets; see [metric definitions](docs/reported-results.md).
-
-**RoboTwin 2.0 and RoboSynChallenge**
-
-RoboTwin 2.0 reports 3,079 successful episodes out of 5,000 (61.58%). RoboSynChallenge reports 412 out of 1,000 (41.2%). They use separate bimanual and laboratory-manipulation settings. See [protocols and sources](docs/reported-results.md).
-
-These are historical project report results;
-this package's execution example is documented in the [episode guide](docs/episodes.md).
-
-## Hardware
-
-| Device / embodiment | Support in this repository |
+| Capability | Role |
 | --- | --- |
-| **CPU host** | Installation, offline mock example, configuration and client logic; tested on Ubuntu 22.04 / Python 3.11. |
-| **NVIDIA CUDA GPU** | XR-1 inference and RoboCasa EGL rendering; exercised on one RTX 4090 48 GB. Eight GPUs are not required; minimum VRAM has not been established. |
-| **PandaOmron (simulation)** | RoboCasa365 observations and 12-dimensional mobile-manipulator actions, with a real-policy episode configuration. |
-| **Other simulated embodiments** | LIBERO, RoboTwin, EB-ALFRED and Chemistry adapters; embodiment, SDK and resources depend on the selected environment. |
-| **Physical robots** | An extensible `Environment` interface and injected ROS2 transport contracts; no specific physical robot deployment has been accepted in this repository. |
+| Agent assembly | Compose Planner, Policy, Verifier and Memory for the robot, sensors, environment and available skills. |
+| Task graphs and node planning | Generate dependencies and completion criteria, then select node instructions from current observations and memory. |
+| Atomic-skill calls | Organize reusable operations through parameters, capability requirements, preconditions, budgets and execution feedback. |
+| Verification and recovery | Check post-action conditions and recover through retries, node replanning or revision of the blocked branch. |
+| Node and spatial memory | Preserve verified progress and expose entities, locations and spatial relations to subsequent planning. |
+| Experience evolution | Extract candidates, validate them with paired trials, retrieve applicable experience and update it from new feedback. |
+| Multi-environment evaluation | Connect RoboCasa365, RoboTwin, LIBERO, RoboSynChallenge and Chemistry environment and policy interfaces. |
 
-The Franka FR3 / MR1000 and Go2 / LIMO platforms mentioned in the project abstract
-belong to separate robot/navigation workspaces in the broader project. Those
-workspaces are not distributed here. See [environment/robot interfaces](docs/environments.md)
-and [hardware/resource installation](docs/installation.md).
+## Atomic skills: 64 capabilities in 9 domains
 
-## Offline replay console
+Atomic skills are the basic units used to organize actions. Each skill specifies its operation, inputs, stopping conditions and failure feedback. The planner composes these units, while the verifier checks the resulting state. The same task structure can select different policies or controllers according to the robot's capabilities.
 
-[Open the offline replay console](https://liutong-luban-demo.netlify.app/) to inspect eight recorded episodes with three camera views, task graphs and events. The current online version was published on 2026-10-20 and requires no model API configuration or backend connection. For real execution, use the [episode guide](docs/episodes.md). See [console entry details](docs/reader-console.md).
+| Prefix | Domain | Count |
+| --- | --- | --- |
+| P | Perception | 12 |
+| M | Motion | 11 |
+| G | Grasping and grippers | 8 |
+| I | Object interaction | 9 |
+| A | Articulated objects | 6 |
+| T | Tool use | 2 |
+| N | Navigation | 6 |
+| F | Flight | 8 |
+| U | Gimbals and payloads | 2 |
+<table>
+<tr><td width="25%"><img src="docs/assets/skills/M05.png" width="200" alt="M05 Arm joint motion"><br><strong>M05 Arm joint motion</strong></td><td width="25%"><img src="docs/assets/skills/G03.png" width="200" alt="G03 Force-controlled grasp"><br><strong>G03 Force-controlled grasp</strong></td><td width="25%"><img src="docs/assets/skills/M08.png" width="200" alt="M08 Straight base motion"><br><strong>M08 Straight base motion</strong></td><td width="25%"><img src="docs/assets/skills/P01.png" width="200" alt="P01 Object detection"><br><strong>P01 Object detection</strong></td></tr>
+</table>
 
-## Capabilities
+The examples cover arm motion, force-controlled grasping, base motion and object detection. [Explore all eight examples and the engineering skill list](docs/atomic-skills.md).
 
-| Capability | How it works |
-| --- | --- |
-| **Closed-loop execution** | Compose planners, policies, environments, verifiers and memory; choose direct execution or a task-graph pipeline |
-| **GPU simulation and policy** | Connect RoboCasa365 to an independent XR-1 inference service; start with the bounded `CloseBlenderLid` example |
-| **Model and policy clients** | OpenAI-compatible planning; XR-1/RLDX over ZeroMQ, OpenPI over WebSocket, Chemistry over gRPC |
-| **Task graphs and memory** | Task decomposition, atomic-skill routing, experience records and evolution gates |
-| **Observable runs** | Results, explicit termination reasons, step traces, optional video and a local Dashboard |
-| **Low-cost quickstart** | A CPU mock counter checks installation and configuration without a model, GPU or API |
+## Demos across tasks, environments and embodiments
 
-Additional environment adapters include LIBERO, RoboTwin, EB-ALFRED and Chemistry.
-Prepare external SDKs, models and assets for the environment you select. See
-[environment integration](docs/environments.md) for interfaces and execution scope.
+Click a preview to watch the full recording. [More physical and simulated demonstrations](docs/demo-gallery.md).
 
-Synchronous runtimes enforce steps, chunks, retries and timeouts with explicit
-termination reasons. Pipelines own control flow; policies produce action payloads;
-environments execute them; verifiers interpret feedback. Memory records facts and
-events. [Architecture](impl_docs/architecture/overview.md) describes module boundaries.
-Adapter presence and historical catalog evidence do not establish live task quality.
+<table>
+<tr><td width="50%" valign="top"><strong>M20 indoor navigation</strong><br><br><a href="docs/assets/demos/m20-indoor-en.mp4"><img src="docs/assets/demos/m20-indoor.gif" width="400" alt="M20 indoor navigation"></a><br>Physical robot trajectory replay with exploration, memory and goal arrival.<br><a href="docs/assets/demos/m20-indoor-en.mp4">Watch full video</a></td><td width="50%" valign="top"><strong>M20 outdoor navigation</strong><br><br><a href="docs/assets/demos/m20-outdoor-en.mp4"><img src="docs/assets/demos/m20-outdoor.gif" width="400" alt="M20 outdoor navigation"></a><br>Physical robot trajectory replay with path following and scene observations.<br><a href="docs/assets/demos/m20-outdoor-en.mp4">Watch full video</a></td></tr>
+<tr><td width="50%" valign="top"><strong>RoboTwin dual-arm handover</strong><br><br><a href="docs/assets/demos/robotwin_handover_mic.mp4"><img src="docs/assets/demos/robotwin_handover_mic.gif" width="400" alt="RoboTwin dual-arm handover"></a><br>Dual-arm simulation: establish the receiving grasp before release.<br><a href="docs/assets/demos/robotwin_handover_mic.mp4">Watch full video</a></td><td width="50%" valign="top"><strong>Chemistry titration simulation</strong><br><br><a href="docs/assets/demos/chemistry-titration.mp4"><img src="docs/assets/demos/chemistry-titration.gif" width="400" alt="Chemistry titration simulation"></a><br>Scripted Isaac Sim workflow: pick, pour, inspect color and return.<br><a href="docs/assets/demos/chemistry-titration.mp4">Watch full video</a></td></tr>
+</table>
+
+## Node-level experience reuse
+
+In a paired StirVegetables example with the same task, seed and XR-1 policy, the control episode exhausted 6,000 environment steps without completion, while the experience condition completed in 1,018 steps. Retrieved experience entered the planner context for placing broccoli in the pot. The failed clip plays at 3× speed and the successful clip at its original speed.
+
+[![Node experience comparison](docs/assets/demos/self-evolution-comparison.gif)](docs/assets/demos/self-evolution-comparison.mp4)
+
+## Leaderboard
+
+Success rates are grouped by benchmark and test setting. RoboTwin covers 50 tasks and 5,000 episodes. LIBERO covers four suites and 2,000 original episode IDs. See the [evaluation definitions](docs/reported-results.md) for the complete protocol.
+
+### RoboCasa365
+
+| Method | Atomic seen (%) | Composed seen (%) | Composed unseen (%) |
+| --- | --- | --- | --- |
+| DP | 15.7 | 0.2 | 1.3 |
+| π0 | 34.6 | 6.1 | 1.1 |
+| π0.5 | 39.6 | 7.1 | 1.2 |
+| GR00T-N1.6 | 51.1 | 9.4 | 1.7 |
+| XR-1 | 80.2 | 57.1 | 32.1 |
+| Luban / XR-1 (w/o evolution) | 82.1 | 65.0 | — |
+| Luban / XR-1 | 85.5 | 68.6 | — |
+
+### RoboTwin 2.0
+
+| Method | Training | Clean (%) | Random (%) |
+| --- | --- | --- | --- |
+| π0.5 | Multi-task | 70.70 | 46.00 |
+| Luban / Qwen + π0.5 | Multi-task | 61.58 | — |
+| DP3 | Single-task | 55.24 | 4.96 |
+| π0 | Single-task | 46.42 | 16.34 |
+| RDT-1B | Single-task | 34.50 | 13.72 |
+| ACT | Single-task | 29.74 | 1.74 |
+| DP | Single-task | 28.04 | 0.64 |
+
+### LIBERO
+
+| Method | Spatial (%) | Object (%) | Goal (%) | LIBERO-10 (%) | Mean (%) |
+| --- | --- | --- | --- | --- | --- |
+| DP | 78.3 | 92.5 | 68.3 | 50.5 | 72.4 |
+| OpenVLA | 84.7 | 88.4 | 79.2 | 53.7 | 76.5 |
+| π0 | 96.8 | 98.8 | 95.8 | 85.2 | 94.2 |
+| OpenVLA-OFT (without Agent) | 97.6 | 97.4 | 98.4 | 93.4 | 96.7 |
+| Luban / OpenVLA-OFT | 99.4 | 99.2 | 99.4 | 97.6 | 98.9 |
+
+On RoboCasa365, the full framework exceeds XR-1 by 11.5 percentage points on composed-seen tasks and 5.3 points on atomic-seen tasks. RoboTwin reference rows retain their respective training settings, with Luban completing 3,079/5,000 Clean episodes. The LIBERO OpenVLA-OFT row is the project control condition, and Luban completes 1,978/2,000 original IDs. Execution budgets are detailed in the results guide. “—” means unreported.
+
+RoboSynChallenge completes **412/1,000 episodes (41.2%)** across ten tasks with unfiltered seeds. In **470 valid RoboCasa pairs**, experience retrieval raises success from **59.15% to 62.55%**. Spatial memory parses 16 entities in one scene and supports subsequent queries in approximately **0.15 ms**.
+
+## Project and demonstration console
+
+[Open the project page](https://liutong-luban-project.netlify.app/) and select the demonstration console, or [open the console directly](https://liutong-luban-project.netlify.app/offline/). The console is integrated into the project site and pairs video with task decomposition, atomic-skill calls, verification and recovery. See the [console guide](docs/reader-console.md).
+
+## Architecture
+
+[![Luban architecture](docs/assets/luban-framework.svg)](docs/assets/luban-framework.svg)
 
 ## Install and run on CPU
 

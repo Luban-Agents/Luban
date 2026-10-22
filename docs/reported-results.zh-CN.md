@@ -1,9 +1,42 @@
 [English](reported-results.md) · [简体中文](reported-results.zh-CN.md)
 
-# 汇报结果
+# 实验结果与评测设置
 
-以下来自现有项目展示页与用户提供的报告记录，属于更大研究项目，不是本包新增评测。
-README 的 Leaderboard 为汇报表，不是独立维护的排行榜。
+下表汇总技术报告中的基准结果，公开方法保留对应训练与测试设置。详细样本数、执行预算和指标定义见下文。
+
+### RoboCasa365
+
+| 方法 | Atomic seen (%) | Composed seen (%) | Composed unseen (%) |
+| --- | --- | --- | --- |
+| DP | 15.7 | 0.2 | 1.3 |
+| π0 | 34.6 | 6.1 | 1.1 |
+| π0.5 | 39.6 | 7.1 | 1.2 |
+| GR00T-N1.6 | 51.1 | 9.4 | 1.7 |
+| XR-1 | 80.2 | 57.1 | 32.1 |
+| 六通智能体 / XR-1 （无自进化） | 82.1 | 65.0 | — |
+| 六通智能体 / XR-1 | 85.5 | 68.6 | — |
+
+### RoboTwin 2.0
+
+| 方法 | 训练设置 | Clean (%) | Random (%) |
+| --- | --- | --- | --- |
+| π0.5 | 多任务联合训练 | 70.70 | 46.00 |
+| 六通智能体 / Qwen + π0.5 | 多任务联合训练 | 61.58 | — |
+| DP3 | 单任务微调 | 55.24 | 4.96 |
+| π0 | 单任务微调 | 46.42 | 16.34 |
+| RDT-1B | 单任务微调 | 34.50 | 13.72 |
+| ACT | 单任务微调 | 29.74 | 1.74 |
+| DP | 单任务微调 | 28.04 | 0.64 |
+
+### LIBERO
+
+| 方法 | Spatial (%) | Object (%) | Goal (%) | LIBERO-10 (%) | 平均 (%) |
+| --- | --- | --- | --- | --- | --- |
+| DP | 78.3 | 92.5 | 68.3 | 50.5 | 72.4 |
+| OpenVLA | 84.7 | 88.4 | 79.2 | 53.7 | 76.5 |
+| π0 | 96.8 | 98.8 | 95.8 | 85.2 | 94.2 |
+| OpenVLA-OFT (without Agent) | 97.6 | 97.4 | 98.4 | 93.4 | 96.7 |
+| 六通智能体 / OpenVLA-OFT | 99.4 | 99.2 | 99.4 | 97.6 | 98.9 |
 
 ## RoboCasa365 · XR-1
 
@@ -62,3 +95,13 @@ Agent 为 1,978 / 2,000 = 98.9%，基于原报告的 2,066 次执行。
 RoboSynChallenge 使用 random 设置，每个任务 seeds 0–99，10 个任务共 1,000 回合，412 次成功，成功率 41.2%。采用 Qwen3.5-9B 视觉规划与验证、公开的任务专用 ACT checkpoint，来源为 [2026-10-12 分支结果](https://github.com/choucaicai/OmniRoboAgent/blob/c9901442c396741fc3d30b73d7e6f058af09ca08/docs/robosynchallenge-results.md)。该基准与原 Isaac Sim 固定滴定演示分别记录。
 
 两组完整逐任务值保留在展示页 assets/evidence/ 的 robotwin-results-20261009.json 与 robosynchallenge-results-20261012.json。以上属于既有报告，未在本仓库重新执行。空间模块的场景记录与接口计时见[空间记忆报告](spatial-memory-report.zh-CN.md)。
+
+## 科技报告补充结果
+
+![真机导航的连续性与效率](assets/navigation-results-zh.svg)
+
+Uniubi 机器狗每种设置各测试 40 回合。流式执行使平均等待时间从 7.32 s 降至 1.63 s，停顿次数从 6.75 次降至 0.80 次，回合时长从 41.98 s 降至 36.71 s。End@2m 为 15/40 与 16/40，现有结果未显示统计显著的终点精度提升。
+
+![空间重建与持久记忆](assets/spatial-memory-flow-zh.svg)
+
+全局空间场景在 1,000 次 reset 后保持相同内容，后端调用累计仍为 1 次，供 Planner 读取的空间上下文为 2,009 B。recall 计时衡量已解析结果的读取，模型推理耗时另计。数据来源见[科技报告结果记录](assets/evidence/technical-report-results-20261021.json)。

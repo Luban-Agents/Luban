@@ -91,3 +91,7 @@ alias is advertised. Required upstream/source attribution remains accurate.
 User guides have complete English/Chinese pairs, linked from docs/README.md and
 docs/README.zh-CN.md. The documentation check validates counterparts and identical
 executable code blocks. This does not change module ownership or dependency direction.
+
+## RoboSynChallenge integration
+
+The optional RoboSynChallenge environment adapter executes native actions and exposes authoritative task success. Its ACT/DP skill backend generates actions without importing simulator SDKs into core. The evaluator owns explicit seed accounting, result persistence and resume checks. Matrix orchestration belongs under evals, outside Runtime and Agent Core. SDK and policy imports are deferred until use. Git provenance is recorded when available and remains null for source archives or installed packages without checkout metadata.

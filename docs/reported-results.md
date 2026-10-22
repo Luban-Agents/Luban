@@ -1,11 +1,42 @@
 [English](reported-results.md) · [简体中文](reported-results.zh-CN.md)
 
-# Reported results / 汇报结果
+# Evaluation results and settings
 
-These figures reproduce the existing project presentation and its
-user-supplied report records. They describe the broader research project rather
-than a newly run evaluation of the independent Luban package. The README's
-Leaderboard is a report table, not an independently maintained benchmark ranking.
+The tables summarize the technical report. Public methods retain their training and test settings. Sample counts, execution budgets and metric definitions follow below.
+
+### RoboCasa365
+
+| Method | Atomic seen (%) | Composed seen (%) | Composed unseen (%) |
+| --- | --- | --- | --- |
+| DP | 15.7 | 0.2 | 1.3 |
+| π0 | 34.6 | 6.1 | 1.1 |
+| π0.5 | 39.6 | 7.1 | 1.2 |
+| GR00T-N1.6 | 51.1 | 9.4 | 1.7 |
+| XR-1 | 80.2 | 57.1 | 32.1 |
+| Luban / XR-1 (w/o evolution) | 82.1 | 65.0 | — |
+| Luban / XR-1 | 85.5 | 68.6 | — |
+
+### RoboTwin 2.0
+
+| Method | Training | Clean (%) | Random (%) |
+| --- | --- | --- | --- |
+| π0.5 | Multi-task | 70.70 | 46.00 |
+| Luban / Qwen + π0.5 | Multi-task | 61.58 | — |
+| DP3 | Single-task | 55.24 | 4.96 |
+| π0 | Single-task | 46.42 | 16.34 |
+| RDT-1B | Single-task | 34.50 | 13.72 |
+| ACT | Single-task | 29.74 | 1.74 |
+| DP | Single-task | 28.04 | 0.64 |
+
+### LIBERO
+
+| Method | Spatial (%) | Object (%) | Goal (%) | LIBERO-10 (%) | Mean (%) |
+| --- | --- | --- | --- | --- | --- |
+| DP | 78.3 | 92.5 | 68.3 | 50.5 | 72.4 |
+| OpenVLA | 84.7 | 88.4 | 79.2 | 53.7 | 76.5 |
+| π0 | 96.8 | 98.8 | 95.8 | 85.2 | 94.2 |
+| OpenVLA-OFT (without Agent) | 97.6 | 97.4 | 98.4 | 93.4 | 96.7 |
+| Luban / OpenVLA-OFT | 99.4 | 99.2 | 99.4 | 97.6 | 98.9 |
 
 ## RoboCasa365 · XR-1
 
@@ -73,3 +104,13 @@ The 2026-10-13 website includes two supplied reports. RoboTwin 2.0 uses demo_cle
 RoboSynChallenge uses the random setting, seeds 0–99 per task and 10 tasks: 412 successes out of 1,000 episodes (41.2%). It uses Qwen3.5-9B visual planning/verification and public task-specific ACT checkpoints. See the [2026-10-12 branch report](https://github.com/choucaicai/OmniRoboAgent/blob/c9901442c396741fc3d30b73d7e6f058af09ca08/docs/robosynchallenge-results.md). This benchmark is separate from the earlier fixed-titration Isaac Sim demonstration.
 
 Complete task values remain in the website's assets/evidence/robotwin-results-20261009.json and robosynchallenge-results-20261012.json. These existing report results were not rerun in this repository. See the [spatial memory report](spatial-memory-report.md) for scene records and interface timing.
+
+## Additional technical-report results
+
+![Real-robot navigation continuity and efficiency](assets/navigation-results-en.svg)
+
+The Uniubi quadruped has 40 episodes per setting. Streaming execution reduces mean waiting time from 7.32 s to 1.63 s, pauses from 6.75 to 0.80, and episode time from 41.98 s to 36.71 s. End@2m is 15/40 versus 16/40, with no statistically significant endpoint-accuracy improvement reported.
+
+![Spatial reconstruction and persistent memory](assets/spatial-memory-flow-en.svg)
+
+After 1,000 resets, the global-scene content remains unchanged and the total backend-call count remains 1. The spatial context supplied to Planner is 2,009 B. Recall timing measures access to parsed results, separately from model inference. See the [technical-report evidence](assets/evidence/technical-report-results-20261021.json).

@@ -48,3 +48,7 @@ The standalone RobotWorkspace/navigation projects and their CAD/vendor assets
 are excluded from this independent repository. Their historical presence in a
 parent tree does not establish robot support here. Hardware testing and general
 async runtime remain outside the validated scope.
+
+## RoboSynChallenge
+
+`RoboSynChallengeEnvironment`, the local ACT/DP backend and evaluation entry point are available. See the [RoboSynChallenge guide](robosynchallenge.md) for resources, execution and resuming.

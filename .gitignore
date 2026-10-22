@@ -39,3 +39,6 @@ MUJOCO_LOG.TXT
 benchmarks/RoboCasa/
 benchmarks/EmbodiedBench/
 third_party/checkouts/
+
+# Curated documentation recordings.
+!docs/assets/demos/*.mp4

@@ -40,3 +40,7 @@ ROS2 transport 属于 `integrations/ros2/`；Core 不依赖具体 ROS2、模拟�
 
 独立 RobotWorkspace／导航项目及 CAD、厂商资产不随本仓库分发。
 父项目曾包含它们，不代表当前包已支持对应硬件。实体测试与通用异步 Runtime 尚未完成。
+
+## RoboSynChallenge
+
+现已提供 `RoboSynChallengeEnvironment`、本地 ACT/DP 后端与评测入口。准备资源、运行和续跑见[RoboSynChallenge 指南](robosynchallenge.zh-CN.md)。

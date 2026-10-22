@@ -32,3 +32,7 @@ OpenPI's exact archive remains an optional dependency. EmbodiedBench's no-licens
 status was checked against the upstream GitHub license endpoint; its source is not
 copied here and the legacy dependency preset is not advertised as supported.
 See [THIRD_PARTY_NOTICES.md](https://github.com/Luban-Agents/Luban/blob/codex/private-readiness/THIRD_PARTY_NOTICES.md).
+
+## 2026-10-23 additional integration
+
+The RoboSynChallenge adapter, policy backend, evaluator and tests are imported from OmniRoboAgent `79d372155e765337f118c4dc9170afd412257fb4`, adapted to the `luban` namespace and configurable resource paths. SDKs, models and standalone robot workspaces remain external installations.

@@ -24,3 +24,7 @@ catalog 与知识示例、用户／开发文档。知识模板是示例，不是
 OpenPI 使用固定归档可选依赖。EmbodiedBench 的上游许可证接口未建立再分发许可，
 不复制其源码，也不再推荐旧依赖 preset。
 完整条件见[第三方声明](https://github.com/Luban-Agents/Luban/blob/codex/private-readiness/THIRD_PARTY_NOTICES.md)。
+
+## 2026-10-23 补充导入
+
+RoboSynChallenge 适配器、策略后端、评测器与测试来自 OmniRoboAgent `79d372155e765337f118c4dc9170afd412257fb4`，导入时调整为 `luban` 命名空间与可配置资源路径。SDK、模型和独立机器人工作区仍由用户单独安装。
