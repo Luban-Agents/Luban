@@ -10,7 +10,7 @@
     <img src="docs/assets/luban-pillars.svg" width="560" alt="Plan · Execute · Verify · Memory">
   </picture></p>
   <!-- project-links:start -->
-  <p><a href="https://liutong-luban-project.netlify.app/">Project</a> · <a href="docs/project-page.zh-CN.md#arxiv">arXiv</a> · <a href="docs/demo-gallery.zh-CN.md">Demos</a> · <a href="https://liutong-luban-project.netlify.app/offline/">Console</a> · <a href="docs/README.zh-CN.md">Docs</a></p>
+  <p><a href="https://liutong-luban-project.netlify.app/">Project</a> · <a href="docs/project-page.zh-CN.md#arxiv">arXiv</a> · <a href="docs/atomic-skills.zh-CN.md">原子技能</a> · <a href="docs/demo-gallery.zh-CN.md">Demos</a> · <a href="https://liutong-luban-project.netlify.app/offline/">Console</a> · <a href="docs/README.zh-CN.md">Docs</a></p>
   <!-- project-links:end -->
 </div>
 
@@ -32,24 +32,69 @@
 
 ## 原子技能：64 项能力，9 个功能域
 
-原子技能是六通智能体组织动作的基本单元。每项技能描述做什么、需要哪些输入、何时结束以及失败时返回什么反馈，Planner 据此组合步骤，Verifier 根据目标状态检查执行结果。相同任务结构可以按机器人能力选用不同动作策略或控制接口。
+原子技能将感知和动作封装为有明确输入、前置条件、执行预算及完成判据的有限操作。Planner选择技能与参数，执行后由Verifier依据观测和环境状态判断结果，再将输出交给后续步骤。64项技能覆盖9个功能域，可以在满足本体能力和状态前提时组合成连续任务。
 
-| 类别 | 功能域 | 数量 |
-| --- | --- | --- |
-| P | 感知 | 12 |
-| M | 运动控制 | 11 |
-| G | 抓取与夹爪 | 8 |
-| I | 物体操作与交互 | 9 |
-| A | 机构与开关操作 | 6 |
-| T | 工具使用 | 2 |
-| N | 地面导航与定位 | 6 |
-| F | 无人机飞行控制 | 8 |
-| U | 云台与载荷设备 | 2 |
+以下9项各代表一个功能域，点击动图可查看原尺寸。完整图库包含全部64项的名称、用途、调用标识和记录类型。
+
+感知 12 · 运动控制 11 · 抓取与夹爪 8 · 物体交互 9 · 机构与开关 6 · 工具使用 2 · 导航与定位 6 · 飞行控制 8 · 云台与载荷 2
+
 <table>
-<tr><td width="25%"><img src="docs/assets/skills/M05.png" width="200" alt="M05 机械臂关节调节"><br><strong>M05 机械臂关节调节</strong></td><td width="25%"><img src="docs/assets/skills/G03.png" width="200" alt="G03 夹爪力控抓取"><br><strong>G03 夹爪力控抓取</strong></td><td width="25%"><img src="docs/assets/skills/M08.png" width="200" alt="M08 底盘直线移动"><br><strong>M08 底盘直线移动</strong></td><td width="25%"><img src="docs/assets/skills/P01.png" width="200" alt="P01 目标检测"><br><strong>P01 目标检测</strong></td></tr>
+<tr>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/P05.gif"><img src="docs/assets/skills/gifs/P05.gif" width="280" alt="P05 有限时域目标跟踪"></a><br>
+<strong>P05 · 有限时域目标跟踪</strong><br>
+<sub>观测与输出记录</sub>
+</td>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/M01.gif"><img src="docs/assets/skills/gifs/M01.gif" width="280" alt="M01 末端参数化直线移动"></a><br>
+<strong>M01 · 末端参数化直线移动</strong><br>
+<sub>仿真相机实录</sub>
+</td>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/G05.gif"><img src="docs/assets/skills/gifs/G05.gif" width="280" alt="G05 灵巧手参数化抓取闭合"></a><br>
+<strong>G05 · 灵巧手参数化抓取闭合</strong><br>
+<sub>实测轨迹回放</sub>
+</td>
+</tr>
+<tr>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/I10.gif"><img src="docs/assets/skills/gifs/I10.gif" width="280" alt="I10 被持物体直线插入"></a><br>
+<strong>I10 · 被持物体直线插入</strong><br>
+<sub>实测轨迹回放</sub>
+</td>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/A07.gif"><img src="docs/assets/skills/gifs/A07.gif" width="280" alt="A07 机械卡扣状态调节"></a><br>
+<strong>A07 · 机械卡扣状态调节</strong><br>
+<sub>实测轨迹回放</sub>
+</td>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/T04.gif"><img src="docs/assets/skills/gifs/T04.gif" width="280" alt="T04 工具单次擦拭行程"></a><br>
+<strong>T04 · 工具单次擦拭行程</strong><br>
+<sub>实测轨迹回放</sub>
+</td>
+</tr>
+<tr>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/N05.gif"><img src="docs/assets/skills/gifs/N05.gif" width="280" alt="N05 地面有限路径段跟随"></a><br>
+<strong>N05 · 地面有限路径段跟随</strong><br>
+<sub>实测轨迹回放</sub>
+</td>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/F05.gif"><img src="docs/assets/skills/gifs/F05.gif" width="280" alt="F05 三维有限轨迹段跟随"></a><br>
+<strong>F05 · 三维有限轨迹段跟随</strong><br>
+<sub>实测轨迹回放</sub>
+</td>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/U01.gif"><img src="docs/assets/skills/gifs/U01.gif" width="280" alt="U01 观测云台姿态调节"></a><br>
+<strong>U01 · 观测云台姿态调节</strong><br>
+<sub>实测轨迹回放</sub>
+</td>
+</tr>
 </table>
 
-图示覆盖机械臂运动、力控抓取、底盘移动和目标检测。[查看八项示例与完整工程技能清单](docs/atomic-skills.zh-CN.md)。
+动图取自2026-10-27的v2.4演示，分别标注仿真实录、观测输出或实测轨迹回放。五项感知演示的输入约束与后续v2.5评测配置见完整图库。
+
+[浏览全部64项技能与组合示例](docs/atomic-skills.zh-CN.md) · [查看三轮调用评测](docs/reported-results.zh-CN.md#atomic-call-evaluation)
 
 ## 跨任务、跨环境、跨本体演示
 
@@ -69,6 +114,26 @@
 ## Leaderboard · 实验结果
 
 成功率按基准和测试设置分别列示。RoboTwin 覆盖 50 类任务、5,000 回合，LIBERO 覆盖四套件、2,000 个原始回合 ID。完整统计定义见[实验结果说明](docs/reported-results.zh-CN.md)。
+
+### 原子技能与组合调用结果
+
+| 评测对象 | 规模 | 成功 / 调用 | 总通过率 | 最低单项单轮 |
+| --- | --- | ---: | ---: | ---: |
+| 独立原子技能 | 64项 × 50次 × 3轮 | 9,582 / 9,600 | **99.81%** | **96%** |
+| 组合程序 | 25组 × 50次 × 3轮 | 3,749 / 3,750 | **99.97%** | **98%** |
+
+以上为2026-10-28独立评测包v2.5的受控仿真结果，全部单项各轮达到原子技能>90%、组合≥60%的要求，19次失败保留。[逐轮统计、配置与证据](docs/reported-results.zh-CN.md#atomic-call-evaluation)。
+
+### 科技报告补充实验
+
+| 研究内容 | 评价规模 | 报告结果 |
+| --- | --- | --- |
+| RoboTwin规划质量 | 250条计划、785个对齐槽位 | 可解析率99.20%，技能匹配率88.28%，预算MAE 0.222个动作块 |
+| RoboCasa经验检索 | 470对共同有效回合 | 278 → 294次成功，59.15% → 62.55%，净增3.40个百分点 |
+| LIBERO智能体支持 | 每组2,000个原始回合ID | 1,934 → 1,978个完成ID，96.7% → 98.9% |
+| 真机导航流式执行 | 每种设置40回合 | StreamVLN等待7.32 → 1.63秒，NaVIDA等待10.64 → 2.89秒 |
+
+规划指标、经验配对结局、LIBERO执行预算与导航到达成功数见[完整报告结果](docs/reported-results.zh-CN.md#report-details)。这些结果分别衡量计划质量、任务完成和执行效率。
 
 ### RoboCasa365
 

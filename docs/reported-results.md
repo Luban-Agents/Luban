@@ -114,3 +114,78 @@ The Uniubi quadruped has 40 episodes per setting. Streaming execution reduces me
 ![Spatial reconstruction and persistent memory](assets/spatial-memory-flow-en.svg)
 
 After 1,000 resets, the global-scene content remains unchanged and the total backend-call count remains 1. The spatial context supplied to Planner is 2,009 B. Recall timing measures access to parsed results, separately from model inference. See the [technical-report evidence](assets/evidence/technical-report-results-20261021.json).
+
+<a id="atomic-call-evaluation"></a>
+
+## Independent atomic-call and composition evaluation
+
+Three controlled-simulation rounds were completed on 2026-10-28 with the independent evaluator's v2.5 configuration. Each round calls all 64 atomic skills and 25 compositions 50 times, giving 150 trials per item. Atomic trials require actual execution and independent verification; compositions are scored as complete programs. Automatic retries are zero, and historical results are excluded from the denominators.
+
+| Round | Atomic passed / attempted | Lowest atomic rate | Compositions passed / attempted | Lowest composition rate |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 3,194 / 3,200 | 98% | 1,249 / 1,250 | 98% |
+| 2 | 3,197 / 3,200 | 98% | 1,250 / 1,250 | 100% |
+| 3 | 3,191 / 3,200 | 96% | 1,250 / 1,250 | 100% |
+| Total | **9,582 / 9,600 (99.81%)** | **96% minimum per round** | **3,749 / 3,750 (99.97%)** | **98% minimum per round** |
+
+Every atomic skill exceeds 90% in every round; every composition reaches at least 60%. All 9,600 independent atomic invocation IDs are unique. The 18 atomic failures and one composition failure are retained. The tested source is `3fa6814880d95c7dcec71435f00b7f2234cc8265`, using two 48 GB-class GPUs and eight simulation workers. Results apply to the declared controlled inputs and state conditions: P06 covers color and shape, P09 covers cabinet-door opening/closing, and native compositions include repeated executions from fixed initial states.
+
+[Per-item counts and three-round protocol](assets/evidence/atomic-call-results-20261028.json) · [Full external evaluation report](https://github.com/yuliu-ai/atomic-skill-evaluator/blob/main/validation/new-machine-20261028/report.md) · [64-GIF gallery](atomic-skills.md)
+
+<a id="report-details"></a>
+
+## Planning, experience and execution efficiency from the technical report
+
+The following results come from sections 4.2.2, 4.2.3, 4.2.4, 4.3 and 4.4.5 of the supplied technical report. They are existing experiments. Values, sample units and table references are retained in the [report excerpts](assets/evidence/technical-report-excerpts-20261028.json).
+
+### RoboTwin planning quality
+
+| Metric | Evaluation unit | Result |
+| --- | --- | ---: |
+| Parseable structured plans | 248 / 250 plans | 99.20% |
+| Exact subtask-count match | 250 plans | 80.40% |
+| Exact skill match | 785 aligned slots | 88.28% |
+| Instruction / success-condition token-F1 | 785 aligned slots | 81.53% / 81.13% |
+| Exact per-subtask budget match | 785 aligned slots | 79.87% |
+| Exact full budget-sequence match | 250 plans | 74.00% |
+| Per-subtask / total budget MAE | 785 slots / 248 parseable plans | 0.222 / 0.726 action chunks |
+| Full-plan exact match across all fields | 250 plans | 33.60% |
+
+These metrics measure agreement with reference plans. Task completion is evaluated using each environment's native success criterion.
+
+### Paired RoboCasa experience retrieval
+
+Across 470 valid paired episodes, control succeeds in 278 (59.15%) and experience retrieval in 294 (62.55%), a net gain of 16 successes or 3.40 percentage points. The paired outcomes retain both improvements and regressions.
+
+| Control outcome | Experience succeeds | Experience fails | Total |
+| --- | ---: | ---: | ---: |
+| Success | 212 | 66 | 278 |
+| Failure | 82 | 110 | 192 |
+| Total | 294 | 176 | 470 |
+
+A separate recovery comparison starts from the same 172 initially failed episodes: closed-loop retry recovers 76 (44.19%), while experience-injected retry recovers 69 (40.12%). The effect of experience depends on task conditions and intervention stage.
+
+### LIBERO changes by suite
+
+| Suite | Without Agent | Agent | Difference (percentage points) |
+| --- | ---: | ---: | ---: |
+| Goal | 492 / 500 (98.4%) | 497 / 500 (99.4%) | +1.0 |
+| Spatial | 488 / 500 (97.6%) | 497 / 500 (99.4%) | +1.8 |
+| Object | 487 / 500 (97.4%) | 496 / 500 (99.2%) | +1.8 |
+| LIBERO-10 | 467 / 500 (93.4%) | 488 / 500 (97.6%) | +4.2 |
+| Total | 1,934 / 2,000 (96.7%) | 1,978 / 2,000 (98.9%) | +2.2 |
+
+The existing original-episode-ID definition above is retained, including the different execution budgets of 2,000 versus 2,066 executions.
+
+### Physical-robot navigation continuity
+
+The Uniubi quadruped uses 40 episodes per setting, with eight instructions repeated five times. Waiting, pauses and timing follow report Table 12-4; End@2m records endpoint arrival.
+
+| Policy and setting | Mean waiting (s) | Waiting share | Pauses | Episode time (s) | End@2m |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Native StreamVLN | 7.32 | 17.4% | 6.75 | 41.98 | 15 / 40 |
+| StreamVLN + streaming execution | 1.63 | 4.4% | 0.80 | 36.71 | 16 / 40 |
+| Native NaVIDA | 10.64 | 30.5% | 9.25 | 34.90 | 12 / 40 |
+| NaVIDA + streaming execution | 2.89 | 10.3% | 1.20 | 28.06 | 12 / 40 |
+
+Mean waiting decreases by 77.7% for StreamVLN and 72.8% for NaVIDA. Endpoint counts remain visible and are evaluated separately from waiting-time reductions.

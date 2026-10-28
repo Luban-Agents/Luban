@@ -42,7 +42,7 @@
 - [Demo gallery](demo-gallery.md)
 - [演示资料](demo-gallery.zh-CN.md)
 
-- [Atomic skills](atomic-skills.md)
-- [原子技能](atomic-skills.zh-CN.md)
+- [64 atomic skills · GIF gallery](atomic-skills.md)
+- [64项原子技能动图库](atomic-skills.zh-CN.md)
 - [RoboSynChallenge](robosynchallenge.md)
 - [RoboSynChallenge 中文](robosynchallenge.zh-CN.md)

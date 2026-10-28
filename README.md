@@ -10,7 +10,7 @@
     <img src="docs/assets/luban-pillars.svg" width="560" alt="Plan · Execute · Verify · Memory">
   </picture></p>
   <!-- project-links:start -->
-  <p><a href="https://liutong-luban-project.netlify.app/">Project</a> · <a href="docs/project-page.md#arxiv">arXiv</a> · <a href="docs/demo-gallery.md">Demos</a> · <a href="https://liutong-luban-project.netlify.app/offline/">Console</a> · <a href="docs/README.md">Docs</a></p>
+  <p><a href="https://liutong-luban-project.netlify.app/">Project</a> · <a href="docs/project-page.md#arxiv">arXiv</a> · <a href="docs/atomic-skills.md">Skills</a> · <a href="docs/demo-gallery.md">Demos</a> · <a href="https://liutong-luban-project.netlify.app/offline/">Console</a> · <a href="docs/README.md">Docs</a></p>
   <!-- project-links:end -->
 </div>
 
@@ -30,26 +30,71 @@ Luban connects planning, atomic-skill execution, independent verification, memor
 | Experience evolution | Extract candidates, validate them with paired trials, retrieve applicable experience and update it from new feedback. |
 | Multi-environment evaluation | Connect RoboCasa365, RoboTwin, LIBERO, RoboSynChallenge and Chemistry environment and policy interfaces. |
 
-## Atomic skills: 64 capabilities in 9 domains
+## Atomic skills: 64 capabilities across nine domains
 
-Atomic skills are the basic units used to organize actions. Each skill specifies its operation, inputs, stopping conditions and failure feedback. The planner composes these units, while the verifier checks the resulting state. The same task structure can select different policies or controllers according to the robot's capabilities.
+Atomic skills turn sensing and action into bounded operations with explicit inputs, preconditions, budgets and completion criteria. The planner selects a skill and its parameters; the verifier checks observations and environment state before the next step. The 64 skills span nine domains and can be composed when robot capabilities and state preconditions match.
 
-| Prefix | Domain | Count |
-| --- | --- | --- |
-| P | Perception | 12 |
-| M | Motion | 11 |
-| G | Grasping and grippers | 8 |
-| I | Object interaction | 9 |
-| A | Articulated objects | 6 |
-| T | Tool use | 2 |
-| N | Navigation | 6 |
-| F | Flight | 8 |
-| U | Gimbals and payloads | 2 |
+One animated example per domain is shown below. Open a GIF at full size, or explore all 64 skills with names, call identifiers and recording types in the gallery.
+
+Perception 12 · Motion control 11 · Grasping and grippers 8 · Object interaction 9 · Articulated objects 6 · Tool use 2 · Navigation 6 · Flight control 8 · Gimbals and payloads 2
+
 <table>
-<tr><td width="25%"><img src="docs/assets/skills/M05.png" width="200" alt="M05 Arm joint motion"><br><strong>M05 Arm joint motion</strong></td><td width="25%"><img src="docs/assets/skills/G03.png" width="200" alt="G03 Force-controlled grasp"><br><strong>G03 Force-controlled grasp</strong></td><td width="25%"><img src="docs/assets/skills/M08.png" width="200" alt="M08 Straight base motion"><br><strong>M08 Straight base motion</strong></td><td width="25%"><img src="docs/assets/skills/P01.png" width="200" alt="P01 Object detection"><br><strong>P01 Object detection</strong></td></tr>
+<tr>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/P05.gif"><img src="docs/assets/skills/gifs/P05.gif" width="280" alt="P05 Finite-horizon object tracking"></a><br>
+<strong>P05 · Finite-horizon object tracking</strong><br>
+<sub>Recorded input / output</sub>
+</td>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/M01.gif"><img src="docs/assets/skills/gifs/M01.gif" width="280" alt="M01 Linear end-effector motion"></a><br>
+<strong>M01 · Linear end-effector motion</strong><br>
+<sub>Simulator capture</sub>
+</td>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/G05.gif"><img src="docs/assets/skills/gifs/G05.gif" width="280" alt="G05 Parameterized dexterous grasp"></a><br>
+<strong>G05 · Parameterized dexterous grasp</strong><br>
+<sub>Measured trace replay</sub>
+</td>
+</tr>
+<tr>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/I10.gif"><img src="docs/assets/skills/gifs/I10.gif" width="280" alt="I10 Straight held-object insertion"></a><br>
+<strong>I10 · Straight held-object insertion</strong><br>
+<sub>Measured trace replay</sub>
+</td>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/A07.gif"><img src="docs/assets/skills/gifs/A07.gif" width="280" alt="A07 Mechanical latch operation"></a><br>
+<strong>A07 · Mechanical latch operation</strong><br>
+<sub>Measured trace replay</sub>
+</td>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/T04.gif"><img src="docs/assets/skills/gifs/T04.gif" width="280" alt="T04 Single tool-wiping stroke"></a><br>
+<strong>T04 · Single tool-wiping stroke</strong><br>
+<sub>Measured trace replay</sub>
+</td>
+</tr>
+<tr>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/N05.gif"><img src="docs/assets/skills/gifs/N05.gif" width="280" alt="N05 Ground-path segment following"></a><br>
+<strong>N05 · Ground-path segment following</strong><br>
+<sub>Measured trace replay</sub>
+</td>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/F05.gif"><img src="docs/assets/skills/gifs/F05.gif" width="280" alt="F05 3D trajectory-segment following"></a><br>
+<strong>F05 · 3D trajectory-segment following</strong><br>
+<sub>Measured trace replay</sub>
+</td>
+<td width="33%" align="center" valign="top">
+<a href="docs/assets/skills/gifs/U01.gif"><img src="docs/assets/skills/gifs/U01.gif" width="280" alt="U01 Gimbal orientation control"></a><br>
+<strong>U01 · Gimbal orientation control</strong><br>
+<sub>Measured trace replay</sub>
+</td>
+</tr>
 </table>
 
-The examples cover arm motion, force-controlled grasping, base motion and object detection. [Explore all eight examples and the engineering skill list](docs/atomic-skills.md).
+GIFs are the 2026-10-27 v2.4 demonstration snapshot, labeled as simulator capture, recorded input/output or measured trace replay. The gallery explains the five constrained perception demos and the later v2.5 evaluation.
+
+[Explore all 64 skills and composition examples](docs/atomic-skills.md) · [Three-round call evaluation](docs/reported-results.md#atomic-call-evaluation)
 
 ## Demos across tasks, environments and embodiments
 
@@ -69,6 +114,26 @@ In a paired StirVegetables example with the same task, seed and XR-1 policy, the
 ## Leaderboard
 
 Success rates are grouped by benchmark and test setting. RoboTwin covers 50 tasks and 5,000 episodes. LIBERO covers four suites and 2,000 original episode IDs. See the [evaluation definitions](docs/reported-results.md) for the complete protocol.
+
+### Atomic-skill and composition call results
+
+| Evaluation | Scale | Passed / attempted | Overall pass rate | Lowest item in one round |
+| --- | --- | ---: | ---: | ---: |
+| Independent atomic skills | 64 skills × 50 trials × 3 rounds | 9,582 / 9,600 | **99.81%** | **96%** |
+| Composed programs | 25 programs × 50 trials × 3 rounds | 3,749 / 3,750 | **99.97%** | **98%** |
+
+These are controlled-simulation results from the independent evaluator's v2.5 campaign on 2026-10-28. Every item in every round meets the atomic >90% and composition ≥60% thresholds, with all 19 failures retained. [Round-by-round counts, settings and evidence](docs/reported-results.md#atomic-call-evaluation).
+
+### Additional experiments from the technical report
+
+| Research question | Evaluation scale | Reported result |
+| --- | --- | --- |
+| RoboTwin planning quality | 250 plans, 785 aligned slots | 99.20% parseability, 88.28% skill match, 0.222-chunk budget MAE |
+| RoboCasa experience retrieval | 470 valid episode pairs | 278 → 294 successes, 59.15% → 62.55%, +3.40 percentage points |
+| LIBERO agent support | 2,000 original episode IDs per condition | 1,934 → 1,978 completed IDs, 96.7% → 98.9% |
+| Physical-robot streaming execution | 40 episodes per setting | Waiting: StreamVLN 7.32 → 1.63 s; NaVIDA 10.64 → 2.89 s |
+
+See the [full report results](docs/reported-results.md#report-details) for planning metrics, paired outcomes, LIBERO execution budgets and navigation endpoint counts. These experiments evaluate plan quality, task completion and execution efficiency separately.
 
 ### RoboCasa365
 

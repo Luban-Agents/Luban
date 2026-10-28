@@ -38,3 +38,11 @@ coverage. The existing frontend passed its 12-page / 322-link static check.
 Public URLs and the paper identifier are filled in when provided; no hosting is
 performed as part of this work. The existing frontend's broader historical results
 are not copied into the framework's support claims.
+
+## 2026-10-28 atomic-skill gallery and reported results
+
+Status: DONE
+
+Update only the bilingual GitHub presentation and associated documentation. Use nine representative animated previews on the README, publish the complete 64-GIF gallery by domain with names and provenance, and add verified atomic-call results and technical-report experiment tables. Preserve the existing repository visibility, benchmark settings and LIBERO execution-budget explanation. The GIFs are the 2026-10-27 v2.4 demonstration snapshot, distinct from the 2026-10-28 v2.5 evaluation. Validate media decoding, names, links, numerical consistency and rendered layout before publishing.
+
+Validation: all 64 original GIFs decode successfully across 1,631 frames, with bytes unchanged. The homepages each contain nine previews. Counts were recalculated from 9,600 independent atomic trials and 3,750 composition trials. Bilingual links, version labels, source provenance and desktop/mobile previews were checked. No runtime or model configuration changed.

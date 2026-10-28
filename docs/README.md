@@ -31,6 +31,6 @@ Every guide has a complete English and Simplified Chinese edition. Use the langu
 Start with the CPU mock example, then prepare resources for a real GPU episode.
 [Project README](../README.md) · [中文首页](../README.zh-CN.md)
 
-[Atomic skills and examples](atomic-skills.md)
+[64 atomic skills and animated gallery](atomic-skills.md)
 
 [RoboSynChallenge guide](robosynchallenge.md)

@@ -8,7 +8,7 @@
 
 - [ ] `PLANNED` Next stage: asynchronous execution; current version remains unpublished ([plan](plans/2026-10-08-next-stage-async.md)).
 
-- [x] `DONE` Luban presentation and GPU onboarding ([plan](plans/2026-10-08-release-presentation.md)). Compute-resource profiles were expanded on 2026-10-28 ([record](changes/2026-10-28-compute-requirements.md)).
+- [x] `DONE` Luban presentation and GPU onboarding ([plan](plans/2026-10-08-release-presentation.md)). The 64-GIF gallery and report-results expansion is complete ([record](changes/2026-10-28-atomic-gallery-and-results.md)). Compute-resource profiles were expanded on 2026-10-28 ([record](changes/2026-10-28-compute-requirements.md)).
 
 - [x] `DONE` New-machine readiness and private project page — Luban bilingual presentation, full CPU/cloud verification, new Private organization repository and active Read access completed ([plan](plans/2026-10-08-new-machine-readiness.md)).
 
