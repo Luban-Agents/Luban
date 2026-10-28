@@ -116,6 +116,12 @@ RoboSynChallenge completes **412/1,000 episodes (41.2%)** across ten tasks with 
 
 [![Luban architecture](docs/assets/luban-framework.svg)](docs/assets/luban-framework.svg)
 
+## Compute requirements
+
+The CPU quickstart and remote-model clients can run without a local GPU. Simulation and local model serving have their own resource budgets, described in the [compute and storage guide](docs/installation.md#compute-and-storage-requirements).
+
+The separate [complete atomic-skill evaluator](https://github.com/yuliu-ai/atomic-skill-evaluator) currently uses two 48 GB-class NVIDIA GPUs, each with at least 40,000 MiB free, Linux x86_64, glibc >=2.35 and driver >=580. Initial installation needs 120 GiB free; the default three-round run checks another approximately 226 GB of output capacity after installation, with 350 GB initially free recommended. CPU and system-RAM minimums have not been measured; simulation concurrency defaults to 4 and supports 1 through 8.
+
 ## Install and run on CPU
 
 Prerequisites: Python **3.11**, [uv](https://docs.astral.sh/uv/getting-started/installation/)

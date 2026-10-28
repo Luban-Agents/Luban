@@ -2,6 +2,19 @@
 
 # Installation and resources
 
+## Compute and storage requirements
+
+The framework core, CPU offline examples, catalog inspection and historical-result browsing run with Python 3.11 without a local GPU. When models are called through a remote API, model compute is provided by that service. Account for local simulation and model-serving resources separately.
+
+Simulation and policy resources depend on the selected environment, model and concurrency. The existing RoboCasa/XR-1 single-episode example used one RTX 4090 48 GB for inference and rendering, with approximately 13 GB observed. Its minimum VRAM requirement has not been measured.
+
+The separate [atomic-skill-evaluator](https://github.com/yuliu-ai/atomic-skill-evaluator) package provides the complete local evaluation of 64 atomic skills and 25 compositions. Its current configuration uses two 48 GB-class NVIDIA GPUs. At startup each GPU must have at least 40,000 MiB free, no other CUDA compute process and utilization below 10%. The frozen runtime requires Linux x86_64, glibc >=2.35 and NVIDIA driver >=580; Ubuntu 22.04 has been validated. Three Qwen3-VL-8B instances, SAM3 and a depth model remain resident across the two GPUs. A single 20 GB or 24 GB GPU is outside this complete entry point's supported configuration.
+
+Allow at least 120 GiB free for the initial download cache and runtime installation. After installation, the default three rounds of 50 trials also check for approximately 226 GB of free output space, so 350 GB initially available is recommended. The 191 GiB node tested on 2026-10-28 used a preconfigured compatible environment and a separate lossless archive after each round. That deployment's storage use reflects its archive workflow; the general entry point budgets for retaining all expanded raw outputs.
+
+Simulation concurrency defaults to 4 and accepts 1 through 8; the three-round validation used 8. The entry point does not enforce CPU-core or system-RAM thresholds, and minimum configurations for those resources have not been measured. Size host resources for the selected model services and concurrency.
+
+
 ## Core environment
 
 Supported interpreter: Python >=3.11,<3.12. This preparation validates Ubuntu
