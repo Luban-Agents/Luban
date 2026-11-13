@@ -95,6 +95,44 @@ def test_primitive_mapping_and_fresh_observation(env):
     assert env._stub.Observe.call_count == 2
 
 
+def test_detail_view_uses_current_rgb_and_never_privileged_color(env):
+    image = Image.new("RGB", (8, 8), "white")
+    image.paste((220, 90, 140), (4, 4, 8, 8))
+    buffer = BytesIO()
+    image.save(buffer, format="PNG")
+    env._stub.Observe.return_value.cameras[0].png = buffer.getvalue()
+    env.detail_crop = ChemistryBenchEnvironment(
+        detail_crop=[0.5, 0.5, 1.0, 1.0]
+    ).detail_crop
+    observation = env.reset(TASK_ID)
+    assert observation["images"][0] == observation["head_rgb"] == buffer.getvalue()
+    with Image.open(BytesIO(observation["images"][1])) as detail:
+        assert detail.size == (512, 512)
+        assert detail.getpixel((256, 256)) == (220, 90, 140)
+    set_truth(env, "pink", ["pink"])
+    updated, success = env._observe()
+    assert success is True
+    assert updated["images"] == observation["images"]
+    assert "privileged_json" not in updated and "ph" not in updated
+
+
+@pytest.mark.parametrize(
+    "crop",
+    [
+        [],
+        [0, 0, 1],
+        [-1, 0, 1, 1],
+        [0, 0, 2, 1],
+        [0.5, 0, 0.5, 1],
+        [0, 0, float("nan"), 1],
+        [False, 0, 1, 1],
+    ],
+)
+def test_detail_view_rejects_invalid_bounds(crop):
+    with pytest.raises(ValueError, match="detail_crop"):
+        ChemistryBenchEnvironment(detail_crop=crop)
+
+
 def test_invalid_skill_does_not_reach_worker(env):
     env.reset(TASK_ID)
     result = env.execute({"primitive": "pour", "volume_ml": 100000})

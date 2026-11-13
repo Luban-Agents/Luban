@@ -171,7 +171,7 @@ See the [full report results](docs/reported-results.md#report-details) for plann
 
 On RoboCasa365, the full framework exceeds XR-1 by 11.5 percentage points on composed-seen tasks and 5.3 points on atomic-seen tasks. RoboTwin reference rows retain their respective training settings, with Luban completing 3,079/5,000 Clean episodes. The LIBERO OpenVLA-OFT row is the project control condition, and Luban completes 1,978/2,000 original IDs. Execution budgets are detailed in the results guide. “—” means unreported.
 
-RoboSynChallenge completes **412/1,000 episodes (41.2%)** across ten tasks with unfiltered seeds. In **470 valid RoboCasa pairs**, experience retrieval raises success from **59.15% to 62.55%**. Spatial memory parses 16 entities in one scene and supports subsequent queries in approximately **0.15 ms**.
+The historical parent-project RoboSynChallenge run completed **412/1,000 episodes (41.2%)** across ten tasks with unfiltered seeds. Fresh Luban agent-catalog verification completed **9/30 episodes (30.0%)**, with zero execution/process errors; see the separate [validation record](docs/validation.md) and [model-driven chemistry guide](docs/chemistry.md). In **470 valid RoboCasa pairs**, experience retrieval raises success from **59.15% to 62.55%**. Spatial memory parses 16 entities in one scene and supports subsequent queries in approximately **0.15 ms**.
 
 ## Project and demonstration console
 

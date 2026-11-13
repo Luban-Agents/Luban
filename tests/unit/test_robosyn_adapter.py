@@ -1,5 +1,6 @@
 import json
 from contextlib import nullcontext
+from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import Mock
 
@@ -15,7 +16,7 @@ from luban.backends.skills.robosyn import RoboSynPolicyBackend
 from luban.environments.benchmarks.robosynchallenge import (
     RoboSynChallengeEnvironment,
 )
-from luban.exceptions import BackendError, EnvironmentError
+from luban.exceptions import BackendError, ConfigError, EnvironmentError
 from luban.pipelines import SkillExecutionPipeline
 from luban.runtimes import SyncRuntime
 
@@ -284,6 +285,7 @@ def test_action_chunk_stops_on_authoritative_success(environment):
     result = environment.execute({"actions": np.zeros((5, 14))})
     assert result["task_success"] and result["done"]
     assert result["executed_steps"] == result["environment_steps"] == 3
+    assert result["env_info"]["success"] is True
     assert len(environment.env.actions) == 3
     with pytest.raises(EnvironmentError, match="Reset"):
         environment.execute({"actions": np.zeros((1, 14))})
@@ -294,6 +296,7 @@ def test_timeout_keeps_actual_steps_and_rejects_same_frame_success(environment):
     environment.env.success_frame = 5
     result = environment.execute({"actions": np.zeros((5, 14))})
     assert not result["task_success"] and result["done"]
+    assert result["env_info"]["success"] is False
     assert result["env_feedback"] == "horizon"
     assert environment.episode_metadata()["environment_steps"] == 5
 
@@ -329,6 +332,116 @@ def test_policy_preprocessing_queue_reset_and_strict_action_dimension(environmen
         backend.predict(inputs)
 
 
+@pytest.fixture
+def catalog_backend(environment, tmp_path, monkeypatch):
+    import importlib
+
+    models = {"click_bell": policy(), "water_pouring": policy()}
+    for value, model in zip((0.25, 0.75), models.values(), strict=True):
+        model.select_action.return_value = tensor(np.full((1, 14), value))
+    paths = {skill: tmp_path / skill for skill in models}
+    for path in paths.values():
+        path.mkdir()
+    loader = Mock(side_effect=lambda path, **kwargs: models[Path(path).name])
+    original_import = importlib.import_module
+    monkeypatch.setattr(
+        importlib,
+        "import_module",
+        lambda name, *args: (
+            SimpleNamespace(ACTPolicy=SimpleNamespace(from_pretrained=loader))
+            if name == "lerobot.policies.act.modeling_act"
+            else original_import(name, *args)
+        ),
+    )
+    return RoboSynPolicyBackend(checkpoint_paths=paths, device="cpu"), models, loader
+
+
+def test_planner_catalog_selection_changes_actions_for_the_same_observation(
+    environment, catalog_backend
+):
+    backend, models, loader = catalog_backend
+    observation = environment.reset({"name": "click_bell", "seed": 0})
+    inputs = {"observation": observation, "skill": "click_bell"}
+    first = backend.predict(inputs)
+    assert np.all(first["actions"] == 0.25)
+    assert first["policy_selection"]["selection_mode"] == "planner_catalog"
+    backend.predict(inputs)
+    assert loader.call_count == 1
+    inputs["skill"] = "water_pouring"
+    second = backend.predict(inputs)
+    assert observation["task_name"] == "click_bell"
+    assert np.all(second["actions"] == 0.75)
+    assert second["policy_selection"]["skill"] == "water_pouring"
+    assert second["policy_selection"]["reset_reason"] == "skill_changed"
+    assert loader.call_count == 2
+    assert all(model.reset.call_count == 1 for model in models.values())
+
+
+def test_catalog_retry_resets_queue_but_same_skill_replan_preserves_it(
+    environment, catalog_backend
+):
+    backend, models, _ = catalog_backend
+    inputs = {
+        "observation": environment.reset({"name": "click_bell", "seed": 0}),
+        "skill": "click_bell",
+        "session_id": "first",
+        "execution_id": "execution-1",
+        "attempt_id": "execution-1:attempt:1",
+    }
+    assert (
+        backend.predict(inputs)["policy_selection"]["reset_reason"] == "episode_start"
+    )
+    assert backend.predict(inputs)["policy_selection"]["reset_reason"] is None
+    inputs.update(execution_id="execution-2", attempt_id="execution-2:attempt:1")
+    assert backend.predict(inputs)["policy_selection"]["reset_reason"] is None
+    inputs["attempt_id"] = "execution-2:attempt:2"
+    assert backend.predict(inputs)["policy_selection"]["reset_reason"] == "retry"
+    inputs["session_id"] = "second"
+    assert (
+        backend.predict(inputs)["policy_selection"]["reset_reason"] == "episode_start"
+    )
+    assert models["click_bell"].reset.call_count == 3
+
+
+def test_catalog_healthcheck_is_deferred_and_unknown_skill_cannot_fall_back(
+    environment, catalog_backend
+):
+    backend, _, loader = catalog_backend
+    assert backend.healthcheck()["healthy"] is True
+    loader.assert_not_called()
+    with pytest.raises(BackendError, match="catalog"):
+        backend.predict(
+            {
+                "observation": environment.reset({"name": "click_bell", "seed": 0}),
+                "skill": "unknown",
+            }
+        )
+    loader.assert_not_called()
+
+
+@pytest.mark.parametrize(
+    "kwargs",
+    [
+        {},
+        {"checkpoint_path": "one", "checkpoint_paths": {"click_bell": "two"}},
+        {"checkpoint_paths": {}},
+        {"checkpoint_paths": {"": "two"}},
+        {"checkpoint_paths": {"click_bell": None}},
+    ],
+)
+def test_checkpoint_configuration_is_unambiguous(kwargs):
+    with pytest.raises(ConfigError):
+        RoboSynPolicyBackend(**kwargs)
+
+
+def test_environment_exposes_complete_catalog_without_selecting_policy(environment):
+    environment.available_skills = ["click_bell", "water_pouring"]
+    observation = environment.reset({"name": "click_bell", "seed": 0})
+    assert observation["available_skills"] == ["click_bell", "water_pouring"]
+    observation["available_skills"].clear()
+    assert environment.available_skills == ["click_bell", "water_pouring"]
+
+
 def test_framework_runs_one_native_action_and_verification_per_step(
     environment, tmp_path
 ):
@@ -359,6 +472,39 @@ def test_framework_runs_one_native_action_and_verification_per_step(
     ]
     assert len(steps) == 3
     assert all("verification" in event for event in steps)
+
+
+def test_native_tensor_success_reaches_pipeline_and_runtime(environment, tmp_path):
+    original_factory = environment.environment_factory
+
+    def native_tensor_factory(config, gym_config, action_config):
+        gym, config = original_factory(config, gym_config, action_config)
+        original_info = gym.get_info
+        gym.get_info = lambda: {
+            **original_info(),
+            "success": tensor([gym.frames >= gym.success_frame], dtype=np.bool_),
+        }
+        return gym, config
+
+    environment.environment_factory = native_tensor_factory
+    agent = DefaultAgent(
+        planner=TaskSkillPlanner(),
+        verifier=SubtaskVerifier(),
+        memory=InMemoryMemory(),
+        skill_backend=RoboSynPolicyBackend("test-checkpoint", policy=policy()),
+    )
+    result = SyncRuntime(max_steps=5, output_dir=tmp_path).run(
+        agent,
+        SkillExecutionPipeline(),
+        environment,
+        {"name": "click_bell", "seed": 0},
+        close_resources=False,
+    )
+    assert result["success"] is True
+    assert result["termination_reason"] == "task_success"
+    saved = json.loads(next(tmp_path.glob("*/result.json")).read_text())
+    assert saved["success"] is True
+    assert saved["last_output"]["verification"]["task_success"] is True
 
 
 def test_default_sdk_root_matches_third_party_layout(tmp_path):

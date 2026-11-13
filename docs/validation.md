@@ -158,7 +158,7 @@ single bounded image/JSON compatibility request also passed (858 total tokens).
 Credentials came from a private external environment file into process memory;
 no key or real gateway configuration was written into the candidate.
 
-No live LIBERO/OpenPI policy, RoboTwin, EB-ALFRED, Isaac Sim, SAM3/SpatialLM,
+During the October validation, no live LIBERO/OpenPI policy, RoboTwin, EB-ALFRED, Isaac Sim, SAM3/SpatialLM,
 physical robot, broad task matrix, long durability run or training was executed.
 These remaining live combinations need their own licensed resources and validation.
 One native-task success and two horizon failures are not aggregate performance results.
@@ -214,3 +214,94 @@ service stopped after verification. No shared environment or original source cha
 Independent distribution/resource checks and the final exact-commit GitHub CI are
 recorded with this migration's delivery evidence; historical runs above retain
 their original dates and identities.
+
+## Chemistry and RoboSyn refresh (2026-11-13)
+
+These checks use Luban base `2942a6862437aff372a522be8c805bdfdc9f2104` plus the
+[module validation changes](../impl_docs/changes/2026-11-13-chemistry-robosyn-agent-validation.md).
+Executing source/config hashes are retained with the new runs. They do not reuse
+parent-project rollout results. Related regression: **184 passed, one optional
+OpenPI skip**; Ruff, strict mypy for four changed modules and bilingual Markdown
+checks passed. The optional GPU stack and model weights were reused read-only;
+new framework dependencies were installed in isolated locked Python 3.11 environments.
+
+### Articulated chemistry demo
+
+The fixed titration completed through `LanguageSkillPlanner`, Qwen3.5-9B,
+`LanguageSkillBackend`, `DirectPipeline` and the real Isaac Sim worker. All 14
+planner calls identify the live model and select the actual RPC primitive:
+pick, eleven 5 mL pours, place and record. Native success is true, Runtime ends
+with `task_success`, and invalid actions are zero. Privileged pH/volumes remain
+grading-only. The model uses a full frame plus a fixed RGB beaker crop; robot
+motion remains scripted Lula IK and chemistry remains symbolic.
+
+| Item | Measured result |
+| --- | --- |
+| Completed configured smoke | 1 episode, 14 primitives, native success |
+| Wall-clock episode time | 1,674.57 seconds on the shared host |
+| Continuous video | 1,208 frames, 20 FPS, 60.4 simulation seconds, 1280×832 |
+| Earlier full-frame attempts | invalid-action limit after 18 steps; timeout after 16 steps |
+
+The two development failures remain archived and are not evidence of a 100%
+success rate. This is one fixed-task functional demonstration. Continuous video
+omits model inference pauses; wall time and video length measure different things.
+Initial, lifted, pouring and final pink/returned-bottle frames were inspected.
+
+Session: `2f21298a-7aa7-47b4-832c-702a06dd03f0`, under
+`runs/chemistry-model-20261113/runtime-v3/`. The continuous clip is
+`runs/chemistry-model-20261113/continuous/demo-8b791930b383.mp4`.
+Versioned provenance and earlier config/source snapshots accompany those outputs.
+See the [chemistry reproduction guide](chemistry.md).
+
+### RoboSyn agent evaluation
+
+Ten official tasks were run with `random` setting and explicit unfiltered seeds
+0–2: **9/30 successes (30.0%)**, zero execution exceptions, zero process errors.
+All ten task workers and the matrix exited 0; the summary reports `complete=true`.
+Nineteen unsuccessful episodes reached environment termination; two sample-loading
+episodes ended when the visual verifier's uncertainty budget was exhausted.
+
+| Task | Successes / episodes |
+| --- | ---: |
+| click_bell | 2 / 3 |
+| drawer_open_place | 0 / 3 |
+| handle_basket | 0 / 3 |
+| item_assembly | 1 / 3 |
+| items_handover | 0 / 3 |
+| manipulate_pipette | 2 / 3 |
+| mixer_operating | 0 / 3 |
+| sample_loading | 0 / 3 |
+| table_rearrangement | 3 / 3 |
+| water_pouring | 1 / 3 |
+
+The configured `DefaultAgent` uses Qwen3.5-9B planning/verification, `TieredMemory`,
+`SkillExecutionPipeline` and released task-specific ACT checkpoints. The model sees
+all ten skills and chooses the executed controller. The completed traces contain
+**204 live planner calls, 179 visual verifier calls, 12,426 action chunks and 14
+actual controller switches**. Every recorded action agrees with the planner's
+selected skill, and all Runtime/native success flags agree. ACT itself consumes
+images and joint state, not the subtask's language. No expert actions or training
+were used. This verifies agent-driven task-level dispatch and feedback control;
+it is not evidence that subtask prose conditions ACT movements.
+
+Planner and visual verification intervals are 64 chunks, response caps 1,024 tokens,
+Runtime bounds 10,000 iterations / 1,800 seconds, and native task horizons remain
+active. RoboSyn `8818c82df5fa2522809b8105e7018950dcc9a9a8` and EmbodiChain
+`89c14da8d0221dc4ee2a4a3e0ba1078b16d447bd` were clean. The reused simulation stack
+is Python 3.11.15, Torch 2.7.1, NumPy 1.26.4, DexSim 0.4.3 and LeRobot 0.3.3.
+Four task queues used RTX A6000 GPUs 2/3/4/7; the local Qwen service used GPU 3.
+Source and checkpoint hashes are saved; all 30 episodes share one agent-config hash.
+
+This small functional sample is separate from the historical 412/1000 result and
+the organizer's expert-filtered evaluation. It cannot establish an improvement
+over ACT or any planning/memory contribution without matched baselines and ablations.
+Cross-task controller choices appear in failure traces, so routing accuracy also
+affects this agent-level result. Earlier signal-normalization and response-cap
+preflights remain archived and are excluded from the 30 final episodes.
+
+Outputs: `runs/robosyn-agent-validation-20261113/`; `agent-audit.json` checks the
+model/controller chain, success agreement and artifacts. The small portable
+[evidence summary](assets/validation/chemistry-robosyn-20261113.json) contains the
+results, seeds, source/config/checkpoint hashes and regression counts without local
+installation paths. Large videos and complete traces remain outside version control.
+See the [RoboSyn run guide](robosynchallenge.md).

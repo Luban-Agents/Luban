@@ -40,6 +40,7 @@ class ChemistryBenchEnvironment(Environment):
         timeout_seconds: float = 120,
         load_timeout_seconds: float = 600,
         max_steps: int = 30,
+        detail_crop: list[float] | None = None,
     ) -> None:
         if not address or any(
             not math.isfinite(value) or value <= 0
@@ -56,6 +57,22 @@ class ChemistryBenchEnvironment(Environment):
         self.timeout_seconds = timeout_seconds
         self.load_timeout_seconds = load_timeout_seconds
         self.max_steps = max_steps
+        if detail_crop is not None and (
+            not isinstance(detail_crop, list)
+            or len(detail_crop) != 4
+            or any(
+                isinstance(value, bool)
+                or not isinstance(value, (int, float))
+                or not math.isfinite(value)
+                for value in detail_crop
+            )
+            or not 0 <= detail_crop[0] < detail_crop[2] <= 1
+            or not 0 <= detail_crop[1] < detail_crop[3] <= 1
+        ):
+            raise ValueError(
+                "detail_crop requires normalized [left, top, right, bottom]"
+            )
+        self.detail_crop = list(detail_crop) if detail_crop is not None else None
         self._channel: Any = None
         self._stub: Any = None
         self._pb: Any = None
@@ -78,7 +95,7 @@ class ChemistryBenchEnvironment(Environment):
             )
         except (ImportError, RuntimeError) as error:
             raise EnvironmentError(
-                "Install Chemistry Bench protobuf bindings; see docs/chemistry_bench.md"
+                "Install Chemistry Bench protobuf bindings; see docs/chemistry.md"
             ) from error
         # No transparent action replay, including after a deadline expires.
         self._channel = grpc.insecure_channel(
@@ -163,11 +180,26 @@ class ChemistryBenchEnvironment(Environment):
             ) from None
         # Bytes are encoded by the LLM backend and summarized by the trace serializer.
         # Never forward privileged_json, raw ActionResult details, volumes or pH.
-        return {
+        observation = {
             "head_rgb": bytes(camera.png),
             "available_skills": list(SKILLS),
             "timestamp": message.timestamp,
-        }, success
+        }
+        if self.detail_crop is not None:
+            # A fixed camera ROI helps the VLM inspect the small beaker. It uses
+            # only public RGB pixels, never the privileged chemistry state.
+            left, top, right, bottom = self.detail_crop
+            x0, y0 = int(left * camera.width), int(top * camera.height)
+            x1 = max(x0 + 1, int(right * camera.width))
+            y1 = max(y0 + 1, int(bottom * camera.height))
+            with Image.open(BytesIO(camera.png)) as image:
+                detail = image.crop((x0, y0, x1, y1)).resize(
+                    (512, 512), Image.Resampling.LANCZOS
+                )
+                buffer = BytesIO()
+                detail.save(buffer, format="PNG")
+            observation["images"] = [bytes(camera.png), buffer.getvalue()]
+        return observation, success
 
     def execute(self, action: Any, execute_steps: int | None = None) -> dict[str, Any]:
         if not self._ready or self._closed:

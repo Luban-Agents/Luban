@@ -120,7 +120,7 @@ robosuite 1.5.2、MuJoCo 3.3.1、已获许可资产和 XR-1 RoboCasa365 权重�
 
 独立 GLM 文本／mock 示例通过两次规划请求，单次图像／JSON 兼容请求也通过，共 858 token。
 凭据由外部私密环境文件读入进程内存，没有把真实密钥或网关配置写入仓库。
-未新增真实 LIBERO／OpenPI、RoboTwin、EB-ALFRED、Isaac Sim、SAM3／SpatialLM、实体机器人、
+十月的验证未新增真实 LIBERO／OpenPI、RoboTwin、EB-ALFRED、Isaac Sim、SAM3／SpatialLM、实体机器人、
 广泛任务矩阵、长期运行或训练。一次成功和两个 horizon 失败不是总体性能结果。
 
 ## 私密仓库与来源
@@ -157,3 +157,80 @@ session 为 `18c04c6f-a2f8-41ae-9bfa-3bef5ff93773`，在 `runs/robocasa_simple/`
 
 独立分发包／资源检查和最终精确提交的 GitHub CI 保存在本次迁移交付证据中。
 上方历史运行保留其原日期和身份，不当作新迁移运行。
+
+## 化学与 RoboSyn 模块复验（2026-11-13）
+
+本轮以 Luban `2942a6862437aff372a522be8c805bdfdc9f2104` 为基底，加上
+[模块验证修改](../impl_docs/changes/2026-11-13-chemistry-robosyn-agent-validation.md)。
+新运行保留实际执行源码和配置的哈希，没有复用旧项目 rollout。
+相关回归 **184 passed，1 个可选 OpenPI 测试跳过**；Ruff、四个修改模块的严格 mypy、
+双语文档检查通过。大型 GPU 依赖与模型权重只读复用，新框架依赖在隔离的 Python 3.11
+环境中按锁文件安装。
+
+### 带机械臂运动的化学 Demo
+
+固定滴定任务通过 `LanguageSkillPlanner`、Qwen3.5-9B、`LanguageSkillBackend`、
+`DirectPipeline` 和真实 Isaac Sim worker 完成。14 次规划均记录真实模型身份，并决定
+实际 RPC 原语：抓瓶、11 次 5 mL 加液、归位、记录。原生成功为真，Runtime 以
+`task_success` 结束，无效动作为零。私有 pH 和体积仅用于评分；模型输入为当前全景
+和同帧烧杯 RGB 局部图。机械臂动作仍采用脚本化 Lula IK，化学仍为符号模型。
+
+| 项目 | 实测结果 |
+| --- | --- |
+| 当前配置的完成验证 | 1 回合，14 个原语，原生成功 |
+| 回合壁钟时间 | 共享服务器上 1674.57 秒 |
+| 连续视频 | 1208 帧，20 FPS，60.4 秒仿真时间，1280×832 |
+| 早期仅用全景的尝试 | 18 步触发无效动作上限；16 步超时 |
+
+两个开发阶段失败记录保留，不能据此声称 100% 成功率。这是固定任务的单次功能演示。
+连续视频省略模型推理等待，视频长度与壁钟时间不同。已检查初始、抓取、倾倒和最终
+粉红终点及瓶体归位画面。
+
+session 为 `2f21298a-7aa7-47b4-832c-702a06dd03f0`，目录为
+`runs/chemistry-model-20261113/runtime-v3/`，连续视频为
+`runs/chemistry-model-20261113/continuous/demo-8b791930b383.mp4`。
+对应目录保留各版来源记录与早期配置、源码快照。运行方法见[化学指南](chemistry.zh-CN.md)。
+
+### RoboSyn 智能体评测
+
+十项官方任务使用 `random` 设置和显式未过滤种子 0–2，结果为 **9/30 成功（30.0%）**，
+回合执行异常、进程错误均为零。十个任务进程和矩阵均退出 0，汇总 `complete=true`。
+19 个失败回合由环境终止；另有两个样本加载回合因视觉验证不确定性预算耗尽而结束。
+
+| 任务 | 成功 / 回合 |
+| --- | ---: |
+| click_bell | 2 / 3 |
+| drawer_open_place | 0 / 3 |
+| handle_basket | 0 / 3 |
+| item_assembly | 1 / 3 |
+| items_handover | 0 / 3 |
+| manipulate_pipette | 2 / 3 |
+| mixer_operating | 0 / 3 |
+| sample_loading | 0 / 3 |
+| table_rearrangement | 3 / 3 |
+| water_pouring | 1 / 3 |
+
+配置中的 `DefaultAgent` 使用 Qwen3.5-9B 规划／验证、`TieredMemory`、
+`SkillExecutionPipeline` 和各任务公开 ACT 权重。模型看到全部十种技能，并选择实际
+执行的控制器。完成轨迹中有 **204 次真实规划、179 次视觉验证、12426 个动作块和
+14 次实际控制器切换**。每个动作均与模型选择的技能一致，Runtime 与原生成功信号
+完全一致。ACT 接收图像与关节状态，不接收子任务文字。未使用专家动作或训练。
+这验证了智能体实际进行任务级调度和反馈控制，不能据此声称子任务文字控制 ACT 运动。
+
+规划与视觉检查间隔均为 64 chunks，回复预算 1024 token，Runtime 上限为 10000 次
+迭代／1800 秒，同时保留官方任务原生时限。RoboSyn 固定为
+`8818c82df5fa2522809b8105e7018950dcc9a9a8`，EmbodiChain 固定为
+`89c14da8d0221dc4ee2a4a3e0ba1078b16d447bd`，两者均无本地源码修改。
+复用的仿真栈为 Python 3.11.15、Torch 2.7.1、NumPy 1.26.4、DexSim 0.4.3、LeRobot 0.3.3。
+四个任务队列使用 RTX A6000 的 GPU 2/3/4/7，本机 Qwen 服务使用 GPU 3。
+来源与权重哈希保留，30 回合使用同一 agent config 哈希。
+
+该小样本功能评测与历史 412/1000 成绩、主办方专家可行性过滤评测分别记录。
+没有匹配基线和消融，不能声称优于 ACT 或量化规划／记忆贡献。部分失败轨迹出现了
+跨任务选技，路由准确性也影响此处智能体成绩。此前成功信号与回复预算的预检记录
+保留，不混入最终 30 回合。
+
+输出为 `runs/robosyn-agent-validation-20261113/`，其中 `agent-audit.json` 核对模型／
+控制器链路、成功信号和产物。小体积[证据摘要](assets/validation/chemistry-robosyn-20261113.json)
+保存结果、种子、源码／配置／权重哈希和回归计数，不包含本机安装路径。
+完整视频与轨迹不纳入版本控制。运行方法见[RoboSyn 指南](robosynchallenge.zh-CN.md)。

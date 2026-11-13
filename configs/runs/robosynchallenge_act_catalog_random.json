@@ -1,0 +1,18 @@
+{
+  "policy": "act",
+  "setting": "random",
+  "seeds": [0, 1, 2],
+  "agent_config": "configs/agents/robosynchallenge_act_catalog.yaml",
+  "tasks": [
+    {"name": "click_bell"},
+    {"name": "drawer_open_place"},
+    {"name": "handle_basket"},
+    {"name": "item_assembly"},
+    {"name": "items_handover"},
+    {"name": "manipulate_pipette"},
+    {"name": "mixer_operating"},
+    {"name": "sample_loading"},
+    {"name": "table_rearrangement"},
+    {"name": "water_pouring"}
+  ]
+}

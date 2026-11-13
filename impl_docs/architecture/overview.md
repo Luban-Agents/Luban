@@ -95,3 +95,11 @@ executable code blocks. This does not change module ownership or dependency dire
 ## RoboSynChallenge integration
 
 The optional RoboSynChallenge environment adapter executes native actions and exposes authoritative task success. Its ACT/DP skill backend generates actions without importing simulator SDKs into core. The evaluator owns explicit seed accounting, result persistence and resume checks. Matrix orchestration belongs under evals, outside Runtime and Agent Core. SDK and policy imports are deferred until use. Git provenance is recorded when available and remains null for source archives or installed packages without checkout metadata.
+
+The policy backend supports a fixed checkpoint and an explicit skill-to-checkpoint
+catalog. Catalog mode exposes all configured skills; Planner output selects the
+loaded controller. A retry within the same execution resets queued policy actions;
+ordinary replanning with the same skill preserves them. ACT/DP remains conditioned
+on images and joint state, not the planner's subtask text. Action traces identify the
+selected checkpoint and reset reason. The CLI records catalog hashes and executing
+source hashes; catalog matrices do not need per-task checkpoint arguments.

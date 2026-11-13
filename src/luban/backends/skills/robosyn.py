@@ -12,21 +12,51 @@ class RoboSynPolicyBackend(SkillBackend):
 
     def __init__(
         self,
-        checkpoint_path: str | Path,
+        checkpoint_path: str | Path | None = None,
         policy_name: str = "act",
         device: str = "cuda",
         state_obs_path: str = "robot/qpos",
         image_key_map: dict[str, str] | None = None,
         dp_num_inference_steps: int = 10,
         policy: Any = None,
+        checkpoint_paths: dict[str, str | Path] | None = None,
     ) -> None:
         if policy_name not in {"act", "dp"}:
             raise ConfigError("RoboSynPolicyBackend policy_name must be 'act' or 'dp'")
-        if not str(checkpoint_path) or not state_obs_path:
-            raise ConfigError("checkpoint_path and state_obs_path must be non-empty")
+        if (checkpoint_path is None) == (checkpoint_paths is None):
+            raise ConfigError(
+                "Provide checkpoint_path or checkpoint_paths, exclusively"
+            )
+        if checkpoint_path is not None and not str(checkpoint_path):
+            raise ConfigError("checkpoint_path must be non-empty")
+        if checkpoint_paths is not None and (
+            not isinstance(checkpoint_paths, dict)
+            or not checkpoint_paths
+            or any(
+                not isinstance(skill, str)
+                or not skill.strip()
+                or not isinstance(path, (str, Path))
+                or not str(path)
+                for skill, path in checkpoint_paths.items()
+            )
+        ):
+            raise ConfigError(
+                "checkpoint_paths must map skill names to checkpoint paths"
+            )
+        if checkpoint_paths is not None and policy is not None:
+            raise ConfigError("An injected single policy cannot serve a policy catalog")
+        if not state_obs_path:
+            raise ConfigError("state_obs_path must be non-empty")
         if dp_num_inference_steps <= 0:
             raise ConfigError("dp_num_inference_steps must be positive")
-        self.checkpoint_path = str(checkpoint_path)
+        self.checkpoint_paths = (
+            {skill: str(path) for skill, path in checkpoint_paths.items()}
+            if checkpoint_paths is not None
+            else None
+        )
+        self.checkpoint_path = (
+            str(checkpoint_path) if checkpoint_path is not None else ""
+        )
         self.policy_name = policy_name
         self.device = device
         self.state_obs_path = state_obs_path
@@ -34,6 +64,9 @@ class RoboSynPolicyBackend(SkillBackend):
         self.dp_num_inference_steps = dp_num_inference_steps
         self.policy = policy
         self._episode_key: Any = object()
+        self._selected_skill: str | None = None
+        self._execution_id: Any = None
+        self._attempt_id: Any = None
 
     def _load_policy(self) -> None:
         if self.policy is not None:
@@ -89,8 +122,17 @@ class RoboSynPolicyBackend(SkillBackend):
             or action_dim <= 0
         ):
             raise BackendError("RoboSyn observation requires a positive action_dim")
-        task_name = observation.get("task_name")
-        if inputs.get("skill") != task_name:
+        skill = inputs.get("skill")
+        skill_changed = False
+        if self.checkpoint_paths is not None:
+            if not isinstance(skill, str) or skill not in self.checkpoint_paths:
+                raise BackendError("RoboSyn policy skill is not in the policy catalog")
+            skill_changed = skill != self._selected_skill
+            if skill_changed:
+                # Dispatch follows the planner's selection, never the task label.
+                self.policy = None
+                self.checkpoint_path = self.checkpoint_paths[skill]
+        elif skill != observation.get("task_name"):
             raise BackendError("RoboSyn policy skill must match the current task")
         self._load_policy()
         torch = importlib.import_module("torch")
@@ -105,9 +147,25 @@ class RoboSynPolicyBackend(SkillBackend):
             )
 
         try:
+            reset_reason = None
             if episode_key != self._episode_key:
+                reset_reason = "episode_start"
+            elif self.checkpoint_paths is not None:
+                if skill_changed:
+                    reset_reason = "skill_changed"
+                elif (
+                    inputs.get("execution_id") is not None
+                    and inputs.get("execution_id") == self._execution_id
+                    and inputs.get("attempt_id") is not None
+                    and inputs.get("attempt_id") != self._attempt_id
+                ):
+                    reset_reason = "retry"
+            if reset_reason is not None:
                 self.policy.reset()
-                self._episode_key = episode_key
+            self._episode_key = episode_key
+            self._selected_skill = skill
+            self._execution_id = inputs.get("execution_id")
+            self._attempt_id = inputs.get("attempt_id")
             state = raw
             for key in self.state_obs_path.split("/"):
                 if key:
@@ -149,12 +207,39 @@ class RoboSynPolicyBackend(SkillBackend):
                 )
             if not bool(torch.isfinite(action).all().item()):
                 raise ValueError("Policy action must contain finite values")
-            return {"actions": action.detach()}
+            return {
+                "actions": action.detach(),
+                "policy_selection": {
+                    "skill": skill,
+                    "checkpoint_path": self.checkpoint_path,
+                    "selection_mode": (
+                        "planner_catalog"
+                        if self.checkpoint_paths is not None
+                        else "single_checkpoint"
+                    ),
+                    "reset_reason": reset_reason,
+                },
+            }
         except Exception as error:
             raise BackendError(f"RoboSyn policy inference failed: {error}") from error
 
     def healthcheck(self) -> dict[str, Any]:
         try:
+            if self.checkpoint_paths is not None:
+                missing = [
+                    skill
+                    for skill, path in self.checkpoint_paths.items()
+                    if not Path(path).is_dir()
+                ]
+                return {
+                    "healthy": not missing,
+                    "policy": self.policy_name,
+                    "available_skills": list(self.checkpoint_paths),
+                    "missing_checkpoints": missing,
+                    "policy_loading": "deferred_until_planner_selection",
+                    "device": self.device,
+                    "language_conditioned": False,
+                }
             self._load_policy()
             return {
                 "healthy": True,
