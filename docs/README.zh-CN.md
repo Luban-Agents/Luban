@@ -35,3 +35,5 @@
 [64项原子技能与动图库](atomic-skills.zh-CN.md)
 
 [RoboSynChallenge 运行指南](robosynchallenge.zh-CN.md)
+
+[模型驱动的化学仿真 Demo](chemistry.zh-CN.md)

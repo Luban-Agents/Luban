@@ -1,5 +1,7 @@
 # Tasks
 
+- [x] `DONE` Validate model-driven Chemistry and RoboSyn on the current Luban tree: chemistry completed in 14 primitives; RoboSyn completed 30 episodes with 9 successes and zero execution/process errors ([plan](plans/2026-11-13-chemistry-robosyn-agent-validation.md)).
+
 - [x] `DONE` Luban package identity and bilingual user guides ([plan](plans/2026-10-08-luban-package-bilingual.md)).
 
 - [x] `DONE` Standardize LIBERO report labels and metric definitions ([plan](plans/2026-10-08-report-labels.md)).

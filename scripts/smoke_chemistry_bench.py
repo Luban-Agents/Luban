@@ -49,15 +49,19 @@ def main() -> None:
     parser.add_argument("--base-url")
     parser.add_argument("--episodes", type=int, default=2)
     parser.add_argument("--rpc-timeout", type=float, default=600)
+    parser.add_argument("--timeout-seconds", type=float, default=3600)
     args = parser.parse_args()
     if args.episodes < 1:
         parser.error("episodes must be positive")
     args.output.mkdir(parents=True, exist_ok=True)
-    task = load_yaml("configs/runs/chemistry_bench_titration.yaml")["task"]
+    run_config = load_yaml("configs/runs/chemistry_bench_titration.yaml")
+    task = run_config["task"]
     results = []
     for index in range(args.episodes):
         env = ChemistryBenchEnvironment(
-            address=args.address, timeout_seconds=args.rpc_timeout
+            address=args.address,
+            timeout_seconds=args.rpc_timeout,
+            detail_crop=run_config["environment"]["init_args"].get("detail_crop"),
         )
         try:
             initial = env.reset(task)
@@ -101,7 +105,7 @@ def main() -> None:
             result = SyncRuntime(
                 output_dir=args.output,
                 max_steps=30,
-                timeout_seconds=1800,
+                timeout_seconds=args.timeout_seconds,
                 observability=LocalEpisodeRecorder(
                     record_video=True, video_camera_keys=["head_rgb"]
                 ),

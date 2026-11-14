@@ -9,7 +9,7 @@ runtime:
     max_steps: 30
     max_invalid_actions: 5
     max_retries: 5
-    timeout_seconds: 1800
+    timeout_seconds: 3600
     output_dir: runs/chemistry_bench_titration
     observability:
       class_path: luban.observability.LocalEpisodeRecorder
@@ -23,6 +23,7 @@ environment:
     address: 127.0.0.1:50051
     timeout_seconds: 600
     max_steps: 30
+    detail_crop: [0.54, 0.50, 0.69, 0.77]
 task:
   task_id: toy_titration_v1
   instruction: >-

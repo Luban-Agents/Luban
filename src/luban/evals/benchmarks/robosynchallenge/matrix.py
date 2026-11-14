@@ -33,8 +33,6 @@ def task_command(
         *command,
         "--task",
         task["name"],
-        "--checkpoint",
-        task["checkpoint_path"],
         "--policy",
         manifest.get("policy", "act"),
         "--setting",
@@ -44,6 +42,8 @@ def task_command(
         "--seeds",
         *map(str, manifest.get("seeds", list(range(100)))),
     ]
+    if task.get("checkpoint_path"):
+        args.extend(["--checkpoint", task["checkpoint_path"]])
     if task.get("checkpoint_revision"):
         args.extend(["--checkpoint-revision", task["checkpoint_revision"]])
     agent_config = task.get("agent_config", manifest.get("agent_config"))

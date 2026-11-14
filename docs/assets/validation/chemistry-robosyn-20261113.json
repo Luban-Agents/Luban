@@ -1,0 +1,466 @@
+{
+  "date": "2026-11-13",
+  "framework_base_commit": "2942a6862437aff372a522be8c805bdfdc9f2104",
+  "framework_has_validation_patch": true,
+  "framework_source_sha256": {
+    "scripts/eval_robosynchallenge.py": "dabb627d52910c756de01c2f4e54bcf5b3c05ef5ee7075069b4918fc816d7483",
+    "src/luban/backends/skills/robosyn.py": "9d1b6ecb8aaf16e6e2afa31311ed699bec7de829ea5bcbfed32780cb3f73137d",
+    "src/luban/environments/benchmarks/robosynchallenge/environment.py": "c8e2b7a29ea9954e8c6b5cf2f6a66d13887003df55b8b238f0c09705224593ba",
+    "src/luban/evals/benchmarks/robosynchallenge/evaluator.py": "57534ca46f2b9cf6e362de52441c77872c259dac43b15e865e019fac895dfdde",
+    "src/luban/pipelines/skill_execution.py": "9e0a3de393c19ac36a9504f43ccc516198e8114d4c1e223eeb2f200fedfce8e9",
+    "src/luban/agent_core/planners/subtask_skill.py": "90e632ded3fd9f8591a1bdd3044b19fbc4ce346e6fffec7400ac58bf34a46260",
+    "src/luban/agent_core/verifiers/subtask.py": "bc2f24cbaf0c802bf20824e197da9cc1057d2880e5abc5740e0ac2b43cc002ef"
+  },
+  "chemistry": {
+    "task": "toy_titration_v1",
+    "mode": "model",
+    "model": "Qwen3.5-9B",
+    "success": true,
+    "steps": 14,
+    "invalid_actions": 0,
+    "termination_reason": "task_success",
+    "wall_seconds": 1674.574020956643,
+    "continuous_video": {
+      "frames": 1208,
+      "fps": 20,
+      "simulation_seconds": 60.4,
+      "width": 1280,
+      "height": 832
+    },
+    "prior_attempts": [
+      {
+        "output": "runtime",
+        "success": false,
+        "steps": 18,
+        "termination_reason": "invalid_action_limit",
+        "invalid_actions": 10
+      },
+      {
+        "output": "runtime-v2",
+        "success": false,
+        "steps": 16,
+        "termination_reason": "timeout",
+        "invalid_actions": 0
+      }
+    ],
+    "detail_crop": [
+      0.54,
+      0.5,
+      0.69,
+      0.77
+    ],
+    "source_sha256": {
+      "scripts/smoke_chemistry_bench.py": "7c9ee37e0c8743c773b1159f96ea984f05b4d605dfa6cac3194402b445a18d4c",
+      "configs/agents/chemistry_bench_titration.yaml": "541acfb3c10731c7c45900338dfb886a2c91496c993fdc3285fe94bca4e44352",
+      "configs/runs/chemistry_bench_titration.yaml": "1c0e1d7de679dc5dc559678978a09bea6f28e5f3429769eb564fd29aac2d7915",
+      "src/luban/environments/benchmarks/chemistry_bench/environment.py": "0bde317d2fa2fe215ce24328e438794a0401ccc950a69ab36af1c7d0dd425a19",
+      "src/luban/agent_core/planners/language_skill.py": "f7aa78d7e9f1c0562fe52a3955f3c081622679941a81c42b858a0d769e55e694",
+      "src/luban/backends/skills/language.py": "ea2d4cad1cec4ef9e9566390d6fa4ca64d54d44891c71bd6ffb6bb2766382f96",
+      "benchmarks/chemistry-bench-sim/src/chemistry_bench_sim/worker.py": "f2ea345b0d0938d75ba35f89866c34648e26fd4da4fcce7c87e75b91d36c12dc",
+      "benchmarks/chemistry-bench-sim/src/chemistry_bench_sim/scene.py": "bcbd8043022fd919d0be280071f2b3427bcdc5d31c0c2d21daa415d9a9129817"
+    }
+  },
+  "robosyn": {
+    "setting": "random",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "expert_feasibility_filter": false,
+    "policy": "act",
+    "model": "Qwen3.5-9B",
+    "language_conditioned_policy": false,
+    "successes": 9,
+    "episodes": 30,
+    "success_rate": 0.3,
+    "execution_errors": 0,
+    "process_errors": 0,
+    "complete": true,
+    "live_planner_calls": 204,
+    "visual_verifier_calls": 179,
+    "controller_actions": 12426,
+    "policy_reset_reasons": {
+      "episode_start": 30,
+      "skill_changed": 14
+    },
+    "audit_errors": [],
+    "termination_counts": {
+      "task_success": 9,
+      "environment_done": 19,
+      "execution_aborted": 2
+    },
+    "tasks": [
+      {
+        "name": "click_bell",
+        "successes": 2,
+        "episodes": 3,
+        "process_returncode": 0
+      },
+      {
+        "name": "drawer_open_place",
+        "successes": 0,
+        "episodes": 3,
+        "process_returncode": 0
+      },
+      {
+        "name": "handle_basket",
+        "successes": 0,
+        "episodes": 3,
+        "process_returncode": 0
+      },
+      {
+        "name": "item_assembly",
+        "successes": 1,
+        "episodes": 3,
+        "process_returncode": 0
+      },
+      {
+        "name": "items_handover",
+        "successes": 0,
+        "episodes": 3,
+        "process_returncode": 0
+      },
+      {
+        "name": "manipulate_pipette",
+        "successes": 2,
+        "episodes": 3,
+        "process_returncode": 0
+      },
+      {
+        "name": "mixer_operating",
+        "successes": 0,
+        "episodes": 3,
+        "process_returncode": 0
+      },
+      {
+        "name": "sample_loading",
+        "successes": 0,
+        "episodes": 3,
+        "process_returncode": 0
+      },
+      {
+        "name": "table_rearrangement",
+        "successes": 3,
+        "episodes": 3,
+        "process_returncode": 0
+      },
+      {
+        "name": "water_pouring",
+        "successes": 1,
+        "episodes": 3,
+        "process_returncode": 0
+      }
+    ],
+    "episodes_detail": [
+      {
+        "task": "click_bell",
+        "seed": 0,
+        "success": true,
+        "authoritative_success": true,
+        "environment_steps": 48,
+        "termination_reason": "task_success"
+      },
+      {
+        "task": "click_bell",
+        "seed": 1,
+        "success": true,
+        "authoritative_success": true,
+        "environment_steps": 48,
+        "termination_reason": "task_success"
+      },
+      {
+        "task": "click_bell",
+        "seed": 2,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 361,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "drawer_open_place",
+        "seed": 0,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 900,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "drawer_open_place",
+        "seed": 1,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 900,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "drawer_open_place",
+        "seed": 2,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 900,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "handle_basket",
+        "seed": 0,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 500,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "handle_basket",
+        "seed": 1,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 500,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "handle_basket",
+        "seed": 2,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 500,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "item_assembly",
+        "seed": 0,
+        "success": true,
+        "authoritative_success": true,
+        "environment_steps": 265,
+        "termination_reason": "task_success"
+      },
+      {
+        "task": "item_assembly",
+        "seed": 1,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 500,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "item_assembly",
+        "seed": 2,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 500,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "items_handover",
+        "seed": 0,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 350,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "items_handover",
+        "seed": 1,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 350,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "items_handover",
+        "seed": 2,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 350,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "manipulate_pipette",
+        "seed": 0,
+        "success": true,
+        "authoritative_success": true,
+        "environment_steps": 239,
+        "termination_reason": "task_success"
+      },
+      {
+        "task": "manipulate_pipette",
+        "seed": 1,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 1000,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "manipulate_pipette",
+        "seed": 2,
+        "success": true,
+        "authoritative_success": true,
+        "environment_steps": 240,
+        "termination_reason": "task_success"
+      },
+      {
+        "task": "mixer_operating",
+        "seed": 0,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 500,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "mixer_operating",
+        "seed": 1,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 500,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "mixer_operating",
+        "seed": 2,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 500,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "sample_loading",
+        "seed": 0,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 320,
+        "termination_reason": "execution_aborted"
+      },
+      {
+        "task": "sample_loading",
+        "seed": 1,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 500,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "sample_loading",
+        "seed": 2,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 64,
+        "termination_reason": "execution_aborted"
+      },
+      {
+        "task": "table_rearrangement",
+        "seed": 0,
+        "success": true,
+        "authoritative_success": true,
+        "environment_steps": 157,
+        "termination_reason": "task_success"
+      },
+      {
+        "task": "table_rearrangement",
+        "seed": 1,
+        "success": true,
+        "authoritative_success": true,
+        "environment_steps": 128,
+        "termination_reason": "task_success"
+      },
+      {
+        "task": "table_rearrangement",
+        "seed": 2,
+        "success": true,
+        "authoritative_success": true,
+        "environment_steps": 125,
+        "termination_reason": "task_success"
+      },
+      {
+        "task": "water_pouring",
+        "seed": 0,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 500,
+        "termination_reason": "environment_done"
+      },
+      {
+        "task": "water_pouring",
+        "seed": 1,
+        "success": true,
+        "authoritative_success": true,
+        "environment_steps": 181,
+        "termination_reason": "task_success"
+      },
+      {
+        "task": "water_pouring",
+        "seed": 2,
+        "success": false,
+        "authoritative_success": false,
+        "environment_steps": 500,
+        "termination_reason": "environment_done"
+      }
+    ],
+    "source_commits": {
+      "root": "8818c82df5fa2522809b8105e7018950dcc9a9a8",
+      "embodichain_root": "89c14da8d0221dc4ee2a4a3e0ba1078b16d447bd"
+    },
+    "agent_config_sha256": "e0eee90de32d0d96a6319dd01e5088c87abcfb8be72fb5665d81cf41518705c1",
+    "checkpoint_sha256": {
+      "click_bell": {
+        "config.json": "976b201f366aacad6b7bcafd9cb105b2e62749f808d68da8755275492262fb89",
+        "model.safetensors": "48e84197ca3598a852ab5cf5f6d45dcd91d68fb55f0935d83b1e71b23b4687f4",
+        "train_config.json": "77aecdfcc26315a2f5791fb95061c8871b19ce685d96e667492870f289fb3135"
+      },
+      "drawer_open_place": {
+        "config.json": "137c7dbfc8aa0aafb6557234c67563135d78cd4b01355b22229945e467dc2e68",
+        "model.safetensors": "2392100f4ef41c0d17c6a1f01b4fc244be098dbca0928bc7f90a07c1f6b4992c",
+        "train_config.json": "e5ec10eafc6e9742257f73b466ed7d97db8d26a3461f52e857ea6fde0013178b"
+      },
+      "handle_basket": {
+        "config.json": "137c7dbfc8aa0aafb6557234c67563135d78cd4b01355b22229945e467dc2e68",
+        "model.safetensors": "3af52f2a079e66f00c6abc2c8710aef6a8dc3d7f77217a0beb7f53b5db980c7e",
+        "train_config.json": "5260f802835f4cde9448a17532e810682cc9fe5ffe9a2a50df3a7eb4ff7d9b15"
+      },
+      "item_assembly": {
+        "config.json": "137c7dbfc8aa0aafb6557234c67563135d78cd4b01355b22229945e467dc2e68",
+        "model.safetensors": "69462a12dbb0fe9bee654226ca714778ca5f83e420258456721626befb15bdac",
+        "train_config.json": "a70347cf9f1838073edbc29ddbf9af89808344ed9446824f5f39446b6dbb6dd3"
+      },
+      "items_handover": {
+        "config.json": "137c7dbfc8aa0aafb6557234c67563135d78cd4b01355b22229945e467dc2e68",
+        "model.safetensors": "ed95576e59662af5c9a7a49af09822795b44b14251566f8cdb4955a0107d8071",
+        "train_config.json": "ba0c6f941cd72e20207196273fd1384b38fa27e4f39e11b550adc5179750e8d4"
+      },
+      "manipulate_pipette": {
+        "config.json": "137c7dbfc8aa0aafb6557234c67563135d78cd4b01355b22229945e467dc2e68",
+        "model.safetensors": "d6bcc59b9688e6c6fbb1017ff144ac868fec4bc9800243d6e4b0c2fa2dc4869f",
+        "train_config.json": "8e989a5a819d88f26638a14ccab9156c748bd6ca2473fba767742a61d1516548"
+      },
+      "mixer_operating": {
+        "config.json": "137c7dbfc8aa0aafb6557234c67563135d78cd4b01355b22229945e467dc2e68",
+        "model.safetensors": "d7b19d76e6a4177ddd5acae1c141a9c53c5585bc9b52ea6bbf55b5ce8780ad97",
+        "train_config.json": "d80c0ceafbe9db08203aaf60f5947151efc70c8376a90112998486de914352aa"
+      },
+      "sample_loading": {
+        "config.json": "137c7dbfc8aa0aafb6557234c67563135d78cd4b01355b22229945e467dc2e68",
+        "model.safetensors": "f9d42ab0ac597aaef3eaf4aaeae08b15de6d96240be2c64fe4196fabc1dbbd3a",
+        "train_config.json": "f659416934d6dd3ec878ca6974bce2b3d8483fe51f1b73d43a586e2aa49c86f6"
+      },
+      "table_rearrangement": {
+        "config.json": "137c7dbfc8aa0aafb6557234c67563135d78cd4b01355b22229945e467dc2e68",
+        "model.safetensors": "6436978996239434191ba0fe5cd0dba91c832b57fa83b1038d4f19e138ac0be8",
+        "train_config.json": "db018c054df29b614b9795f58d9ad09e59441e58a41dbe9735a58027d2ea3da0"
+      },
+      "water_pouring": {
+        "config.json": "137c7dbfc8aa0aafb6557234c67563135d78cd4b01355b22229945e467dc2e68",
+        "model.safetensors": "40aa483bf3ff18314e89c17ed91066cca867a8aa587c5fb9ecbb963c0eed330c",
+        "train_config.json": "a6af1a8551ac61c0bfefd5dd79b0d67b78c156e6e87d606720a4bca1073db237"
+      }
+    },
+    "runtime_max_steps": 10000,
+    "runtime_timeout_seconds": 1800,
+    "planner_check_interval_chunks": 64,
+    "semantic_verifier_interval_chunks": 64
+  },
+  "software_checks": {
+    "related_tests_passed": 184,
+    "optional_tests_skipped": 1,
+    "mypy_modules": 4,
+    "ruff": "passed"
+  },
+  "scope": "Fresh functional validation on a patched current Luban tree; not the historical 1000-episode run or an official leaderboard reproduction."
+}

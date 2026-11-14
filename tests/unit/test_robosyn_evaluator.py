@@ -208,6 +208,20 @@ def test_summary_rejects_duplicate_seed() -> None:
         summarize([episode, episode], [0])
 
 
+def test_matrix_catalog_does_not_preselect_a_checkpoint(tmp_path: Path) -> None:
+    command = task_command(
+        ["python", "scripts/eval_robosynchallenge.py"],
+        {"agent_config": "catalog.yaml", "seeds": [0, 1]},
+        {"name": "click_bell"},
+        tmp_path,
+        resume=False,
+        gpu=2,
+    )
+    assert "--checkpoint" not in command
+    assert command[command.index("--agent-config") + 1] == "catalog.yaml"
+    assert command[command.index("--device") + 1] == "cuda:2"
+
+
 def test_model_verifier_cannot_override_native_failure(tmp_path: Path) -> None:
     class OverconfidentVerifier(EnvironmentVerifier):
         def verify(self, inputs: dict[str, Any]) -> dict[str, Any]:

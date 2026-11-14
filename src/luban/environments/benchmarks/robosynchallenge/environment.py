@@ -36,9 +36,19 @@ class RoboSynChallengeEnvironment(Environment):
         gpu_id: int = 0,
         reset_sync_steps: int = 1,
         environment_factory: Callable[..., Any] | None = None,
+        available_skills: list[str] | None = None,
     ) -> None:
         if reset_sync_steps < 0:
             raise ConfigError("reset_sync_steps must be non-negative")
+        if available_skills is not None and (
+            not isinstance(available_skills, list)
+            or not available_skills
+            or any(
+                not isinstance(skill, str) or not skill for skill in available_skills
+            )
+            or len(set(available_skills)) != len(available_skills)
+        ):
+            raise ConfigError("available_skills must contain unique non-empty names")
         self.robosyn_root = Path(robosyn_root).expanduser().resolve()
         self.embodichain_root = (
             Path(embodichain_root).expanduser().resolve()
@@ -52,6 +62,7 @@ class RoboSynChallengeEnvironment(Environment):
         self.gpu_id = gpu_id
         self.reset_sync_steps = reset_sync_steps
         self.environment_factory = environment_factory
+        self.available_skills = list(available_skills) if available_skills else None
         self.env: Any = None
         self._upstream: Any = None
         self._task_key: tuple[str, str] | None = None
@@ -276,7 +287,9 @@ class RoboSynChallengeEnvironment(Environment):
             "executed_steps": executed,
             "environment_steps": self.environment_steps,
             "env_feedback": self.outcome,
-            "env_info": to_jsonable(dict(info)),
+            # Pipeline success checks require a scalar bool. Native info contains
+            # tensors, whose trace summaries are not truth-valued success flags.
+            "env_info": {**to_jsonable(dict(info)), "success": self.task_success},
         }
 
     def _decorate_observation(self, observation: Any) -> dict[str, Any]:
@@ -301,7 +314,11 @@ class RoboSynChallengeEnvironment(Environment):
         return {
             "task_name": self.task_name,
             "annotation.human.task_description": self.instruction,
-            "available_skills": [self.task_name],
+            "available_skills": (
+                list(self.available_skills)
+                if self.available_skills is not None
+                else [self.task_name]
+            ),
             "policy_observation": {
                 key: observation[key]
                 for key in ("robot", "sensor")
@@ -329,6 +346,7 @@ class RoboSynChallengeEnvironment(Environment):
             "action_schema": "native joint positions; task-configured normalization",
             "policy_observation": ["robot", "sensor"],
             "success_signal": "is_task_success() and not truncated",
+            "available_skills": self.available_skills,
             "native_gym_config": self._gym_config,
         }
 

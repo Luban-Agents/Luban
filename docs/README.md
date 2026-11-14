@@ -34,3 +34,5 @@ Start with the CPU mock example, then prepare resources for a real GPU episode.
 [64 atomic skills and animated gallery](atomic-skills.md)
 
 [RoboSynChallenge guide](robosynchallenge.md)
+
+[Model-driven chemistry demo](chemistry.md)

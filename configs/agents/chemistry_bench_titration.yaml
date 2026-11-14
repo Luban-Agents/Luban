@@ -16,10 +16,21 @@ planner:
       tan/gray shaded sides. These lighting shadows are NOT the pink endpoint.
       The endpoint is a distinctly pink/rose liquid cylinder, including its top.
       Judge actual pixels, not the mention of pink in the instruction or history.
+      When two current images are supplied, the first is the full scene and the
+      second magnifies the beaker region from the same frame. Use the second image
+      to judge liquid color; it is current visual evidence, not an old memory.
       A successful pick means the bottle is attached to the moving gripper:
       continue with pouring, do not pick it again. Use action feedback to track
       holding state, and the current image to judge liquid color. Once pink,
       stop pouring, place the bottle back on the table, then record the finding.
+      Earlier reasoning may describe an older image: it is not evidence that the
+      CURRENT beaker is clear. Returning the bottle does not remove NaOH from the
+      beaker or reverse the color change. Once you have observed pink, finish the
+      remaining return-and-record steps instead of starting the task again.
+      A successful place releases the bottle; if the beaker is pink and the last
+      successful action was place, select record finding. A rejected pick after a
+      successful pick usually means the gripper is already occupied: do not retry
+      pick in a loop. When color is ambiguous, observe rather than blindly pour.
       Return JSON with exactly reasoning (short string) and skill (exact action string).
     backend:
       class_path: luban.backends.llm.OpenAICompatibleLLMBackend
@@ -30,6 +41,7 @@ planner:
         max_retries: 2
     max_tokens: 1024
     temperature: 0
+    memory_char_budget: 2048
     extra_body:
       chat_template_kwargs:
         enable_thinking: false
